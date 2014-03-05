@@ -26,34 +26,18 @@ class Dao_Node_Category extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'samx',
         	'documentSchemaArray' => array(
-        		'name' => 'string', 
-        		'avatar' => 'string',
-        		'content' => 'string',
-    	        'content_uf' => 'string', //unfiltered content where <span class='item'> is converted to proper item links 
-        		'tags' => array(
-    	             'i' => array($this->cSchema ),//list of items
-    	        ),
-        		'type' => 'int', // 1 => want item, 2 => own item, 3 => had item (reviews). If  9 => "uploaded photo"
-        		'u' => $user, //who posted this	
-        		'counter'	=>	array(
-        			'c' => 'int',
-    	            'f' => 'int', //follow
-    	            'r' => 'int', //recommend
-    	            'l' => 'int', //likes
-    	        ),
-        		'comments' => array ( //comments can be embedded right into the node.
-       					array(
-        						'u'	=> $user,
-                                //'content'	=>	'string',
-       					        'fcontent' => 'string', //filtered content
-                                'ts'	=>	'mixed',
-                                'id'	=>	'mixed',
-                                'vc' => 'int', //vote count
-                                'uv' => 'array' //array uid voted
-                            )
-                        ),
-        		'ts' => 'int',
-        		'status' => 'string'
+        	     "category_id"	=>'int',
+    	         "name" => 'string',
+    	         "description" => 'string',
+    	         "meta_description" => 'string',
+			     "image" => 'string',
+				 "parent_id" => 'int',
+				 "top" => 'int',
+				 "column" => 'int',
+				 "sort_order" =>'int',
+				 "status" => 'int',
+				 "date_added" => 'float',
+				 "date_modified" => 'float'
         	)
     	);
 	}
