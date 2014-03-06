@@ -1,14 +1,19 @@
 <?php
 class Dao_Node_Category extends Cl_Dao_Node
 {
-    public $nodeType = 'samx';
+    public $nodeType = 'category';
     public $cSchema = array(
-    		'id' => 'string',
-    		'name' => 'string',
-    		'avatar' => 'string',
+    		'id' => 'int',
+            'iid' => 'int',
+    		'category_name' => 'string',
+    		'category_description' => 'string',
     		//add other stuff u want
     );
-        
+
+    public $category_tree = array(
+            //TODO cần có phân nhánh cây => 1 category có nhiều con, và có thể tạo tự động được category con             
+    	
+    );
     protected function relationConfigs($subject = 'user')
     {
     	if ($subject == 'user')
@@ -24,13 +29,16 @@ class Dao_Node_Category extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
     	return array(
-    		'collectionName' => 'samx',
+    		'collectionName' => 'category',
         	'documentSchemaArray' => array(
-        	     "category_id"	=>'int',
-    	         "name" => 'string',
-    	         "description" => 'string',
+    	         'id' => 'int',
+    	         'iid' => 'int',
+    	         "category_id"	=>'int',
+        	     "category_type" =>'int',
+    	         "category_name" => 'string',
+    	         "category_description" => 'string',
     	         "meta_description" => 'string',
-			     "image" => 'string',
+			     "category_image" => 'string',
 				 "parent_id" => 'int',
 				 "top" => 'int',
 				 "column" => 'int',

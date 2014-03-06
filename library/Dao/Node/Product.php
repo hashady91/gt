@@ -24,30 +24,47 @@ class Dao_Node_Product extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
     	return array(
-    		'collectionName' => 'samx',
+    		'collectionName' => 'product',
         	'documentSchemaArray' => array(
-        		"product_id" => 'int', 
-        		'model' => 'string',
+    	        'id' => 'int',
+    	        'iid' => 'int',
+    	        'SupplierName' => 'string',
+    	        'Model' => 'string',
+    	        'Condition' => 'enum',
+    	        'SerialNumber' => 'string',
+    	        'Location' => 'string',
+    	        'ModifiedDate' => 'int',
+    	        'ReceivedDate' => 'int', // unix timestamp , at 00:00:00 of that date
+    	        'SoldDate' => 'int', // unix timestamp , at 00:00:00 of that date
+    	        'StockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
+    	        'Note' => 'array',
+    	        'images' => array(
+    	                array(
+    	                        'id' => 'string',
+    	                        'ext' => 'string',
+    	                        'url' => 'string',
+    	                        'path' => 'string'
+    	                )
+    	        ),
+    	        'weight' => 'float',
+    	        'type' => 'string',
     	        "name" => 'string',
     	        "description" => 'string',
     	        "meta_description" => 'string',
     	        "key_word" => 'string',
-        		'location' => 'string',
-    	        'quantity' => 'int', //unfiltered content where <span class='item'> is converted to proper item links 
-    	        "stock_status_id" => 'int',
-    	        'image' => 'string',
+    	        'quantity' => 'int',
     	        'manufacturer_id' => 'string',
     	        'shipping' => 'int',
     	        "price" => 'int',
-    	        'date_available' => 'int',
     	        'weight' => 'float',
     	        'length' => 'float',
     	        "width" => 'float',
     	        'height' => 'float',
-    	        'date_added' => 'int',
-    	        'date_modified' => 'int',
     	        'viewed' => 'int',
     	        'saled' => 'int',
+    	        'counter'	=>	array(
+    	                'sale_number' => 'int', // so luong hang ban duoc
+    	        ),
         	)
     	);
 	}
