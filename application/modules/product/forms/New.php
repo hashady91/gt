@@ -4,7 +4,36 @@ class Product_Form_New extends Cl_Form
 	public function init()
 	{
 		parent::init();
-		$this->fieldList = array('avatar', 'name', 'content', 'status');
+		$this->fieldList = array(
+    	        'SupplierName',
+    	        'Model',
+    	        'Condition',
+    	        'SerialNumber',
+    	        'Location',
+    	        'ModifiedDate',
+    	        'ReceivedDate', // unix timestamp , at 00:00:00 of that date
+    	        'SoldDate', // unix timestamp , at 00:00:00 of that date
+    	        'StockStatus', // 0 NOTINStock, 1 => InStock, 2 => Missing
+    	        'Note',
+    	        'images',
+    	        'category',
+    	        'weight',
+    	        'type',
+    	        "name",
+    	        "description",
+    	        "meta_description",
+    	        "key_word",
+    	        'quantity',
+    	        'manufacturer_id',
+    	        'shipping',
+    	        "price",
+    	        'weight',
+    	        'length',
+    	        "width",
+    	        'height',
+    	        'viewed',
+    	        'saled',
+    	        'counter',);
 		$this->setCbHelper('Product_Form_Helper');
 		
 	}

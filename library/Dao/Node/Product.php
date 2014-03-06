@@ -46,6 +46,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	                        'path' => 'string'
     	                )
     	        ),
+    	        'category' => 'array',
     	        'weight' => 'float',
     	        'type' => 'string',
     	        "name" => 'string',
