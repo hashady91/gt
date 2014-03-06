@@ -28,6 +28,13 @@ class Dao_Node_Category extends Cl_Dao_Node
     
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
+	    $category = array(
+    		'id' => 'int',
+    		'iid' => 'int',
+    		'category_name' => 'string',
+    		'category_description' => 'string',
+	    );
+	    
     	return array(
     		'collectionName' => 'category',
         	'documentSchemaArray' => array(
@@ -45,7 +52,8 @@ class Dao_Node_Category extends Cl_Dao_Node
 				 "sort_order" =>'int',
 				 "status" => 'int',
 				 "date_added" => 'float',
-				 "date_modified" => 'float'
+				 "date_modified" => 'float',
+        		 "child_category" => $category
         	)
     	);
 	}
