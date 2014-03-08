@@ -14,5 +14,5 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 	public function anyOtherRequestAction()
 	{
 		
-	}    
+	}   
 }
