@@ -1,0 +1,140 @@
+<?php 
+    $lu =  Zend_Registry::get('user');
+    $page = 'home';
+    if (isset($_REQUEST['page']))
+        $page = $_REQUEST['page'];
+    if (Zend_Registry::isRegistered('page'))
+        $page = Zend_Registry::get('page');
+
+?>
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php echo Bootstrap::$pageTitle;?> - demo.com</title>
+    <meta name="description" content="<?php echo Bootstrap::$pageDesc;?>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="">
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/jquery.js"></script>
+     <script async="" src="//www.googletagmanager.com/gtm.js?id=GTM-B76Z"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/perflibLoader-v2.4.1.js"></script>
+    <link rel="shortcut icon" href="//www.groupon.com/layout/assets/gig_application_layout-favicon-5414457d50.ico">
+    
+    <script src="<?php echo ASSETS_CDN;?>/js/gig_application_layout-v3.8.2-7803548e24.js"></script>
+     <?php /*
+    <link type="text/css" rel="stylesheet" href="http://www.groupon.com/layout/assets/gig_application_layout-v3.8.2-542dd861f3.css">
+     */?>
+    <link type="text/css" rel="stylesheet" href="<?php echo ASSETS_CDN;?>/css/gig_application_layout-v3.8.2-542dd861f3.css">
+    <!--[if lte IE 7]>
+      <script src="//www.groupon.com/layout/js/lte-ie7.js"></script>
+    <![endif]-->
+
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="Deals from 50-90% off on Restaurants, Fitness, Travel, Shopping, Beauty, Spas, Holiday Gifts and more." name="description">
+
+
+    <link href="http://www.groupon.com" rel="canonical">
+
+
+    <link type="text/css" rel="stylesheet" href="<?php echo ASSETS_CDN;?>/css//styles-2902cc5ab3.css">
+    <link href="<?php echo ASSETS_CDN;?>/css/styles-4afbab78a0.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo ASSETS_CDN;?>/css/facebook.css" rel="stylesheet" type="text/css" />
+
+    
+<?php //if (APPLICATION_ENV == 'development') :?>
+    <link href="<?php echo SAND_ASSETS_CDN;?>/css/ui-lightness/jquery-ui-1.8.16.custom.css" rel="stylesheet" >
+    <link href="<?php echo SAND_ASSETS_CDN;?>/css/reset.css" media="screen" rel="stylesheet" type="text/css" >
+    
+	<link href="<?php echo ASSETS_CDN;?>/css/styles-1a3ad22217.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/styles-4f5ae5533f.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/styles-6e7d0d401d.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/styles-48b2ea4920.css" media="screen" rel="stylesheet" type="text/css" >
+    <link href="<?php echo SAND_ASSETS_CDN;?>/js/plugins/toastmessage/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet" type="text/css"/>	
+    <link href="<?php echo SAND_ASSETS_CDN;?>/css/common.css" media="screen" rel="stylesheet" type="text/css" >
+    
+    <link href="<?php echo SAND_ASSETS_CDN;?>bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="<?php echo SAND_ASSETS_CDN;?>bootstrap-3.0.0/dist/js/bootstrap.min.js"></script>		
+	<?php /*
+	<link href="<?php echo ASSETS_CDN;?>/css/style_ver7.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/gt_style.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo SAND_ASSETS_CDN;?>bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+	<link href="<?php echo ASSETS_CDN;?>/css/styles.css" media="screen" rel="stylesheet" type="text/css" >
+	*/?>
+<style>
+div.navbar ul.breadcrumb > li
+{
+	min-height:30px;
+	padding-top:10px;
+}
+#tsCategory { position: absolute; }
+</style>
+<?php 
+$format = "DD/MM/YYYY";
+?>
+
+<script type='text/javascript'>
+<?php echo $this->render('widget/php-to-js.phtml');?>
+CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
+</script>
+	
+</head>
+<body class='prom-night ltr en_US en_XX'> 
+<div id="global-container" style="display: block;">
+<?php echo $this->render("admin_menu.phtml");?>
+<div class='container'>
+    <div class='row' style='min-height:65px;'></div>
+</div>
+
+<div class='container' style='min-height:500px;' >
+     <?php echo $this->layout()->content; ?>
+</div>
+     
+<footer class="footer-i18n">
+    <div class="row">
+        <div class="columns nine footer-i18n-payload">
+  
+        </div>
+    </div>
+  
+  </footer>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/jquery-ui-1.8.16.custom.min.js"></script>
+	<script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/toastmessage/src/main/javascript/jquery.toastmessage.js" type="text/javascript"></script>
+	<script src="<?php echo SAND_ASSETS_CDN;?>/js/3rdparty/underscore-min.js" type="text/javascript"></script>
+	<script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/utils.js" type="text/javascript"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/jquery.form.js" type="text/javascript"></script>
+    <?php /***********JQUERY*************/?>
+    <script>
+		Groupon.subscription = new SubscriptionsUI();
+		Groupon.subscription.show_default_subscription_ui();
+	</script>
+    <script src="<?php echo ASSETS_CDN;?>/js/main-5ed4a97ffd.js"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/locale.js?locale=en_US&country=US"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/en.js"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/site.js"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/vi.js"></script>
+    <?php /*
+    */?>
+    
+    <?php /***********HOME ASSETS*************/?>
+    <link href="<?php echo ASSETS_CDN;?>/css/styles.css" media="screen" rel="stylesheet" type="text/css" >
+    <link href="<?php echo ASSETS_CDN;?>/css/gig_application_layout-v3.css" media="screen" rel="stylesheet" type="text/css" >
+    <script src="<?php echo ASSETS_CDN;?>/js/gig_application_layout-v3.js"></script>
+    <script src="<?php echo ASSETS_CDN;?>/js/gtm.js"></script>
+    
+    
+    <script type="text/javascript" src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/tokeninput/src/jquery.tokeninput.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo SAND_ASSETS_CDN;?>/js/plugins/tokeninput/styles/token-input-facebook.css" />
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/cl_ajax_metadata_config.js" type="text/javascript"></script>
+    <script type="text/javascript" src="<?php echo SITE_URL;?>/tinymce/tinymce_3.5.2/jscripts/tiny_mce/tiny_mce.js"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/comment.js" type="text/javascript"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/cl_ajax.js" type="text/javascript"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/site_common.js" type="text/javascript"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/jquery.ui.datepicker.js" type="text/javascript"></script>
+    <script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/autoresize.jquery.js" type="text/javascript"></script>
+<?php echo $this->headScript();?>
+<?php print $this->inlineScript();?>
+</div>
+</body>
+</html>
+
