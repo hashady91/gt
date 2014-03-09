@@ -7,17 +7,19 @@ $step = get_value('_cl_step', '');
   <div class="twelve columns">
     <section class="module my-groupons">
       <div class="module-body">
+      	<h2 data-bhw="My Stuff Header" data-bhw-path="My Stuff Header">Trang Cá Nhân</h2>
+      	
         <div class="row">
           <div class="tabs-container">
             <ul  class="tabs">
-              <li >
-              		<a href="<?php echo SITE_URL;?>">My <?php echo SITE_NAME;?></a></li>
               <li <?php if($step == 'account'):?>class="active"<?php endif;?>>
               		<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">
-              			My Account</a></li>
+              			Sửa thông tin</a></li>
               <li <?php if($step == 'change_pass'):?>class="active"<?php endif;?>>
               	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">
-              	 		Change Pass</a></li>
+              	 		Đổi mật khẩu</a></li>
+             <li >
+              		<a href="/user/carts">Giỏ hàng</a></li>
             </ul>
           </div>
         </div>

@@ -67,4 +67,9 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 		Bootstrap::$pageTitle = t('user_search',1);
 		//die('oki');
 	}
+	
+	public function cartsAction(){
+		//TODO: Lay ra danh sach cac don hang cua nguoi dung
+		Bootstrap::$pageTitle = t('my_carts',1);
+	}
 }
