@@ -1,17 +1,43 @@
 <?php
- 
 $lu = $this->row;
 $step = get_value('_cl_step', '');
 ?>
-	<?php echo $this->render('index/user-subnav.phtml');?>
-	<ul class="nav nav-pills">
-		<li class='<?php if ($step == 'account') echo 'active';?>'><a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">Account</a></li>
-		<li class='<?php if ($step == 'avatar') echo 'active';?>'><a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=avatar">Avatar</a></li>
-		<li class='<?php if ($step == 'change_pass') echo 'active';?>'><a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">Change Password</a></li>
-	</ul>
-	<?php if($step == 'avatar'):?>
-	<?php endif;?>
-	<?php echo $this->form;?>
+
+<section class="main row">
+  <div class="twelve columns">
+    <section class="module my-groupons">
+      <div class="module-body">
+        <div class="row">
+          <div class="tabs-container">
+            <ul  class="tabs">
+              <li >
+              		<a href="<?php echo SITE_URL;?>">My Groupons</a></li>
+              <li <?php if($step == 'account'):?>class="active"<?php endif;?>>
+              		<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">
+              			My Account</a></li>
+              <li <?php if($step == 'change_pass'):?>class="active"<?php endif;?>>
+              	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">
+              	 		Change Pass</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- begin my_account -->
+        <div class="main row">
+		  <div class="twelve columns">
+		    <section class="module" id="divisions">
+		      <div class="module-body">
+		        <!-- end my_account_subdescription -->
+				<?php echo $this->form;?>
+		      </div>
+		    </section>
+		  </div>
+		</div>
+		
+      </div>
+    </section>
+  </div>
+</section>
 
 <?php $this->inlineScript()->captureStart();?>
 CL.formStep = '<?php echo $steps;?>';
@@ -37,4 +63,3 @@ CL.CODENAME = '<?php echo CODENAME;?>';
 		);
 	});
 <?php $this->inlineScript()->captureEnd();?>
-

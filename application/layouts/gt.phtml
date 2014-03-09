@@ -121,10 +121,10 @@
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-4f5ae5533f.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-6e7d0d401d.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-48b2ea4920.css" media="screen" rel="stylesheet" type="text/css" >
-	<link href="<?php echo ASSETS_CDN;?>/css/style_ver7.css" media="screen" rel="stylesheet" type="text/css" >
     <link href="<?php echo SAND_ASSETS_CDN;?>/js/plugins/toastmessage/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet" type="text/css"/>	
     <link href="<?php echo SAND_ASSETS_CDN;?>/css/common.css" media="screen" rel="stylesheet" type="text/css" >
 	<?php /*
+	<link href="<?php echo ASSETS_CDN;?>/css/style_ver7.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo ASSETS_CDN;?>/css/gt_style.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo SAND_ASSETS_CDN;?>bootstrap-3.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
@@ -151,13 +151,19 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 <body class='prom-night ltr en_US en_XX'> 
 <div id="global-container" style="display: block;">
 <?php echo $this->render("guest_menu.phtml");?>
+<?php
+/*
 <div class='container'>
     <div class='row' style='min-height:65px;'></div>
 </div>
 
 <div class='container' style='min-height:500px;' >
+ * */ 
+?>
      <?php echo $this->layout()->content; ?>
+<?php /*
 </div>
+*/?>
      
 <footer class="footer-i18n">
     <div class="row">

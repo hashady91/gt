@@ -1,3 +1,4 @@
+<?php $lu = Zend_Registry::get('user');?>
 <div class="header-v2">
         <header role="banner" data-bhw="Header" class="header" data-bhw-path="Header">
           <div class="row">
@@ -24,10 +25,25 @@
           </script>
           </div>
                   <div class="four columns user-wrapper">
+                      <?php if(is_guest()):?>
                           <nav class="user-menu signed-out">
-                              <a data-bhw="SignIn" href="/user/login" class="first" data-bhw-path="Header|SignIn">Sign In</a>
-                              <a data-bhw="SignUp" href="/user/register" data-bhw-path="Header|SignUp">Sign Up</a>
+	                              <a data-bhw="SignIn" href="/user/login" class="first" data-bhw-path="Header|SignIn">Sign In</a>
+	                              <a data-bhw="SignUp" href="/user/register" data-bhw-path="Header|SignUp">Sign Up</a>
                           </nav>
+				      <?php else:?>
+				          <nav class="user-menu signed-in">
+		                      <a class="user-name icon-arrow-down-large" href="/mygroupons">
+		                      	<?php echo $lu['name'];?></a>
+			                      <ul class="my-stuff">
+			                        <h6>My Stuff</h6>
+			                        <li><a href="/" 
+			                        	id="user-groupons">My <?php echo SITE_NAME;?></a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=account" id="user-account">My Account</a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=change_pass" id="change_pass">Change Pass</a></li>
+		              			    <li><a id="sign-out" class="sign-out" href="/user/logout">Sign Out</a></li>
+			                      </ul>
+                    		</nav>	
+                       <?php endif;?>
 
                       <div data-bhw="CartWidget" class="cart-widget" data-bhw-path="Header|CartWidget"><div class="cart-name">
   <a class="btn-secondary btn-small" href="/cart"><span class="icon-goods"></span> Cart</a>
