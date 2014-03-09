@@ -25,7 +25,7 @@
 	
     	<h3>Search results</h3>
     	<?php //echo $this->render('widget/table.phtml');?>
-    	<a href="/samx/bulk-delete" id='bulk-delete' class="cl_ajax btn btn-xs btn-danger"><?php echo t('delete_selected',1);?></a>
+    	<a href="/ad/bulk-delete" id='bulk-delete' class="cl_ajax btn btn-xs btn-danger"><?php echo t('delete_selected',1);?></a>
     	<div class="clear"></div>
     	<br/>
         <table class="table table-striped table-bordered table-condensed">
@@ -41,20 +41,20 @@
         		<?php foreach($this->list as $row) :?>
         		<tr id="<?php echo $row['id'];?>">
         			<td><input type="checkbox" value="<?php echo $row['id'];?>" class="check-item" /></td>
-        			<td><a href="<?php echo node_link('samx',$row);?>"><?php echo $row['name'];?></a></td>
+        			<td><a href="<?php echo node_link('ad',$row);?>"><?php echo $row['name'];?></a></td>
         			<td>
                         <div class="btn-group">
-        			    	<a href="/samx/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
+        			    	<a href="/ad/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
         			    	class="btn btn-primary btn-xs <?php if($row['status']=='queued') echo 'active';?> cl_ajax" 
         			    	_cl_get_metadata="active_button_group"> Queued </a>
-        			    	<a href="/samx/update?id=<?php echo $row['id'];?>&status=approved&_cl_step=status"
+        			    	<a href="/ad/update?id=<?php echo $row['id'];?>&status=approved&_cl_step=status"
         			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax" _cl_get_metadata="active_button_group"> Approved</a>
         			    </div> 
         			</td>
         			
         			<td>
-        				<a href="/samx/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default"><i class="icon-edit"></i> Edit</a>
-        				<a href="/samx/delete?id=<?php echo $row['id']?>" 
+        				<a href="/ad/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default"><i class="icon-edit"></i> Edit</a>
+        				<a href="/ad/delete?id=<?php echo $row['id']?>" 
         					class="btn btn-xs btn-danger cl_ajax" _cl_get_metadata="remove_my_parent:2"
         					_cl_ajax_confirm='Are you sure you want to permanently delete this item?'
         					>
@@ -66,7 +66,7 @@
         	</tbody>
         </table>
     <?php else:?>
-    	<h3>No samx found</h3>
+    	<h3>No ad found</h3>
     <?php endif;?>
 </div>
 

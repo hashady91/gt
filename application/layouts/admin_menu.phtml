@@ -16,12 +16,16 @@
 		                      <a class="user-name icon-arrow-down-large" href="/mygroupons">
 		                      	<?php echo $lu['name'];?></a>
 			                      <ul class="my-stuff">
-			                        <h6>My Stuff</h6>
-			                        <li><a href="/" 
-			                        	id="user-groupons">My <?php echo SITE_NAME;?></a></li>
-			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=account" id="user-account">My Account</a></li>
-			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=change_pass" id="change_pass">Change Pass</a></li>
-		              			    <li><a id="sign-out" class="sign-out" href="/user/logout">Sign Out</a></li>
+			                      	<li><a href="/" 
+			                        	id="home-page">Trang chủ</a></li>
+			                      	<li><a href="/user/<?php echo $lu['id'];?>" 
+			                        	id="user-groupons">Trang cá nhân</a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=account" 
+			                        	id="user-account">Sửa thông tin</a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=change_pass" 
+			                        	id="change_pass">Đổi mật khẩu</a></li>
+		              			    <li><a id="sign-out" class="sign-out" 
+		              			    	href="/user/logout">Đăng suất</a></li>
 			                      </ul>
                     		</nav>	
                        <?php endif;?>

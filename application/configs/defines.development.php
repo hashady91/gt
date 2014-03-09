@@ -68,8 +68,8 @@ define('CACHED_COMMENT_TITLE_WORD_LENGTH', 20); //number of words
 /**
  * File upload & path
  */
-define('DEFAULT_AVATAR_URL','http://d17yofrdipd1db.cloudfront.net/images/avatar.gif');
-define('SYSTEM_AVATAR_URL', 'http://d17yofrdipd1db.cloudfront.net/images/warning.jpg');
+define('DEFAULT_AVATAR_URL',ASSETS_CDN .'/image/avatar.gif');
+define('SYSTEM_AVATAR_URL', ASSETS_CDN .'/image/avatar.gif');
 //define('AVATAR_PREFIX', 'http://d3syq05o3krv6a.cloudfront.net');
 define('AVATAR_PREFIX', '/ufiles');
 // directory structure to upload avatar

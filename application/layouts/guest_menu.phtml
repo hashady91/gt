@@ -45,6 +45,10 @@
 		                      <a class="user-name icon-arrow-down-large" href="/mygroupons">
 		                      	<?php echo $lu['name'];?></a>
 			                      <ul class="my-stuff">
+			                        <?php if(has_perm('sudo')):?>
+				                      	<li><a href="/site/admin" 
+				                        	id="user-admin">Quản trị</a></li>
+		                        	<?php endif;?>
 			                      	<li><a href="/user/<?php echo $lu['id'];?>" 
 			                        	id="user-groupons">Trang cá nhân</a></li>
 			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=account" 
@@ -57,18 +61,20 @@
 		                   </nav>	
                        <?php endif;?>
 
-                      <div data-bhw="CartWidget" class="cart-widget" data-bhw-path="Header|CartWidget"><div class="cart-name">
-						  <a class="btn-secondary btn-small" href="/user/carts">
-						  	<span class="icon-goods"></span> Giỏ hàng</a>
-						</div>
-						<div data-bhw="ShoppingCart" class="module cart-empty-container">
-						  <div class="cart-empty-body">
-						    <div class="cart-empty-header"><b>Xem giỏ hàng</b></div>
-						    <p>Click vào đây để xem những sản phẩm hữu ích!
-						    	<a href="/"><?php echo SITE_NAME;?></a>.
-						  </p></div>
-						</div>
-					</div>
+                      <?php if(!is_guest()):?>
+	                      <div data-bhw="CartWidget" class="cart-widget" data-bhw-path="Header|CartWidget"><div class="cart-name">
+							  <a class="btn-secondary btn-small" href="/user/carts">
+							  	<span class="icon-goods"></span> Giỏ hàng</a>
+							</div>
+							<div data-bhw="ShoppingCart" class="module cart-empty-container">
+							  <div class="cart-empty-body">
+							    <div class="cart-empty-header"><b>Xem giỏ hàng</b></div>
+							    <p>Click vào đây để xem những sản phẩm hữu ích!
+							    	<a href="/"><?php echo SITE_NAME;?></a>.
+							  </p></div>
+							</div>
+						 </div>
+					 <?php endif;?>
         		</div>
               </div>
             </div>

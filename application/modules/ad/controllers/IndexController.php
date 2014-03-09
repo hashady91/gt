@@ -29,6 +29,8 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
 
     public function newAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericNew("Ad_Form_New", "Dao_Node_Ad", "Node");
         
         if(isset($this->ajaxData)) {
@@ -64,13 +66,16 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
          * Do not do it here
          * @NOTE: object is already filtered in Index.php, done in Cl_Dao_Node::filterUpdatedObjectForAjax()
          */
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericUpdate("Ad_Form_Update", $this->daoClass ,"", "Node");
         Bootstrap::$pageTitle = t("update_ad",1);
     }
 
     public function searchAction()
     {
-        assure_perm("search_ad");//by default
+        assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericSearch("Ad_Form_Search", $this->daoClass, "Node");
         Bootstrap::$pageTitle = t("search_ad",1);        
     }
@@ -85,29 +90,11 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function viewAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         //TODO Your permission here
         parent::viewAction();//no permission yet
-        if ($row = $this->getViewParam('row'))
-        {
-            $id = $this->getStrippedParam('id');
-            $where = array('node.id' => $id);
-            $commentClass =$this->commentDaoClass;
-            $r = $commentClass::getInstance()->findAll(array('where' => $where));
-            if ($r['success'] && $r['count'] > 0)
-            {
-                $comments = $this->dao->generateCommentTree($r['result'], 0);
-                //Construct comment trees here
-                $this->setViewParam('comments', $comments);
-            }
-            if(is_rest()) {
-                if ($r['success'] && $r['count'] > 0)
-                {
-                    $row['comments'] = $comments;
-    	            $r = array('success' => true, 'result' => $row);
-                }
-    	        $this->handleAjaxOrMaster($r);
-            }
-        }        
+
         Bootstrap::$pageTitle = t("view_ad",1);
     }
     

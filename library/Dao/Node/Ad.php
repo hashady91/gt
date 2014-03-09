@@ -1,7 +1,7 @@
 <?php
 class Dao_Node_Ad extends Cl_Dao_Node
 {
-    public $nodeType = 'samx';
+    public $nodeType = 'ad';
     public $cSchema = array(
     		'id' => 'string',
     		'name' => 'string',
@@ -24,7 +24,7 @@ class Dao_Node_Ad extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
     	return array(
-    		'collectionName' => 'samx',
+    		'collectionName' => 'ad',
         	'documentSchemaArray' => array(
         		'name' => 'string', 
         		'avatar' => 'string',
@@ -53,7 +53,8 @@ class Dao_Node_Ad extends Cl_Dao_Node
                             )
                         ),
         		'ts' => 'int',
-        		'status' => 'string'
+        		'status' => 'string',
+        		'link' => 'string',
         	)
     	);
 	}
@@ -155,11 +156,11 @@ class Dao_Node_Ad extends Cl_Dao_Node
 	public function afterDeleteNode($row)
 	{
 	    //delete all comments
-	    $commentDao = Site_Codenamex_Dao_Comment_Ad::getInstance();
-	    $where = array('node.id' => $row['id']);
-	    $commentDao->delete($where);
-	    
-	    return array('success' => true, 'result' => $row);
+	    //$commentDao = Site_Codenamex_Dao_Comment_Ad::getInstance();
+	    //$where = array('node.id' => $row['id']);
+	    //$commentDao->delete($where);
+	    //return array('success' => true, 'result' => $row);
+		return array('success' => true);
 	}
 	
 	
