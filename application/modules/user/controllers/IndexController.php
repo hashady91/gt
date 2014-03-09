@@ -59,4 +59,12 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 			}
 		}
 	}
+	
+	public function searchAction(){
+		parent::searchAction();
+		
+		//$this->render('login');
+		Bootstrap::$pageTitle = t('user_search',1);
+		//die('oki');
+	}
 }

@@ -11,7 +11,7 @@ $step = get_value('_cl_step', '');
           <div class="tabs-container">
             <ul  class="tabs">
               <li >
-              		<a href="<?php echo SITE_URL;?>">My Groupons</a></li>
+              		<a href="<?php echo SITE_URL;?>">My <?php echo SITE_NAME;?></a></li>
               <li <?php if($step == 'account'):?>class="active"<?php endif;?>>
               		<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">
               			My Account</a></li>
