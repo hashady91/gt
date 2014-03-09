@@ -1,0 +1,67 @@
+<?php
+$lu = $this->row;
+$step = get_value('_cl_step', '');
+?>
+
+<section class="main row">
+  <div class="twelve columns">
+    <section class="module my-groupons">
+      <div class="module-body">
+      	<h2 data-bhw="My Stuff Header" data-bhw-path="My Stuff Header">Trang Cá Nhân</h2>
+      	
+        <div class="row">
+          <div class="tabs-container">
+            <ul  class="tabs">
+              <li <?php if($step == 'account'):?>class="active"<?php endif;?>>
+              		<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">
+              			Sửa thông tin</a></li>
+              <li <?php if($step == 'change_pass'):?>class="active"<?php endif;?>>
+              	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">
+              	 		Đổi mật khẩu</a></li>
+             <li >
+              		<a href="/user/carts">Giỏ hàng</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- begin my_account -->
+        <div class="main row">
+		  <div class="twelve columns">
+		    <section class="module" id="divisions">
+		      <div class="module-body">
+		        <!-- end my_account_subdescription -->
+				Giỏ hàng của bạn:
+		      </div>
+		    </section>
+		  </div>
+		</div>
+		
+      </div>
+    </section>
+  </div>
+</section>
+
+<?php $this->inlineScript()->captureStart();?>
+CL.formStep = '<?php echo $steps;?>';
+CL.uid = '<?php echo $lu['id'];?>';
+CL.CODENAME = '<?php echo CODENAME;?>';
+<?php $this->inlineScript()->captureEnd();?>
+<?php $this->inlineScript()->captureStart();?>
+	$(function(){
+		$('form').ajaxForm(
+		{
+			success: function(data, statusText, xhr, $form){
+				if (data.success)
+				{
+					alert_success("Success!");
+					$form.parent().find('span').html($form.find("input:text").val());
+					$form.parent().find("span,.edit").show();
+                    $('a.cancel').trigger('click');
+				}
+				else
+					alert_error("error " + data.err);
+			}
+		}
+		);
+	});
+<?php $this->inlineScript()->captureEnd();?>
