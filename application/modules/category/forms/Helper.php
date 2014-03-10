@@ -7,6 +7,25 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
     	return array('success' =>true, 'result' => $ret);
     }
     
+    public function getParentCategory(){
+    	$where = array('level' => 1);
+    	$cond['where'] = $where;
+    	$r = Dao_Node_Category::getInstance()->findAll($cond);
+    	//v($r);
+    	$cates = array();
+    	if($r['success']){
+    		foreach ($r['result'] as $ca){
+    			$cate = array($ca['code'] => $ca['name']);
+    			
+    			$cates[] = $cate;
+    		}
+    		
+    		return array('success' =>true, 'result' => $cates);
+    	}else{
+    		return array('success' =>true, 'result' => array());
+    	}
+    }
+    
     /*
     public function getItemsPerPageList($params)
     {

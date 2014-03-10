@@ -4,7 +4,7 @@ class Category_Form_New extends Cl_Form
 	public function init()
 	{
 		parent::init();
-		$this->fieldList = array('avatar', 'name', 'content', 'status');
+		$this->fieldList = array('avatar', 'name', 'content', 'status', 'parent_category', 'code');
 		$this->setCbHelper('Category_Form_Helper');
 		
 	}
@@ -26,6 +26,16 @@ class Category_Form_New extends Cl_Form
         		),
                 //'permission' => 'update_task'
         	),
+        	'code' => array(
+        			'type' => 'Text',
+       				'options' => array(
+       						'label' => "Category code",
+       						'required' => true,
+       						'filters' => array('StringTrim', 'StripTags'),
+       						'validators' => array('NotEmpty'),
+       				),
+       				//'permission' => 'update_task'
+       		),
         	'content' => array(
         		'type' => 'Textarea',
         		'options' => array(
@@ -53,7 +63,15 @@ class Category_Form_New extends Cl_Form
         					'class' => 'cl_upload',
         					'filters' => array('StringTrim', 'StripTags')
         			),
-        	)
+        	),
+        	'parent_category' => array(
+        			'type' => 'Select',
+       				'options' => array(
+       						'label' => 'Parent Category',
+       						//'required' => true,
+       				),
+       				'multiOptionsCallback' => array('getParentCategory')
+       		),
         );
         return $ret;
     }

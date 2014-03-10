@@ -55,7 +55,7 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
                 }
             }
         }
-        Bootstrap::$pageTitle = t("new_ad",1);
+        Bootstrap::$pageTitle = 'Tạo quảng cáo mới';
     }
 
     public function updateAction()
@@ -69,7 +69,7 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
     	assure_perm('sudo');
     	$this->setLayout("admin");
         $this->genericUpdate("Ad_Form_Update", $this->daoClass ,"", "Node");
-        Bootstrap::$pageTitle = t("update_ad",1);
+        Bootstrap::$pageTitle = 'Cập nhật quảng cáo';
     }
 
     public function searchAction()
@@ -77,7 +77,7 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
         assure_perm('sudo');
     	$this->setLayout("admin");
         $this->genericSearch("Ad_Form_Search", $this->daoClass, "Node");
-        Bootstrap::$pageTitle = t("search_ad",1);        
+        Bootstrap::$pageTitle = 'Quản lý quảng cáo';        
     }
     
     public function searchCommentAction()
@@ -95,7 +95,7 @@ class Ad_IndexController extends Cl_Controller_Action_NodeIndex
         //TODO Your permission here
         parent::viewAction();//no permission yet
 
-        Bootstrap::$pageTitle = t("view_ad",1);
+        Bootstrap::$pageTitle = 'Chi tiết quảng cáo';
     }
     
     public function deleteNodePermissionCheck($row)

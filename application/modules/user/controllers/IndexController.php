@@ -27,13 +27,13 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 				set_cookie('is_admin', 1);
 		}
 		
-		Bootstrap::$pageTitle = t('login_signup', 2);
+		Bootstrap::$pageTitle = 'Đăng nhập';
 	}
 	
 	public function registerAction()
 	{
 		parent::registerAction();
-		Bootstrap::$pageTitle = t('login_signup', 2);
+		Bootstrap::$pageTitle = 'Đăng ký';
 	}
 	
 	public function logoutAction(){
@@ -64,12 +64,17 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 		parent::searchAction();
 		
 		//$this->render('login');
-		Bootstrap::$pageTitle = t('user_search',1);
+		Bootstrap::$pageTitle = 'Quản lý người dùng';
 		//die('oki');
 	}
 	
 	public function cartsAction(){
 		//TODO: Lay ra danh sach cac don hang cua nguoi dung
-		Bootstrap::$pageTitle = t('my_carts',1);
+		Bootstrap::$pageTitle = 'Đơn hàng của bạn';
+	}
+	
+	public function updateAction(){
+		parent::updateAction();
+		Bootstrap::$pageTitle = 'Cập nhật tài khoản';
 	}
 }

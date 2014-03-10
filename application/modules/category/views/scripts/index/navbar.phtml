@@ -1,13 +1,12 @@
 <?php $page = Zend_Registry::get('page');?>
 <ul class='nav nav-pills'>
-	<li <?php if ($page == 'samx/index/new') echo "class='active';"?>><a href="/samx/new">New</a></li>
+	<li <?php if ($page == 'category/index/new') echo "class='active';"?>><a href="/category/new">New</a></li>
 	<? if (isset($this->row)) :?>    
-	<li <?php if ($page == 'samx/index/update') echo "class='active';"?>><a href="/samx/update<?php if (isset($this->row['id'])) echo "?id=" . $this->row['id'];?>"">Update</a></li>
+	<li <?php if ($page == 'category/index/update') echo "class='active';"?>><a href="/category/update<?php if (isset($this->row['id'])) echo "?id=" . $this->row['id'];?>"">Update</a></li>
 	<?php endif;?>    
-	<li <?php if ($page == 'samx/index/search') echo "class='active';"?>><a href="/samx/search">Search</a></li>
-    <li <?php if ($page == 'samx/index/search-comment') echo "class='active';"?>><a href="/samx/search-comment">Search Comment</a></li>
+	<li <?php if ($page == 'category/index/search') echo "class='active';"?>><a href="/category/search">Search</a></li>
 	<? if (isset($this->row)) :?>    
-	<li <?php if ($page == 'samx/index/view') echo "class='active';"?>><a href="/samx/<?php if (isset($this->row['id'])) echo "" . $this->row['id'];?>">View</a></li>
+	<li <?php if ($page == 'category/index/view') echo "class='active';"?>><a href="/category/<?php if (isset($this->row['id'])) echo "" . $this->row['id'];?>">View</a></li>
 	<?php endif;?>
 </ul>
 <div class='separator'></div>
