@@ -29,7 +29,12 @@
 		<link>
 			<name>sand-core</name>
 			<type>2</type>
-			<location>/home/leeduc/code/sand-core</location>
+			<location>E:/home/leeduc/code/sand-core</location>
+		</link>
+		<link>
+			<name>sand-core-</name>
+			<type>2</type>
+			<location>C:/xampp/htdocs/sand-core</location>
 		</link>
 	</linkedResources>
 </projectDescription>
