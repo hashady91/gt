@@ -44,6 +44,11 @@ class Dao_User extends Cl_Dao_User
 				'birthday' => 'string',
 				'last_login' => 'int',
 				'intro' => 'string',
+				/*****Lien he****************/
+				'phone' => 'string', //eg: +84969999777
+				'adress' => 'string', //eg: 36B 
+				'street' => 'string', //Nguyen Trai
+				'city' => 'string',	
 					
 				'token' => array(
 					array(
