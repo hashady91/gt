@@ -29,6 +29,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
 
     public function newAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericNew("Category_Form_New", "Dao_Node_Category", "Node");
         
         if(isset($this->ajaxData)) {
@@ -53,11 +55,13 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
                 }
             }
         }
-        Bootstrap::$pageTitle = t("new_category",1);
+        Bootstrap::$pageTitle = 'Tạo chuyên mục mới';
     }
 
     public function updateAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         /**
          * Permission to update a node is done in 
          * $Node_Form_Update form->customPermissionFilter()
@@ -65,14 +69,15 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
          * @NOTE: object is already filtered in Index.php, done in Cl_Dao_Node::filterUpdatedObjectForAjax()
          */
         $this->genericUpdate("Category_Form_Update", $this->daoClass ,"", "Node");
-        Bootstrap::$pageTitle = t("update_category",1);
+        Bootstrap::$pageTitle = 'Cập nhật chuyên mục';
     }
 
     public function searchAction()
     {
-        assure_perm("search_category");//by default
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericSearch("Category_Form_Search", $this->daoClass, "Node");
-        Bootstrap::$pageTitle = t("search_category",1);        
+        Bootstrap::$pageTitle = 'Quản lý chuyên mục';        
     }
     
     public function searchCommentAction()
@@ -86,29 +91,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     public function viewAction()
     {
         //TODO Your permission here
-        parent::viewAction();//no permission yet
-        if ($row = $this->getViewParam('row'))
-        {
-            $id = $this->getStrippedParam('id');
-            $where = array('node.id' => $id);
-            $commentClass =$this->commentDaoClass;
-            $r = $commentClass::getInstance()->findAll(array('where' => $where));
-            if ($r['success'] && $r['count'] > 0)
-            {
-                $comments = $this->dao->generateCommentTree($r['result'], 0);
-                //Construct comment trees here
-                $this->setViewParam('comments', $comments);
-            }
-            if(is_rest()) {
-                if ($r['success'] && $r['count'] > 0)
-                {
-                    $row['comments'] = $comments;
-    	            $r = array('success' => true, 'result' => $row);
-                }
-    	        $this->handleAjaxOrMaster($r);
-            }
-        }        
-        Bootstrap::$pageTitle = t("view_category",1);
+        parent::viewAction();//no permission yet    
+        Bootstrap::$pageTitle = 'Xem chuyên mục';
     }
     
     public function deleteNodePermissionCheck($row)

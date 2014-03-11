@@ -5,8 +5,10 @@ class Dao_Node_Category extends Cl_Dao_Node
     public $cSchema = array(
     		'id' => 'int',
             'iid' => 'int',
-    		'category_name' => 'string',
-    		'category_description' => 'string',
+    		'name' => 'string',
+    		'code' => 'string',
+    		'description' => 'string',
+    		'avatar' => 'string',
     		//add other stuff u want
     );
 
@@ -31,8 +33,10 @@ class Dao_Node_Category extends Cl_Dao_Node
 	    $category = array(
     		'id' => 'int',
     		'iid' => 'int',
-    		'category_name' => 'string',
-    		'category_description' => 'string',
+    		'name' => 'string',
+    		'code' => 'string',
+    		'description' => 'string',
+    		'avatar' => 'string',
 	    );
 	    
     	return array(
@@ -42,8 +46,10 @@ class Dao_Node_Category extends Cl_Dao_Node
     	         'iid' => 'int',
     	         "category_id"	=>'int',
         	     "category_type" =>'int',
-    	         "category_name" => 'string',
-    	         "category_description" => 'string',
+        		 'code' => 'string',//eg: Điện lạnh => code :: dienlanh
+    	         "name" => 'string',
+        		 'avatar' => 'string',
+    	         "description" => 'string',
     	         "meta_description" => 'string',
 			     "category_image" => 'string',
 				 "parent_id" => 'int',
@@ -53,7 +59,9 @@ class Dao_Node_Category extends Cl_Dao_Node
 				 "status" => 'int',
 				 "date_added" => 'float',
 				 "date_modified" => 'float',
-        		 "child_category" => $category
+        		 "child_category" => $category,
+        		 'child_cate_id' => 'array',//array child_cate_id
+        		 'level' => 'int', //1, 2, 3
         	)
     	);
 	}
@@ -64,11 +72,53 @@ class Dao_Node_Category extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
+		if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+			$data['$set']['level'] = 2;
+		}else{
+			$data['$set']['level'] = 1;
+		}
+
         return array('success' => true, 'result' => $data);
 	}
 	
 	public function afterInsertNode($data, $row)
 	{
+		if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+			$id = $data['$set']['parent_category'];
+			$where = array('id' => $id);
+			$r = $this->findOne($where);
+			
+			if($r['success']){
+				$cate = $r['result'];
+				$child_category = (isset($cate['child_category']) && $cate['child_category']) ? $cate['child_category'] : array();
+				
+				$childCateNew = array();
+				$count = 0;
+				foreach ($child_category as $ca){
+					if($ca['id'] != $row['id']){
+						$childCateNew[] = $ca;
+					}else{
+						$count ++;
+						$childCateNew[] = $row;
+					}
+				}
+				
+				if($count != 0){
+					$child_cate_id = (isset($cate['child_cate_id']) && $cate['child_cate_id']) ? $cate['child_cate_id'] : array();
+					$child_cate = array_merge($row['id'],$child_cate);
+					
+					$update = array('$set' => array(
+								'child_cate_id' => $child_cate,
+								'child_category' => $childCateNew
+						)
+					);
+					
+					$this->update($where,$update);
+				}
+			}
+		}
+		
+		//update child_category
         return array('success'=> true, 'result' => $row);
 	}
 	
@@ -155,11 +205,12 @@ class Dao_Node_Category extends Cl_Dao_Node
 	public function afterDeleteNode($row)
 	{
 	    //delete all comments
-	    $commentDao = Site_Codenamex_Dao_Comment_Category::getInstance();
-	    $where = array('node.id' => $row['id']);
-	    $commentDao->delete($where);
+	    //$commentDao = Site_Codenamex_Dao_Comment_Category::getInstance();
+	    //$where = array('node.id' => $row['id']);
+	    //$commentDao->delete($where);
 	    
-	    return array('success' => true, 'result' => $row);
+	    //return array('success' => true, 'result' => $row);
+		return array('success' => true);
 	}
 	
 	

@@ -29,4 +29,8 @@ function display_avatar ($imgUrl, $size = 50, $atype = AS3_AVATAR_FOLDER)
 	return AVATAR_PREFIX . '/' . str_replace("//", "/", $avatar);
 }
 
+function get_default_perms()
+{
+	return array('new_comment');
+}
 ?>

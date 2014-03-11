@@ -6,10 +6,10 @@
 <?php echo $this->render('index/navbar.phtml');?>
 </div>
 <div class='col-md-6'>
-<?php if ($page == 'samx/index/new'):?>
-<h1> <?php echo t('new_samx',1);?></h1>
+<?php if ($page == 'category/index/new'):?>
+<h1> <?php echo t('new_category',1);?></h1>
 <?php else:?>
-<h1> <?php echo t('update_samx',1);?></h1>
+<h1> <?php echo t('update_category',1);?></h1>
 <?php endif;?>
 <?php $this->form->setAttrib('class', 'cl_ajax');?>
 <?php echo $this->form;?>

@@ -4,6 +4,7 @@
  */
 //define('POST_PAGE_SIZE', 30);
 define('SITE_URL', 'http://gt.local');
+define('SITE_NAME', 'GT');
 //define('SITE_URL', 'http://www.oakq.com');
 define('SAND_ASSETS_CDN', 'http://sandassets.local/');
 define('ASSETS_CDN', 'http://gtassets.local/');
@@ -67,8 +68,8 @@ define('CACHED_COMMENT_TITLE_WORD_LENGTH', 20); //number of words
 /**
  * File upload & path
  */
-define('DEFAULT_AVATAR_URL','http://d17yofrdipd1db.cloudfront.net/images/avatar.gif');
-define('SYSTEM_AVATAR_URL', 'http://d17yofrdipd1db.cloudfront.net/images/warning.jpg');
+define('DEFAULT_AVATAR_URL',ASSETS_CDN .'/image/avatar.gif');
+define('SYSTEM_AVATAR_URL', ASSETS_CDN .'/image/avatar.gif');
 //define('AVATAR_PREFIX', 'http://d3syq05o3krv6a.cloudfront.net');
 define('AVATAR_PREFIX', '/ufiles');
 // directory structure to upload avatar
