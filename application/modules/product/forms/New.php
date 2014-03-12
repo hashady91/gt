@@ -23,8 +23,6 @@ class Product_Form_New extends Cl_Form
     	        "meta_description",
     	        "key_word",
     	        'quantity',
-    	        'manufacturer_id',
-    	        'shipping',
     	        "price",
     	        'weight',
     	        'length',
@@ -36,9 +34,22 @@ class Product_Form_New extends Cl_Form
 		$this->setCbHelper('Product_Form_Helper');
 		
 	}
-	public function setStep($step, $currentRow = null)
+	
+	
+    public function setStep($step, $currentRow = null)
 	{
-		parent::setStep($step, $currentRow);
+		if ($step == '')
+		{
+			$this->fieldList = array(
+	            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
+	            'StockStatus',
+	            'Note','description',
+	            'price');
+		}
+		elseif ($step == 'new')
+		{
+		    $this->fieldList = array('name');
+		}
 	}
 	
     protected function _formFieldsConfigCallback()
@@ -75,7 +86,7 @@ class Product_Form_New extends Cl_Form
                     //'permission' => 'update_task'
             ),
         	'SerialNumber' => array(
-        		'type' => 'Textarea',
+        		'type' => 'Text',
         		'options' => array(
         	        'label' => "SerialNumber",
     	    		'filters' => array('StringTrim', 'StripTags'),
@@ -86,10 +97,46 @@ class Product_Form_New extends Cl_Form
         			)
         		),
         	),
+            'Location' => array(
+                    'type' => 'Select',
+                    'options' => array(
+                            'label' => "Location",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'category' => array(
+                    'type' => 'Select',
+                    'options' => array(
+                            'label' => "category",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
             'ReceivedDate' => array(
-                    'type' => 'Textarea',
+                    'type' => 'Text',
                     'options' => array(
                             'label' => "ReceivedDate",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'ModifiedDate' => array(
+                    'type' => 'Textarea',
+                    'options' => array(
+                            'label' => "ModifiedDate",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -123,7 +170,7 @@ class Product_Form_New extends Cl_Form
                     ),
             ),
             'Note' => array(
-                    'type' => 'Text',
+                    'type' => 'Textarea',
                     'options' => array(
                             'label' => "Note",
                             'filters' => array('StringTrim', 'StripTags'),
@@ -134,10 +181,10 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'Note' => array(
+            'images' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "Note",
+                            'label' => "image",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -150,6 +197,78 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Text',
                     'options' => array(
                             'label' => "weight",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'length' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "length",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'width' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "width",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'height' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "height",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'viewed' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "Number of viewer",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'saled' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "product saled",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'counter' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "counter",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -182,6 +301,42 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
+            'meta_description' => array(
+                    'type' => 'Textarea',
+                    'options' => array(
+                            'label' => "Meta description",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'key_word' => array(
+                    'type' => 'Textarea',
+                    'options' => array(
+                            'label' => "Key word",
+                            'filters' => array('StringTrim', 'StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'quantity' => array(
+                    'type' => 'Textarea',
+                    'options' => array(
+                            'label' => "Quantity",
+                            'filters' => array('StringTrim', 'Digits'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
             'name' => array(
                     'type' => 'Text',
                     'options' => array(
@@ -198,7 +353,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Text',
                     'options' => array(
                             'label' => "price",
-                            'filters' => array('StringTrim', 'StripTags','Digit'),
+                            'filters' => array('StringTrim', 'StripTags','Digits'),
                             'prefixPath' => array(
                                     "filter" => array (
                                             "Filter" => "Filter/"

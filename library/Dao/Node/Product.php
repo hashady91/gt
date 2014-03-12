@@ -37,7 +37,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'ReceivedDate' => 'int', // unix timestamp , at 00:00:00 of that date
     	        'SoldDate' => 'int', // unix timestamp , at 00:00:00 of that date
     	        'StockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
-    	        'Note' => 'array',
+    	        'Note' => 'string',
     	        'images' => array(
     	                array(
     	                        'id' => 'string',

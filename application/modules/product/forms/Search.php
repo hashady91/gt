@@ -1,12 +1,16 @@
 <?php 
-class Product_Form_Search extends Cl_Form_Search
+class Product_Form_Search extends Product_Form_New
 {
 
 	public function init()
 	{
 		parent::init();
 		$this->method= "GET";
-		$this->fieldList = array('name', 'status');
+		$this->fieldList = array(
+	            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
+	            'StockStatus',
+	            'Note','description',
+	            'price');
     	$this->setCbHelper('Product_Form_Helper');
     	//$this->setDisplayInline();
 	}
@@ -20,18 +24,7 @@ class Product_Form_Search extends Cl_Form_Search
     //we must have it here as separate from $_fieldListConfig
     //because some configs will be merged with another file
     protected $_formFieldsConfig = array(
-    	'status' => array(
-    		'type' => 'MultiCheckbox', /* 'MultiCheckbox', */
-    		'options' => array(
-				'label' => "",
-    			'disableLoadDefaultDecorators' => true,
-//    			'required' => true,
-	    		'filters' => array('StringTrim', 'StripTags'),
-    		),
-    		'op' => '$in',
-    		'multiOptionsCallback' => array(array('Product_Form_Helper', 'getStatus')),
-    		'defaultValue' => array()
-    	),
+
     	'name' => array(
     		'type' => 'Text',
     		'options' => array(
