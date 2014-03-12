@@ -7,15 +7,15 @@
 </div>
 <div class='col-md-6'>
 <?php if ($page == 'category/index/new'):?>
-<h1> <?php echo t('new_category',1);?></h1>
+<h1> Tạo chuyên mục mới</h1>
 <?php else:?>
-<h1> <?php echo t('update_category',1);?></h1>
+<h1> Cập nhật chuyên mục mới</h1>
 <?php endif;?>
 <?php $this->form->setAttrib('class', 'cl_ajax');?>
 <?php echo $this->form;?>
 </div>
 <div class='col-md-6'>
-<a href="#" id="preview_post_btn" class='btn btn-primary'>Preview</a>
+<a href="#" id="preview_post_btn" class='btn btn-primary'>Xem trước</a>
     <hr/>
     <div id='preview_area'>
     </div>
