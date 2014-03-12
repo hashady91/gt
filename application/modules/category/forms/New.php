@@ -4,7 +4,7 @@ class Category_Form_New extends Cl_Form
 	public function init()
 	{
 		parent::init();
-		$this->fieldList = array('avatar', 'name', 'content', 'status', 'parent_category', 'code');
+		$this->fieldList = array('avatar', 'name', 'content', 'status', /*'parent_category',*/ 'code');
 		$this->setCbHelper('Category_Form_Helper');
 		
 	}
