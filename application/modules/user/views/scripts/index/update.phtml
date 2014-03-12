@@ -18,6 +18,9 @@ $step = get_value('_cl_step', '');
               <li <?php if($step == 'change_pass'):?>class="active"<?php endif;?>>
               	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">
               	 		Đổi mật khẩu</a></li>
+              <li <?php if($step == 'adress'):?>class="active"<?php endif;?>>
+              	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=adress">
+              	 		Địa chỉ</a></li>
              <li >
               		<a href="/user/carts">Giỏ hàng</a></li>
             </ul>

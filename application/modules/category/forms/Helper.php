@@ -15,11 +15,10 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
     	$cates = array();
     	if($r['success']){
     		foreach ($r['result'] as $ca){
-    			$cate = array($ca['code'] => $ca['name']);
+    			$cate = array($ca['id'] => $ca['name']);
     			
-    			$cates[] = $cate;
+    			$cates = array_merge($cate,$cates);
     		}
-    		
     		return array('success' =>true, 'result' => $cates);
     	}else{
     		return array('success' =>true, 'result' => array());

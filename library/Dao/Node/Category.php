@@ -60,7 +60,9 @@ class Dao_Node_Category extends Cl_Dao_Node
 				 "date_added" => 'float',
 				 "date_modified" => 'float',
         		 "child_category" => $category,
-        		 'child_cate_id' => 'array',//array child_cate_id
+        		 'child_cate_id' => array(//array child_cate_id
+        		 	'id' => 'string',
+        		 ),
         		 'level' => 'int', //1, 2, 3
         	)
     	);
@@ -72,52 +74,13 @@ class Dao_Node_Category extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
-		if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
-			$data['$set']['level'] = 2;
-		}else{
-			$data['$set']['level'] = 1;
-		}
+		$data['level'] = 1;
 
         return array('success' => true, 'result' => $data);
 	}
 	
 	public function afterInsertNode($data, $row)
 	{
-		if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
-			$id = $data['$set']['parent_category'];
-			$where = array('id' => $id);
-			$r = $this->findOne($where);
-			
-			if($r['success']){
-				$cate = $r['result'];
-				$child_category = (isset($cate['child_category']) && $cate['child_category']) ? $cate['child_category'] : array();
-				
-				$childCateNew = array();
-				$count = 0;
-				foreach ($child_category as $ca){
-					if($ca['id'] != $row['id']){
-						$childCateNew[] = $ca;
-					}else{
-						$count ++;
-						$childCateNew[] = $row;
-					}
-				}
-				
-				if($count != 0){
-					$child_cate_id = (isset($cate['child_cate_id']) && $cate['child_cate_id']) ? $cate['child_cate_id'] : array();
-					$child_cate = array_merge($row['id'],$child_cate);
-					
-					$update = array('$set' => array(
-								'child_cate_id' => $child_cate,
-								'child_category' => $childCateNew
-						)
-					);
-					
-					$this->update($where,$update);
-				}
-			}
-		}
-		
 		//update child_category
         return array('success'=> true, 'result' => $row);
 	}
@@ -125,6 +88,11 @@ class Dao_Node_Category extends Cl_Dao_Node
     /******************************UPDATE****************************/
     public function beforeUpdateNode($where, $data, $currentRow)
     {
+    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+    		$data['$set']['level'] = 2;
+    	}else{
+    		$data['$set']['level'] = 1;
+    	}
         /*
          * You have $data['$set']['_cl_step'] and $data['$set']['_u'] available
          */
@@ -133,6 +101,47 @@ class Dao_Node_Category extends Cl_Dao_Node
     
 	public function afterUpdateNode($where, $data, $currentRow)
     {
+    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+    		$id = $data['$set']['parent_category'];
+    		$where = array('id' => $id);
+    		$r = $this->findOne($where);
+    			
+    		if($r['success']){
+    			$cate = $r['result'];
+    			$child_category = (isset($cate['child_category']) && $cate['child_category']) ? $cate['child_category'] : array();
+    	
+    			$childCateNew = array();
+    			$count = 0;
+    			if(count($child_category) > 0){
+	    			foreach ($child_category as $ca){
+	    				if($ca['id'] != $currentRow['id']){
+	    					$childCateNew[] = $ca;
+	    				}else{
+	    					$count ++;
+	    					$childCateNew[] = $currentRow;
+	    				}
+	    			}
+    			}else{
+    				$count ++;
+    				$childCateNew = $currentRow;
+    			}
+    	
+    			if($count != 0){
+    				$child_cate_id = (isset($cate['child_cate_id']) && $cate['child_cate_id']) ? $cate['child_cate_id'] : array();
+    				$child_cate = array_merge($currentRow['id'],$child_cate_id);
+    					
+    				$update = array(
+    						'$set' => 
+	    						array(
+	    						'child_cate_id' => $child_cate,
+	    						'child_category' => $childCateNew
+	    					)
+	    				);
+    					
+    				$r = $this->update($where,$update);
+    			}
+    		}
+    	}
         return array('success' => true, 'result' => $data);    
     }   
      
