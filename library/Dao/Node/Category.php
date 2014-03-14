@@ -3,7 +3,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 {
     public $nodeType = 'category';
     public $cSchema = array(
-    		'id' => 'int',
+    		'id' => 'string',
             'iid' => 'int',
     		'name' => 'string',
     		'code' => 'string',
@@ -31,7 +31,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
 	    $category = array(
-    		'id' => 'int',
+    		'id' => 'string',
     		'iid' => 'int',
     		'name' => 'string',
     		'code' => 'string',
@@ -42,7 +42,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'category',
         	'documentSchemaArray' => array(
-    	         'id' => 'int',
+    	         'id' => 'string',
     	         'iid' => 'int',
     	         "category_id"	=>'int',
         	     "category_type" =>'int',
@@ -93,6 +93,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	}else{
     		$data['$set']['level'] = 1;
     	}
+    	
         /*
          * You have $data['$set']['_cl_step'] and $data['$set']['_u'] available
          */

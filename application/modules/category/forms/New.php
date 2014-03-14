@@ -57,6 +57,13 @@ class Category_Form_New extends Cl_Form
             		),
             		'multiOptionsCallback' => array('getStatus')
             ),
+        	'level' => array(
+        			'type' => 'Hidden',
+       				'options' => array(
+       						'label' => 'Level',
+       						'required' => true,
+       				),
+       		),
         	'avatar' => array(
         			'type' => 'Hidden',
         			'options' => array(

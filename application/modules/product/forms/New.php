@@ -137,6 +137,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "ModifiedDate",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -149,6 +150,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "SoldDate",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -173,6 +175,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Note",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -293,6 +296,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "description",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -305,6 +309,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Meta description",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -317,6 +322,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Key word",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -329,6 +335,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Quantity",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'Digits'),
                             'prefixPath' => array(
                                     "filter" => array (

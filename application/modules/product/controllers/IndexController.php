@@ -29,6 +29,8 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
 
     public function newAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         $this->genericNew("Product_Form_New", "Dao_Node_Product", "Node");
         
         if(isset($this->ajaxData)) {
@@ -53,11 +55,13 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
                 }
             }
         }
-        Bootstrap::$pageTitle = t("new_product",1);
+        Bootstrap::$pageTitle = 'Tạo sản phẩm mới';
     }
 
     public function updateAction()
     {
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
         /**
          * Permission to update a node is done in 
          * $Node_Form_Update form->customPermissionFilter()
@@ -65,14 +69,16 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
          * @NOTE: object is already filtered in Index.php, done in Cl_Dao_Node::filterUpdatedObjectForAjax()
          */
         $this->genericUpdate("Product_Form_Update", $this->daoClass ,"", "Node");
-        Bootstrap::$pageTitle = t("update_product",1);
+        Bootstrap::$pageTitle = 'Cập nhật sản phẩm';
     }
 
     public function searchAction()
     {
-        assure_perm("search_product");//by default
+    	assure_perm('sudo');
+    	$this->setLayout("admin");
+        //assure_perm("search_product");//by default
         $this->genericSearch("Product_Form_Search", $this->daoClass, "Node");
-        Bootstrap::$pageTitle = t("search_product",1);        
+        Bootstrap::$pageTitle = 'Quản lý sản phẩm';        
     }
     
     public function searchCommentAction()
@@ -87,7 +93,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     {
         //TODO Your permission here
         parent::viewAction();//no permission yet
-        if ($row = $this->getViewParam('row'))
+       /* if ($row = $this->getViewParam('row'))
         {
             $id = $this->getStrippedParam('id');
             $where = array('node.id' => $id);
@@ -107,7 +113,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
                 }
     	        $this->handleAjaxOrMaster($r);
             }
-        }        
+        }*/        
         Bootstrap::$pageTitle = t("view_product",1);
     }
     

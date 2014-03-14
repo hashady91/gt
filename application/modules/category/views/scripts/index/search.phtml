@@ -33,6 +33,7 @@
         		<tr>
         			<th><input type="checkbox" class="checkall"/></th>
         			<th>Name</th>
+        			<th>Lelel</th>
         			<th>Status</th>
         			<th>Action</th>
         		</tr>
@@ -42,6 +43,16 @@
         		<tr id="<?php echo $row['id'];?>">
         			<td><input type="checkbox" value="<?php echo $row['id'];?>" class="check-item" /></td>
         			<td><a href="<?php echo node_link('category',$row);?>"><?php echo $row['name'];?></a></td>
+        			<td>
+                        <div class="btn-group">
+        			    	<a href="/category/update?id=<?php echo $row['id'];?>&level=1&_cl_step=is_level"
+        			    	class="btn btn-primary btn-xs <?php if($row['level']==1) echo 'active';?> cl_ajax" 
+        			    	_cl_get_metadata="active_button_group"> Make Level 1 </a>
+        			    	<a href="/category/update?id=<?php echo $row['id'];?>&level=2&_cl_step=is_level"
+        			    	class="btn btn-primary btn-xs <?php if(!isset($row['level']) || $row['level']== 2) echo 'active';?> cl_ajax" 
+        			    	_cl_get_metadata="active_button_group"> UnLevel 1</a>
+        			    </div> 
+        			</td>
         			<td>
                         <div class="btn-group">
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
