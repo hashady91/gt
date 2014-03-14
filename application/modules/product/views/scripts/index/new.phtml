@@ -3,9 +3,11 @@
 <?php $page = Zend_Registry::get('page');?>
 <div class='col-md-12'>
 <?php echo $this->render('index/navbar.phtml');?>
-<?php $this->form->setAttrib('class', 'cl_ajax form-inline');
-	$this->form->setAttrib('id', 'new-product')
-	?>
-<?php echo $this->form;?>
+<?php
+    $form = $this->form;
+    $form->setAttrib ( 'class', 'cl_ajax form-inline' );
+    $form->setAttrib ( 'id', 'new-product' );
+    echo $form;
+?>
 </div>
 </div>

@@ -71,7 +71,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     public function searchAction()
     {
         assure_perm("search_product");//by default
-        $this->genericSearch("Product_Form_Search", $this->daoClass, "Node");
+        $this->genericSearch("Product_Form_Search", "Dao_Node_Product", "", "Node");
         Bootstrap::$pageTitle = t("search_product",1);        
     }
     

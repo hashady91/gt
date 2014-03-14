@@ -11,10 +11,6 @@ class Product_Form_Update extends Product_Form_New
         {
             //$this->fieldList = array('name', 'content', 'status');
         }
-        elseif ($step == 'status')
-        {
-            $this->fieldList = array('status');
-        }
         $this->setCbHelper('Product_Form_Helper');
 	    parent::setStep($step, $currentRow);
     }
@@ -29,12 +25,14 @@ class Product_Form_Update extends Product_Form_New
     public function customPermissionFilter($data, $currentRow)
     {
         $lu = Zend_Registry::get('user');
+        assure_perm('root');
+        /*
         if ($this->step == '') //a full update
         {
-            assure_perm('update_own_samx');
+            assure_perm('update_own_product');
             return array('success' => true, 'err' => "Permission failed in Product");
         }
-        
+        */
         return array('success' => true);
     }
 }

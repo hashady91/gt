@@ -1,69 +1,150 @@
-<?php 
-class Product_Form_Search extends Product_Form_New
+<?php
+class Product_Form_Search extends Cl_Form_Search
 {
-
-	public function init()
-	{
-		parent::init();
-		$this->method= "GET";
-		$this->fieldList = array(
-	            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
-	            'StockStatus',
-	            'Note','description',
-	            'price');
-    	$this->setCbHelper('Product_Form_Helper');
-    	//$this->setDisplayInline();
-	}
-	public function setStep($step, $currentRow = null)
-	{
-	    parent::setStep($step, $currentRow);
-	}
-	//protected $_fieldListConfig; @see Cl_Dao_Foo
-	
-	
+    public function init()
+    {
+        parent::init();
+        $this->method    = "GET";
+        $this->fieldList = array(
+            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
+            'StockStatus',
+            'price'
+        );
+        $this->setCbHelper('Product_Form_Helper');
+        //$this->setDisplayInline();
+    }
+    public function setStep($step, $currentRow = null)
+    {
+        
+        parent::setStep($step, $currentRow = null);
+    }
+    //protected $_fieldListConfig; @see Cl_Dao_Foo
+    
+    
     //we must have it here as separate from $_fieldListConfig
     //because some configs will be merged with another file
-    protected $_formFieldsConfig = array(
-
-    	'name' => array(
-    		'type' => 'Text',
-    		'options' => array(
-    			'label' => "Product name",
-	    		'filters' => array('StringTrim', 'StripTags')
-    		),
-    		'op' => '$like',
-    	),
-		'items_per_page' => array(
-        		'type' => 'Select', 
-        		'options' => array(
-    				'label' => "Display",
-        			'disableLoadDefaultDecorators' => false,
-        			'required' => true,
-    	    		'filters' => array('StringTrim', 'StripTags')
-        		),
-        		//or you can implement getItemsPerPageList here
-        		//'multiOptions' => array('getItemsPerPageList'),
-        		'multiOptions' => array(
-		    	    '-1' => "All",
-            		'10' => "10/page",
-            		'20' => "20/page",
-            		'30' => "30/page",	
-            		'50' => "50/page"
-        		),
-        		'defaultValue' => 10
-    	),    	
-    	'order_by_count' => array(
-    		'type' => 'Select',
-    		'options' => array(
-    			'label' => "order_by_count",
-    			'required' => true,
-	    		'filters' => array('StringTrim', 'StripTags'),
-    		),
-    		'op' => '$eq',
-    		'multiOptions' => array(
-    			'ts' => 'created time',
-    			'counter.c' => "comment count",
-    		),
-    	),
-    );
+    protected function _formFieldsConfig()
+    {
+        //$type[''] = 'all';
+        $ret = array(
+            'SerialNumber' => array(
+                'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
+                'options' => array(
+                    'label' => "SerialNumber Search",
+                    'disableLoadDefaultDecorators' => true,
+                    'filters' => array(
+                        'StringTrim',
+                        'StripTags',
+                        'StringToUpper'
+                    )
+                ),
+                //'op' => '$in' // like %$value% . 
+                //$in , $eq, $lte,<=
+            ),
+            'name' => array(
+                    'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
+                    'options' => array(
+                            'label' => "Product name",
+                            'disableLoadDefaultDecorators' => true,
+                            'filters' => array(
+                                    'StringTrim',
+                                    'StripTags',
+                                    'StringToUpper'
+                            )
+                    ),
+                    //'op' => '$in' // like %$value% .
+                    //$in , $eq, $lte,<=
+            ),
+            'Model' => array(
+                'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
+                'options' => array(
+                    'label' => "Model",
+                    'disableLoadDefaultDecorators' => true,
+                    'filters' => array(
+                        'StringTrim',
+                        'StripTags',
+                        'StringToUpper'
+                    )
+                ),
+            ),
+            'SupplierName' => array(
+                    'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
+                    'options' => array(
+                            'label' => "SupplierName",
+                            'disableLoadDefaultDecorators' => true,
+                            'filters' => array(
+                                    'StringTrim',
+                                    'StripTags',
+                                    'StringToUpper'
+                            )
+                    ),
+            ),
+            'StockStatus' => array(
+                'type' => 'Select',
+                'options' => array(
+                    'label' => "Stock Status",
+                    'disableLoadDefaultDecorators' => false,
+                    'required' => true,
+                    'filters' => array(
+                        'StringTrim',
+                        'StripTags'
+                    )
+                ),
+            ),
+            'ReceivedDate' => array(
+                'type' => 'Text',
+                'options' => array(
+                    'label' => "Received Date",
+                    'disableLoadDefaultDecorators' => false,
+                    'required' => true,
+                    'transformers' => array(
+                        'dateToUnixTimestamp'
+                    )
+                ),
+                'filters' => array(
+                    'StringTrim',
+                    'StripTags'
+                )
+            ),
+            'note' =>  array(
+                'type' => 'Checkbox',
+                'options' => array(
+                    'label' => "Show details",
+                    'disableLoadDefaultDecorators' => false,
+                ),
+                'filters' => array(
+                    'StringTrim',
+                    'StripTags'
+                ),
+                'op' => '$ignore'
+            ),
+            'description' =>  array(
+            		'type' => 'Textarea',
+            		'options' => array(
+            				'label' => "Description",
+            				'disableLoadDefaultDecorators' => false,
+            		),
+            		'filters' => array(
+            				'StringTrim',
+            				'StripTags'
+            		),
+            		'op' => '$ignore'
+            ),
+            'price' =>  array(
+                    'type' => 'Text',
+                    'options' => array(
+                        				'label' => "Price",
+                        				'disableLoadDefaultDecorators' => false,
+                    ),
+                    'filters' => array(
+                        				'StringTrim',
+                        				'StripTags'
+                    ),
+                    'op' => '$ignore'
+            ),
+            
+        );
+        return $ret;
+    }
+    
 }
