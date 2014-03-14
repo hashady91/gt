@@ -7,6 +7,17 @@ class Product_Form_Helper extends Cl_Form_NodeHelper
     	return array('success' =>true, 'result' => $ret);
     }
     
+    public function getStockStatus()
+    {
+        $ret = array(
+                '0' => 'Còn hàng',
+                '1' => 'Hết hàng'
+        );
+        return array(
+                'success' => true,
+                'result' => $ret
+        );
+    }
     /*
     public function getItemsPerPageList($params)
     {

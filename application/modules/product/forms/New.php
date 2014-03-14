@@ -42,7 +42,7 @@ class Product_Form_New extends Cl_Form
 	{
 			$this->fieldList = array(
 	            'supplierName','name', 'model','serialNumber', 'receivedDate',
-	            'stockStatus',
+	            'images', 'images_deleted','img_canvas','upload_img',
 	            'note','description',
 	            'price',
 				'status',
@@ -119,22 +119,25 @@ class Product_Form_New extends Cl_Form
                     ),
             ),
             'receivedDate' => array(
-                    'type' => 'Text',
-                    'options' => array(
-                            'label' => "ReceivedDate",
-                            'filters' => array('StringTrim', 'StripTags'),
-                            'prefixPath' => array(
-                                    "filter" => array (
-                                            "Filter" => "Filter/"
-                                    )
-                            )
-                    ),
+                'type' => 'Text',
+                'options' => array(
+                    'label' => "Received Date",
+                    'disableLoadDefaultDecorators' => false,
+                    'required' => true,
+                    'transformers' => array(
+                        'dateToUnixTimestampInventory'
+                    )
+                ),
+                'filters' => array(
+                    'StringTrim',
+                    'StripTags'
+                ),
             ),
             'modifiedDate' => array(
-                    'type' => 'Textarea',
+                    'type' => 'Text',
                     'options' => array(
                             'label' => "ModifiedDate",
-                    		'class' => 'isEditor',
+                    		'class' => 'datepicker',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -144,22 +147,10 @@ class Product_Form_New extends Cl_Form
                     ),
             ),
             'soldDate' => array(
-                    'type' => 'Textarea',
-                    'options' => array(
-                            'label' => "SoldDate",
-                    		'class' => 'isEditor',
-                            'filters' => array('StringTrim', 'StripTags'),
-                            'prefixPath' => array(
-                                    "filter" => array (
-                                            "Filter" => "Filter/"
-                                    )
-                            )
-                    ),
-            ),
-            'stockStatus' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "StockStatus",
+                            'label' => "SoldDate",
+                    		'class' => 'datepicker',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -168,6 +159,17 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
+           'stockStatus' => array(
+                    'type' => 'Select',
+                    'options' => array(
+                            'label' => "Stock Status",
+                            'disableLoadDefaultDecorators' => false,
+                            'required' => false,
+                            'filters' => array('StringTrim', 'StripTags')
+                    ),
+                    'multiOptionsCallback' => array(array('Product_Form_Helper', 'getStockStatus')),
+                    'defaultValue' => '1'
+                ),
             'note' => array(
                     'type' => 'Textarea',
                     'options' => array(
@@ -393,13 +395,39 @@ class Product_Form_New extends Cl_Form
         					'filters' => array('StringTrim', 'StripTags')
         			),
         	),
+            'upload_img' => array(
+                'type' => 'Hidden',
+                'options' => array(
+                    'multiple' => true
+                )
+            ),
+            'images_tmp' => array(
+                'type' => 'Hidden',
+                'options' => array(
+                    'filters' => array('StringTrim', 'StripTags'),
+                    'transformers' => array("tokensJSONStringToArray")
+                )
+            ),
+            'images_deleted' => array(
+                'type' => 'Hidden',
+                'options' => array(
+                    'filters' => array('StringTrim', 'StripTags')
+                )
+            ),
+            'img_canvas' => array(
+                'type' => 'Hidden',
+            ),
             'images' => array(
                     'type' => 'Hidden',
                     'options' => array(
                             'class' => 'cl_upload',
-                            'filters' => array('StringTrim', 'StripTags')
-                    ),
-            )
+                            //TODO:
+                            'data-upload-label' => 'upload product picture',
+                            'data-upload-title' => 'Choose file',
+                            'type' => 'avatar_image',
+                            'attribs' => array('cl_upload_text' => 'Avatar')
+                    )
+            ),
         );
         return $ret;
     }

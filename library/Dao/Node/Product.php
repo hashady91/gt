@@ -2,12 +2,7 @@
 class Dao_Node_Product extends Cl_Dao_Node
 {
     public $nodeType = 'samx';
-    public $cSchema = array(
-    		'id' => 'string',
-    		'name' => 'string',
-    		'avatar' => 'string',
-    		//add other stuff u want
-    );
+    public $cSchema = array('id' => 'string', 'iid' => 'string', 'name' => 'string', 'images' => 'string');
         
     protected function relationConfigs($subject = 'user')
     {
@@ -26,7 +21,6 @@ class Dao_Node_Product extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'product',
         	'documentSchemaArray' => array(
-    	        'id' => 'int',
     	        'iid' => 'int',
     	        'supplierName' => 'string',
     	        'model' => 'string',
@@ -38,14 +32,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'soldDate' => 'int', // unix timestamp , at 00:00:00 of that date
     	        'stockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
     	        'note' => 'string',
-    	        'images' => array(
-    	                array(
-    	                        'id' => 'string',
-    	                        'ext' => 'string',
-    	                        'url' => 'string',
-    	                        'path' => 'string'
-    	                )
-    	        ),
+    	        'images' => 'string',
     	        'category' => 'array',
     	        'weight' => 'float',
     	        'type' => 'string',
@@ -61,12 +48,32 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'length' => 'float',
     	        "width" => 'float',
     	        'height' => 'float',
-    	        'viewed' => 'int',
-    	        'saled' => 'int',
     	        'counter'	=>	array(
-    	                'sale_number' => 'int', // so luong hang ban duoc
+    	                'saled' => 'int', // so luong hang ban duoc
+    	                'viewed' => 'int', //so luot ghe tham san pham
+    	                'instock' => 'int' //so luong hang ton kho
     	        ),
-        	)
+        	),
+	        'indexes' => array(
+	                array(
+	                        array(
+	                                'iid' => 1
+	                        ),
+	                        array(
+	                                "unique" => true,
+	                                "dropDups" => true
+	                        )
+	                ),
+	                array(
+	                        array(
+	                                'serialNumber' => 1
+	                        ),
+	                        array(
+	                                "unique" => true,
+	                                "dropDups" => true
+	                        )
+	                ),
+	        )
     	);
 	}
 	
@@ -76,12 +83,21 @@ class Dao_Node_Product extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
+	    if (!isset($data['iid']))
+	    {
+	        $redis = init_redis(RDB_CACHE_DB);
+	        $data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
+	    }
         return array('success' => true, 'result' => $data);
 	}
 	
 	public function afterInsertNode($data, $row)
 	{
-        return array('success'=> true, 'result' => $row);
+        parent::afterInsertNode($data, $row);
+        return array(
+            'success' => true,
+            'result' => $row
+        );
 	}
 	
     /******************************UPDATE****************************/

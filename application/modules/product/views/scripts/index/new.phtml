@@ -11,7 +11,7 @@
 <?php else:?>
 <h1> Cập nhật sản phẩm mới</h1>
 <?php endif;?>
-<?php //$this->form->setAttrib('class', 'cl_ajax');?>
+<?php //v($this->form);?>
 <?php $this->form->setAttrib('class', 'cl_ajax form-inline');?>
 <?php $this->form->setAttrib('id', 'new-product')?>
 <?php echo $this->form;?>
@@ -23,3 +23,13 @@
     </div>
 </div>
 </div>
+<?php $this->inlineScript()->captureStart();?>
+
+	$(document).ready(function(){
+	 	var DATE_FORMAT={dateFormat: 'dd/mm/yy'};
+		$("#receivedDate").datepicker({
+	       maxDate: "+0D",
+	       dateFormat: 'dd/mm/yy'	
+		});
+    });
+<?php $this->inlineScript()->captureEnd();?>

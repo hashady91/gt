@@ -8,7 +8,7 @@ class Product_Form_Search extends Cl_Form_Search
         $this->method    = "GET";
         $this->fieldList = array(
             'supplierName','name', 'model','serialNumber',
-            'price'
+            'price','iid','stockStatus'
         );
         $this->setCbHelper('Product_Form_Helper');
         //$this->setDisplayInline();
@@ -80,16 +80,15 @@ class Product_Form_Search extends Cl_Form_Search
                     ),
             ),
             'stockStatus' => array(
-                'type' => 'Select',
-                'options' => array(
-                    'label' => "Stock Status",
-                    'disableLoadDefaultDecorators' => false,
-                    'required' => true,
-                    'filters' => array(
-                        'StringTrim',
-                        'StripTags'
-                    )
-                ),
+                    'type' => 'Select',
+                    'options' => array(
+                            'label' => "Stock Status",
+                            'disableLoadDefaultDecorators' => false,
+                            'required' => false,
+                            'filters' => array('StringTrim', 'StripTags')
+                    ),
+                    'multiOptionsCallback' => array(array('Product_Form_Helper', 'getStockStatus')),
+                    'defaultValue' => '1'
             ),
             'receivedDate' => array(
                 'type' => 'Text',
@@ -141,6 +140,17 @@ class Product_Form_Search extends Cl_Form_Search
                         				'StripTags'
                     ),
                     'op' => '$ignore'
+            ),
+            'iid' =>  array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "Price",
+                            'disableLoadDefaultDecorators' => false,
+                    ),
+                    'filters' => array(
+                            'StringTrim',
+                            'StripTags'
+                    ),
             ),
             
         );
