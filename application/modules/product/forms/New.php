@@ -30,7 +30,9 @@ class Product_Form_New extends Cl_Form
     	        'height',
     	        'viewed',
     	        'saled',
-    	        'counter',);
+    	        'counter',
+				'status',
+		);
 		$this->setCbHelper('Product_Form_Helper');
 		
 	}
@@ -44,7 +46,9 @@ class Product_Form_New extends Cl_Form
 	            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
 	            'StockStatus',
 	            'Note','description',
-	            'price');
+	            'price',
+				'status',
+			);
 		}
 		elseif ($step == 'new')
 		{
