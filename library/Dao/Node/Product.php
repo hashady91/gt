@@ -237,4 +237,115 @@ class Dao_Node_Product extends Cl_Dao_Node
 		*/
 	}
 	
+	public function getStandedProduct($product){
+		$productNew = $product;
+		$productNew['category']['name'] = isset($product['category']['name']) ? $product['category']['name'] : '';
+		$productNew['counter']['buy'] = isset($product['count']['buy']) ? $product['count']['buy'] : 0;
+		$productNew['price'] = isset($product['price']) ? $product['price'] : 0;
+		$productNew['saled'] = isset($product['saled']) ? $product['saled'] : 0;
+	
+		return $productNew;
+	}
+	
+	public function getHomePageProduct($iid){
+		//$where = array('iid' => $iid);
+		$where = array('id' => '532246490b08d1eb0c000000');
+		$r = Dao_Node_Product::getInstance()->findOne($where);
+		 
+		if($r['success']){
+			$hp_product = $r['result'];
+		}else{
+			$hp_product = array();
+		}
+		
+		return $hp_product;
+	}
+	
+	public function getRecommendProduct($recommend_products_id){
+		//$recommend_products_iid = get_conf('recommend_products_iid', 1);
+		//$iids = explode(',',$recommend_products_iid);
+		$ids = explode(',',$recommend_products_id);
+		$idsNew = array();
+		 
+		if(count($ids) > 0){
+			foreach ($ids as $id){
+				if(trim($id) != '')
+					$idsNew[] = trim($id);
+			}
+		}
+		 
+		$reCWhere = array('id' => array('$in' => $idsNew));
+		$cond['limit'] = 4;
+		$cond['where'] = $reCWhere; //recommend where
+		$r = Dao_Node_Product::getInstance()->find($cond);
+		
+		if($r['success']){
+			$recommend_products = $r['result'];
+		}else{
+			$recommend_products = array();
+		}
+		
+		return $recommend_products;
+	}
+	
+	public function getStyle1Product($category_iid_style1){
+		//$where = array('category.id' => $category_iid_style1);
+		$where = array();
+		$cond['where'] = $where;
+		$cond['limit'] = 4;
+		//$order['ts'] = 1;
+		//$cond['order'] = $order;
+		
+		$r = Dao_Node_Product::getInstance()->find($cond);
+		
+		if($r['success']){
+			$style1_products = $r['result'];
+		}else{
+			$style1_products  = array();
+		}
+		
+		return $style1_products;
+	}
+	
+	public function getStyle1ProductOfCategories($category_iid_style1){
+		$cateIds = explode(',',$category_iid_style1);
+		$cateIdsNew = array();
+			
+		if(count($cateIds) > 0){
+			foreach ($cateIds as $id){
+				if(trim($id) != '')
+					$cateIdsNew[] = trim($id);
+			}
+		}
+		
+		if(count($cateIdsNew)){
+			$categories = array();
+			foreach ($cateIdsNew as $cateId){
+				//$where = array('category.id' => $category_iid_style1);
+				$where = array();
+				$cond['where'] = $where;
+				$cond['limit'] = 4;
+				//$order['ts'] = 1;
+				//$cond['order'] = $order;
+		
+				$r = Dao_Node_Product::getInstance()->find($cond);
+		
+				if($r['success']){
+					$products = $r['result'];
+				}else{
+					$products  = array();
+				}
+		
+				$where = array('id' => $cateId);
+				$r = Dao_Node_Category::getInstance()->findOne($where);
+		
+				$detailCate = $r['result'];
+				$categorie['detail'] = $detailCate;
+				$categorie['products'] = $products;
+				$categories[] = $categorie;
+			}
+		}
+		
+		return $categories;
+	}
 }

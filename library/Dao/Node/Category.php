@@ -288,5 +288,4 @@ class Dao_Node_Category extends Cl_Dao_Node
 			return array();
 		}
 	}
-	
 }
