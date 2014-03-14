@@ -19,6 +19,8 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
     			
     			$cates = array_merge($cate,$cates);
     		}
+    		
+    		$cates = array_merge(array(''=> 'Không chọn'),$cates);
     		return array('success' =>true, 'result' => $cates);
     	}else{
     		return array('success' =>true, 'result' => array());

@@ -1,0 +1,103 @@
+<?php $lu = Zend_Registry::get('user');?>
+<div class="header-v2">
+        <header role="banner" data-bhw="Header" class="header" data-bhw-path="Header">
+          <div class="row">
+            <div class="two columns">
+              <a data-track="{&quot;event&quot;:&quot;click&quot;,&quot;t&quot;:&quot;logo_click&quot;}" data-bhw="Logo" class="logo icon-groupon" href="/" data-bhw-path="Header|Logo"></a>
+            </div>
+            <div class="ten columns ">
+              <div class="row">
+                  <div class="eight columns search-bar-wrapper">
+                    <form data-bhw="SearchBar" id="search-bar" class="search-bar free-text-search-enabled" data-bhw-path="Header|SearchBar">
+		              <div class="rounded-input left active-search">
+		                <label for="search" class="icon-magnifying-glass"></label>
+		                <input type="search" autofocus="" 
+		                	data-bhw="FreeTextSearchField" id="search" 
+		                	placeholder="Nhập sản phẩm bạn tìm kiếm" spellcheck="false" 
+	                		autocomplete="off" name="search" 
+	                		data-bhw-path="Header|SearchBar|FreeTextSearchField">
+                		<div data-bhw="SearchBarAutoComplete"
+                		 class="search typeahead-response" style="display: none;"></div>
+              </div>
+              <div data-error-availability="We are experiencing difficulty finding your location. Try again later." data-error-bad_location="We couldn't understand that location. Try another ZIP/Postal Code, neighborhood or address." data-error-generic="There was an error" class="rounded-input right">
+                <label for="location" class="icon-marker"></label>
+                <input type="text" data-bhw="LocationBarField" id="location" spellcheck="false" 
+                		placeholder="Nhập vào địa điểm" autocomplete="off" 
+                		name="location" data-bhw-path="Header|SearchBar|LocationBarField">
+                		<div data-bhw="SearchBarAutoComplete" class="location typeahead-response" 
+                		style="width: auto; display: none;"></div>
+		              </div>
+		              <input type="submit" data-bhw="LocationBarFindDeals" class="btn-rounded btn-search" value="Go" name="submit_search">
+		            </form>
+          
+		          <script>
+		            Groupon.Modules.SearchBar.SearchOverrides = [{"link":"/occasion/bestofgroupon","terms":["best","best of","best of groupon","top","top rated","best massage","best restaurant","best things to do","best gym","best facial","best nail salon","best car wash","best facial","best spas","best laser hair removal","best indian","best italian","best american","best bar","best laser hair removal"]},{"link":"/getaways","terms":["hotel","hotels"]},{"link":"/reserve","terms":["reservations","reserve"]},{"link":"http://www.grouponworks.com/get-featured","terms":["sell on groupon","advertise on groupon","run a groupon deal","get featured"]},{"link":"/groupon-promise","terms":["return policy","claim refund","request refund","refund","returns"]},{"link":"/customer_support","terms":["customer support","customer service"]},{"link":"https://merchants.groupon.com","terms":["merchant center"]},{"link":"https://breadcrumb.groupon.com/","terms":["breadcrumb","pos","point of sale"]},{"link":"https://breadcrumb.groupon.com/payments","terms":["payments"]},{"link":"https://grassroots.groupon.com/","terms":["charity","grassroots"]},{"link":"/coupons","terms":["coupons"]},{"link":"/giftcards","terms":["gift cards"]},{"link":"/articles/favin-the-maven","terms":["favin","favins faves","favin's faves","favin the maven","Beauty Expert","Resident Expert","Beauty Advice","Beauty Tips","Beauty Tricks"]}];
+		          </script>
+         		 </div>
+                  <div class="four columns user-wrapper">
+                      <?php if(is_guest()):?>
+                          <nav class="user-menu signed-out">
+	                              <a href="/user/login" class="first" >Đăng nhập</a>
+	                              <a href="/user/register">Đăng ký</a>
+                          </nav>
+				      <?php else:?>
+				          <nav class="user-menu signed-in">
+		                      <a class="user-name icon-arrow-down-large" href="/mygroupons">
+		                      	<?php echo $lu['name'];?></a>
+			                      <ul class="my-stuff">
+			                        <?php if(has_perm('sudo')):?>
+				                      	<li><a href="/site/admin" 
+				                        	id="user-admin">Quản trị</a></li>
+		                        	<?php endif;?>
+			                      	<li><a href="/user/<?php echo $lu['id'];?>" 
+			                        	id="user-groupons">Trang cá nhân</a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=account" 
+			                        	id="user-account">Sửa thông tin</a></li>
+			                        <li><a href="/user/update?id=<?php echo $lu['id']?>&_cl_step=change_pass" 
+			                        	id="change_pass">Đổi mật khẩu</a></li>
+		              			    <li><a id="sign-out" class="sign-out" 
+		              			    	href="/user/logout">Đăng suất</a></li>
+			                      </ul>
+		                   </nav>	
+                       <?php endif;?>
+
+                      <?php if(!is_guest()):?>
+	                      <div data-bhw="CartWidget" class="cart-widget" data-bhw-path="Header|CartWidget"><div class="cart-name">
+							  <a class="btn-secondary btn-small" href="/user/carts">
+							  	<span class="icon-goods"></span> Giỏ hàng</a>
+							</div>
+							<div data-bhw="ShoppingCart" class="module cart-empty-container">
+							  <div class="cart-empty-body">
+							    <div class="cart-empty-header"><b>Xem giỏ hàng</b></div>
+							    <p>Click vào đây để xem những sản phẩm hữu ích!
+							    	<a href="/"><?php echo SITE_NAME;?></a>.
+							  </p></div>
+							</div>
+						 </div>
+					 <?php endif;?>
+        		</div>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <nav role="navigation" class="primary-nav">
+          <div class="row">
+            <div class="twelve columns">
+              <ul>
+				<?php $categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();?>
+	        	   <?php if(isset($categories) && count($categories) > 0):?>
+	        	   	   <?php foreach ($categories as $ca):?>
+			                <li data-bhw="<?php echo $ca['code'];?>" class="primary-nav-tab" 
+			                	id="<?php echo $ca['code'];?>" style="width: 92px;" 
+		                		data-bhw-path="<?php echo $c['code'];?>">
+			                 	 <a href="/category/list?cate=<?php echo $ca['code'];?>">
+			                  	<?php echo $ca['name'];?></a>
+			                </li>
+	        	   	   <?php endforeach;?>
+	        	   <?php endif;?>              
+        	   </ul>
+            </div>
+          </div>
+        </nav>
+      </div>

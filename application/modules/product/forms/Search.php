@@ -1,3 +1,4 @@
+
 <?php
 class Product_Form_Search extends Cl_Form_Search
 {
@@ -6,8 +7,7 @@ class Product_Form_Search extends Cl_Form_Search
         parent::init();
         $this->method    = "GET";
         $this->fieldList = array(
-            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
-            'StockStatus',
+            'supplierName','name', 'model','serialNumber',
             'price'
         );
         $this->setCbHelper('Product_Form_Helper');
@@ -27,7 +27,7 @@ class Product_Form_Search extends Cl_Form_Search
     {
         //$type[''] = 'all';
         $ret = array(
-            'SerialNumber' => array(
+            'serialNumber' => array(
                 'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
                 'options' => array(
                     'label' => "SerialNumber Search",
@@ -55,7 +55,7 @@ class Product_Form_Search extends Cl_Form_Search
                     //'op' => '$in' // like %$value% .
                     //$in , $eq, $lte,<=
             ),
-            'Model' => array(
+            'model' => array(
                 'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
                 'options' => array(
                     'label' => "Model",
@@ -67,7 +67,7 @@ class Product_Form_Search extends Cl_Form_Search
                     )
                 ),
             ),
-            'SupplierName' => array(
+            'supplierName' => array(
                     'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
                     'options' => array(
                             'label' => "SupplierName",
@@ -79,7 +79,7 @@ class Product_Form_Search extends Cl_Form_Search
                             )
                     ),
             ),
-            'StockStatus' => array(
+            'stockStatus' => array(
                 'type' => 'Select',
                 'options' => array(
                     'label' => "Stock Status",
@@ -91,7 +91,7 @@ class Product_Form_Search extends Cl_Form_Search
                     )
                 ),
             ),
-            'ReceivedDate' => array(
+            'receivedDate' => array(
                 'type' => 'Text',
                 'options' => array(
                     'label' => "Received Date",
@@ -146,5 +146,6 @@ class Product_Form_Search extends Cl_Form_Search
         );
         return $ret;
     }
-    
 }
+    
+?>

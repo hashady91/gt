@@ -28,16 +28,16 @@ class Dao_Node_Product extends Cl_Dao_Node
         	'documentSchemaArray' => array(
     	        'id' => 'int',
     	        'iid' => 'int',
-    	        'SupplierName' => 'string',
-    	        'Model' => 'string',
-    	        'Condition' => 'enum',
-    	        'SerialNumber' => 'string',
-    	        'Location' => 'string',
-    	        'ModifiedDate' => 'int',
-    	        'ReceivedDate' => 'int', // unix timestamp , at 00:00:00 of that date
-    	        'SoldDate' => 'int', // unix timestamp , at 00:00:00 of that date
-    	        'StockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
-    	        'Note' => 'string',
+    	        'supplierName' => 'string',
+    	        'model' => 'string',
+    	        'condition' => 'enum',
+    	        'serialNumber' => 'string',
+    	        'location' => 'string',
+    	        'modifiedDate' => 'int',
+    	        'receivedDate' => 'int', // unix timestamp , at 00:00:00 of that date
+    	        'soldDate' => 'int', // unix timestamp , at 00:00:00 of that date
+    	        'stockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
+    	        'note' => 'string',
     	        'images' => array(
     	                array(
     	                        'id' => 'string',

@@ -5,16 +5,16 @@ class Product_Form_New extends Cl_Form
 	{
 		parent::init();
 		$this->fieldList = array(
-    	        'SupplierName',
-    	        'Model',
-    	        'Condition',
-    	        'SerialNumber',
-    	        'Location',
-    	        'ModifiedDate',
-    	        'ReceivedDate', // unix timestamp , at 00:00:00 of that date
-    	        'SoldDate', // unix timestamp , at 00:00:00 of that date
+    	        'supplierName',
+    	        'model',
+    	        'condition',
+    	        'serialNumber',
+    	        'location',
+    	        'modifiedDate',
+    	        'receivedDate', // unix timestamp , at 00:00:00 of that date
+    	        'soldDate', // unix timestamp , at 00:00:00 of that date
     	        'StockStatus', // 0 NOTINStock, 1 => InStock, 2 => Missing
-    	        'Note',
+    	        'note',
     	        'images',
     	        'category',
     	        'type',
@@ -30,7 +30,9 @@ class Product_Form_New extends Cl_Form
     	        'height',
     	        'viewed',
     	        'saled',
-    	        'counter',);
+    	        'counter',
+				'status',
+		);
 		$this->setCbHelper('Product_Form_Helper');
 		
 	}
@@ -38,24 +40,19 @@ class Product_Form_New extends Cl_Form
 	
     public function setStep($step, $currentRow = null)
 	{
-		if ($step == '')
-		{
 			$this->fieldList = array(
-	            'SupplierName','name', 'Model','SerialNumber', 'ReceivedDate',
-	            'StockStatus',
-	            'Note','description',
-	            'price');
-		}
-		elseif ($step == 'new')
-		{
-		    $this->fieldList = array('name');
-		}
+	            'supplierName','name', 'model','serialNumber', 'receivedDate',
+	            'stockStatus',
+	            'note','description',
+	            'price',
+				'status',
+			);
 	}
 	
     protected function _formFieldsConfigCallback()
     {
         $ret = array(
-        	'SupplierName' => array(
+        	'supplierName' => array(
         		'type' => 'Text',
         		'options' => array(
         			'label' => "Supplier name",
@@ -65,7 +62,7 @@ class Product_Form_New extends Cl_Form
         		),
                 //'permission' => 'update_task'
         	),
-            'Model' => array(
+            'model' => array(
                     'type' => 'Text',
                     'options' => array(
                             'label' => "Model",
@@ -75,7 +72,7 @@ class Product_Form_New extends Cl_Form
                     ),
                     //'permission' => 'update_task'
             ),
-            'Condition' => array(
+            'condition' => array(
                     'type' => 'Text',
                     'options' => array(
                             'label' => "Condition",
@@ -85,7 +82,7 @@ class Product_Form_New extends Cl_Form
                     ),
                     //'permission' => 'update_task'
             ),
-        	'SerialNumber' => array(
+        	'serialNumber' => array(
         		'type' => 'Text',
         		'options' => array(
         	        'label' => "SerialNumber",
@@ -97,7 +94,7 @@ class Product_Form_New extends Cl_Form
         			)
         		),
         	),
-            'Location' => array(
+            'location' => array(
                     'type' => 'Select',
                     'options' => array(
                             'label' => "Location",
@@ -121,7 +118,7 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'ReceivedDate' => array(
+            'receivedDate' => array(
                     'type' => 'Text',
                     'options' => array(
                             'label' => "ReceivedDate",
@@ -133,10 +130,11 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'ModifiedDate' => array(
+            'modifiedDate' => array(
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "ModifiedDate",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -145,10 +143,11 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'SoldDate' => array(
+            'soldDate' => array(
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "SoldDate",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -157,7 +156,7 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'StockStatus' => array(
+            'stockStatus' => array(
                     'type' => 'Text',
                     'options' => array(
                             'label' => "StockStatus",
@@ -169,10 +168,11 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'Note' => array(
+            'note' => array(
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Note",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -293,6 +293,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "description",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -305,6 +306,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Meta description",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -317,6 +319,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Key word",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -329,6 +332,7 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Textarea',
                     'options' => array(
                             'label' => "Quantity",
+                    		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'Digits'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -388,7 +392,14 @@ class Product_Form_New extends Cl_Form
         					'class' => 'cl_upload',
         					'filters' => array('StringTrim', 'StripTags')
         			),
-        	)
+        	),
+            'images' => array(
+                    'type' => 'Hidden',
+                    'options' => array(
+                            'class' => 'cl_upload',
+                            'filters' => array('StringTrim', 'StripTags')
+                    ),
+            )
         );
         return $ret;
     }

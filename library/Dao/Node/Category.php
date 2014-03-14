@@ -3,7 +3,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 {
     public $nodeType = 'category';
     public $cSchema = array(
-    		'id' => 'int',
+    		'id' => 'string',
             'iid' => 'int',
     		'name' => 'string',
     		'code' => 'string',
@@ -31,7 +31,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
 	    $category = array(
-    		'id' => 'int',
+    		'id' => 'string',
     		'iid' => 'int',
     		'name' => 'string',
     		'code' => 'string',
@@ -42,7 +42,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'category',
         	'documentSchemaArray' => array(
-    	         'id' => 'int',
+    	         'id' => 'string',
     	         'iid' => 'int',
     	         "category_id"	=>'int',
         	     "category_type" =>'int',
@@ -59,10 +59,10 @@ class Dao_Node_Category extends Cl_Dao_Node
 				 "status" => 'int',
 				 "date_added" => 'float',
 				 "date_modified" => 'float',
-        		 "child_category" => $category,
-        		 'child_cate_id' => array(//array child_cate_id
-        		 	'id' => 'string',
+        		 "child_category" => array(
+        		 	$category
         		 ),
+        		 'child_cate_id' => 'array',//array child_cate_id
         		 'level' => 'int', //1, 2, 3
         	)
     	);
@@ -93,6 +93,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	}else{
     		$data['$set']['level'] = 1;
     	}
+    	
         /*
          * You have $data['$set']['_cl_step'] and $data['$set']['_u'] available
          */
@@ -111,33 +112,40 @@ class Dao_Node_Category extends Cl_Dao_Node
     			$child_category = (isset($cate['child_category']) && $cate['child_category']) ? $cate['child_category'] : array();
     	
     			$childCateNew = array();
+    			$childCateIdNew = array();
+    			$boolen = false;
     			$count = 0;
+    			
     			if(count($child_category) > 0){
 	    			foreach ($child_category as $ca){
 	    				if($ca['id'] != $currentRow['id']){
 	    					$childCateNew[] = $ca;
+	    					$childCateIdNew[] = $ca['id'];
 	    				}else{
 	    					$count ++;
-	    					$childCateNew[] = $currentRow;
 	    				}
 	    			}
+	    			
+	    			if($count == 0){
+	    				$boolen = true;
+	    				$childCateNew[] = $currentRow;
+	    				$childCateIdNew[] = $currentRow['id'];
+	    			}
     			}else{
-    				$count ++;
-    				$childCateNew = $currentRow;
+    				$boolen = true;
+    				$childCateNew[] = $currentRow;
+    				$childCateIdNew[] = $currentRow['id'];
     			}
-    	
-    			if($count != 0){
-    				$child_cate_id = (isset($cate['child_cate_id']) && $cate['child_cate_id']) ? $cate['child_cate_id'] : array();
-    				$child_cate = array_merge($currentRow['id'],$child_cate_id);
-    					
+    			
+    			if($boolen){
     				$update = array(
     						'$set' => 
 	    						array(
-	    						'child_cate_id' => $child_cate,
+	    						'child_cate_id' => $childCateIdNew,
 	    						'child_category' => $childCateNew
 	    					)
 	    				);
-    					
+    				
     				$r = $this->update($where,$update);
     			}
     		}
@@ -267,6 +275,18 @@ class Dao_Node_Category extends Cl_Dao_Node
 		$ret['slug'] = $currentRow['slug'];
 		return $ret;
 		*/
+	}
+	
+	public function getCategoryLevelOne(){
+		$where = array('level' => 1);
+		$cond['where'] = $where;
+		$r = $this->findAll($cond);
+		
+		if($r['success']){
+			return $r['result'];
+		}else{
+			return array();
+		}
 	}
 	
 }

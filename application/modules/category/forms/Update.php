@@ -15,6 +15,10 @@ class Category_Form_Update extends Category_Form_New
         {
             $this->fieldList = array('status');
         }
+        elseif ($step == 'is_level')
+        {
+        	$this->fieldList = array('level');
+        }
         $this->setCbHelper('Category_Form_Helper');
 	    parent::setStep($step, $currentRow);
     }
