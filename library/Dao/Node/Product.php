@@ -288,8 +288,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 		return $recommend_products;
 	}
 	
-	public function getStyle1Product($category_iid_style1){
-		//$where = array('category.id' => $category_iid_style1);
+	public function getProductsByCategoryIid($category_iid){
+		//$where = array('category.id' => $category_iid);
 		$where = array();
 		$cond['where'] = $where;
 		$cond['limit'] = 4;
@@ -307,8 +307,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 		return $style1_products;
 	}
 	
-	public function getStyle1ProductOfCategories($category_iid_style1){
-		$cateIds = explode(',',$category_iid_style1);
+	public function getProductsByCategorysIids($category_iids, $limit){
+		$cateIds = explode(',',$category_iids);
 		$cateIdsNew = array();
 			
 		if(count($cateIds) > 0){
@@ -324,7 +324,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 				//$where = array('category.id' => $category_iid_style1);
 				$where = array();
 				$cond['where'] = $where;
-				$cond['limit'] = 4;
+				$cond['limit'] = $limit;
 				//$order['ts'] = 1;
 				//$cond['order'] = $order;
 		
