@@ -83,6 +83,10 @@ class Dao_Node_Product extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
+		if($data['images'] != ''){
+			$data['images'] = remove_ufiles_from_images_url($data['images']);	
+		}
+		
 	    if (!isset($data['iid']))
 	    {
 	        $redis = init_redis(RDB_CACHE_DB);
@@ -248,8 +252,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 	}
 	
 	public function getHomePageProduct($iid){
-		//$where = array('iid' => $iid);
-		$where = array('id' => '532246490b08d1eb0c000000');
+		$where = array('iid' => $iid);
+		//$where = array('id' => '532246490b08d1eb0c000000');
 		$r = Dao_Node_Product::getInstance()->findOne($where);
 		 
 		if($r['success']){

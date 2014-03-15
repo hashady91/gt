@@ -33,4 +33,36 @@ function get_default_perms()
 {
 	return array('new_comment');
 }
+
+function use_static_server($img)
+{
+	if (strpos($img , "http://") === 0 || strpos($img , "https://") === 0)
+		return $img;
+	$img = str_replace('/ustore/', '/ufiles/', $img);
+	if (strpos($img, '/ufiles/') === 0)
+		$img = str_replace('/ufiles/', '', $img);
+	//$img = str_replace('/ufiles/', STATIC_CDN, $img);
+	if(!(strpos($img , "http://") === 0 && strpos($img , "https://") === 0))
+		$img = STATIC_CDN . $img;
+	return $img;
+}
+
+function remove_ufiles_from_images_url_tmp($img)
+{
+	if (strpos($img , "http://") === 0 || strpos($img , "https://") === 0)
+		return $img;
+	$img = str_replace('/ustore/', '/ufiles/', $img);
+	if (strpos($img, '/ufiles/') === 0)
+		$img = str_replace('/ufiles/', '', $img);
+	//$img = str_replace('/ufiles/', STATIC_CDN, $img);
+	if(!(strpos($img , "http://") === 0 && strpos($img , "https://") === 0))
+		$img =  $img;
+	return $img;
+}
+
+function remove_ufiles_from_images_url($img)
+{
+	$img = str_replace('/ufiles/', '', $img);
+	return $img;
+}
 ?>

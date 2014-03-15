@@ -125,7 +125,7 @@ class Product_Form_New extends Cl_Form
                     'disableLoadDefaultDecorators' => false,
                     'required' => true,
                     'transformers' => array(
-                        'dateToUnixTimestampInventory'
+                        'dateToUnixTimestamp'
                     )
                 ),
                 'filters' => array(
