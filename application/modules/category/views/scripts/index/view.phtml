@@ -28,7 +28,7 @@ CL.NID = "<?php echo $row['id']; ?>";
     <?php if (!$isPreview) :?>
     <div><br/><br/><h3>Comments</h3></div>
     <?php 
-        $this->comment_node_type = 'samx';
+        $this->comment_node_type = 'category';
         if($lu['id'] != GUEST_ID)
             $this->can_comment = true;
         else 

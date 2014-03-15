@@ -9,7 +9,7 @@ class Category_Form_Update extends Category_Form_New
     {
         if ($step == '' )
         {
-			$this->fieldList = array('avatar', 'name', 'content', 'status', 'parent_category', 'code');
+			$this->fieldList = array('avatar', 'name', 'content', 'status', 'parent_category', 'slug');
         }
         elseif ($step == 'status')
         {
@@ -35,7 +35,7 @@ class Category_Form_Update extends Category_Form_New
         $lu = Zend_Registry::get('user');
         if ($this->step == '') //a full update
         {
-            assure_perm('update_own_samx');
+            assure_perm('sudo');
             return array('success' => true, 'err' => "Permission failed in Category");
         }
         

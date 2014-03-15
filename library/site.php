@@ -4,6 +4,10 @@ function node_link($type, $node)
     return "/{$type}/view?id={$node['id']}";
 }
 
+function category_link($slug){
+	return "/category/{$slug}.html";
+}
+
 // custom functions for demo
 function display_avatar ($imgUrl, $size = 50, $atype = AS3_AVATAR_FOLDER)
 {

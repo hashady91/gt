@@ -247,6 +247,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 		$productNew['counter']['buy'] = isset($product['count']['buy']) ? $product['count']['buy'] : 0;
 		$productNew['price'] = isset($product['price']) ? $product['price'] : 0;
 		$productNew['saled'] = isset($product['saled']) ? $product['saled'] : 0;
+		$product['images'] = isset($product['images']) ? $product['images'] : default_avatar('product');
 	
 		return $productNew;
 	}
@@ -265,20 +266,18 @@ class Dao_Node_Product extends Cl_Dao_Node
 		return $hp_product;
 	}
 	
-	public function getRecommendProduct($recommend_products_id){
-		//$recommend_products_iid = get_conf('recommend_products_iid', 1);
-		//$iids = explode(',',$recommend_products_iid);
-		$ids = explode(',',$recommend_products_id);
-		$idsNew = array();
+	public function getRecommendProduct($recommend_products_iid){
+		$iids = explode(',',$recommend_products_iid);
+		$iidsNew = array();
 		 
-		if(count($ids) > 0){
-			foreach ($ids as $id){
-				if(trim($id) != '')
-					$idsNew[] = trim($id);
+		if(count($iids) > 0){
+			foreach ($iids as $iid){
+				if(trim($iid) != '')
+					$iidsNew[] = (int)trim($iid);
 			}
 		}
 		 
-		$reCWhere = array('id' => array('$in' => $idsNew));
+		$reCWhere = array('iid' => array('$in' => $iidsNew));
 		$cond['limit'] = 4;
 		$cond['where'] = $reCWhere; //recommend where
 		$r = Dao_Node_Product::getInstance()->find($cond);
@@ -293,7 +292,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 	}
 	
 	public function getProductsByCategoryIid($category_iid){
-		//$where = array('category.id' => $category_iid);
+		//$where = array('category.iid' => $category_iid);
 		$where = array();
 		$cond['where'] = $where;
 		$cond['limit'] = 4;
@@ -312,20 +311,20 @@ class Dao_Node_Product extends Cl_Dao_Node
 	}
 	
 	public function getProductsByCategorysIids($category_iids, $limit){
-		$cateIds = explode(',',$category_iids);
-		$cateIdsNew = array();
+		$cateIids = explode(',',$category_iids);
+		$cateIidsNew = array();
 			
-		if(count($cateIds) > 0){
-			foreach ($cateIds as $id){
-				if(trim($id) != '')
-					$cateIdsNew[] = trim($id);
+		if(count($cateIids) > 0){
+			foreach ($cateIids as $iid){
+				if(trim($iid) != '')
+					$cateIidsNew[] = (int)trim($iid);
 			}
 		}
 		
-		if(count($cateIdsNew)){
+		if(count($cateIidsNew)){
 			$categories = array();
-			foreach ($cateIdsNew as $cateId){
-				//$where = array('category.id' => $category_iid_style1);
+			foreach ($cateIidsNew as $cateIid){
+				//$where = array('category.iid' => $cateIidsNew);
 				$where = array();
 				$cond['where'] = $where;
 				$cond['limit'] = $limit;
