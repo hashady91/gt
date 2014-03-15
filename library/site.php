@@ -4,8 +4,8 @@ function node_link($type, $node)
     return "/{$type}/view?id={$node['id']}";
 }
 
-function category_link($slug){
-	return "/category/{$slug}.html";
+function category_link($category){
+	return "/category/{$category['iid']}-{$category['slug']}.html";
 }
 
 // custom functions for demo

@@ -21,9 +21,8 @@
         <ul>
           <?php if(isset($categories)):?>
           	<?php foreach ($categories as $ca):?>
-          		<?php $ca['slug'] = isset($ca['slug']) ? $cate['slug'] : '';?>
 		      <li>
-		      	<a href="<?php echo category_link($ca['slug'])?>">
+		      	<a href="<?php echo category_link($ca)?>">
 		      		<?php echo $ca['name']?>
 		      <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
 		      		<span class="counter">(<?php echo $count_child;?>)</span></a></li>
@@ -40,7 +39,6 @@
 		  </a>
 		  <figcaption>
 		    <h2>
-		      <?php $ca['slug'] = isset($ca['slug']) ? $ca['slug'] : '';?>
 		      <a href="<?php echo node_link('product', $hp_product);?>" 
 		      	title='<?php echo $hp_product['name'];?>'><?php echo $hp_product['name'];?></a>
 		    </h2>

@@ -75,7 +75,12 @@ class Dao_Node_Category extends Cl_Dao_Node
 	public function beforeInsertNode($data)
 	{
 		$data['level'] = 1;
-
+		
+		if (!isset($data['iid']))
+		{
+			$redis = init_redis(RDB_CACHE_DB);
+			$data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
+		}
         return array('success' => true, 'result' => $data);
 	}
 	
