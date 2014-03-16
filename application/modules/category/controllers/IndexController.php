@@ -90,6 +90,11 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function viewAction()
     {
+        $iid = $this->getStrippedParam('iid');
+        $slug = $this->getStrippedParam('slug');
+        v($iid);
+        v($slug);
+        die('123123');
         //TODO Your permission here
         parent::viewAction();//no permission yet    
         Bootstrap::$pageTitle = 'Xem chuyên mục';
