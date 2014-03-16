@@ -140,8 +140,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     			//TODO:: Get product was recommended
     			$this->setViewParam('categories', $categories);
     			$this->setViewParam('row', $cate);
-    		    //$this->_helper->viewRenderer->setNoRender(true);
-    			//echo $this->view->render('index/categories.phtml');
+    		    $this->_helper->viewRenderer->setNoRender(true);
+    			echo $this->view->render('index/categories.phtml');
     			$this->setViewParam('is_level', 1);
     		}
     	}

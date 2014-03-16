@@ -26,10 +26,10 @@
 												<?php foreach ($categories as $cate):?>
 													<li> 
 														<a href="<?php echo category_link($cate);?>"> 
-															<?php echo $cate['name'];?>
+															<?php echo $cate['detail']['name'];?>
 															<span class="counter">
-																<?php $count = isset($cate['child_category']) ? count($cate['child_category']) : 0;?>
-																<?php echo $count;?></span> 
+																<?php $count = isset($cate['products']) ? count(count($cate['products'])) : 0;?>
+																(<?php echo $count;?>)</span> 
 															</a> </li>
 												<?php endforeach;?>
 											</ul>
