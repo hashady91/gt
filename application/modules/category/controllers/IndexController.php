@@ -107,8 +107,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     		$cate = $r['result'];
     		if(isset($cate['level']) && $cate['level'] == 2){
     			//Show all product of category
-    			//$where = array('category.id' => $cate['id']);
-    			$where = array();
+    			$where = array('parent_category_id' => $cate['id']);
+    			//$where = array();
     			$cond['where'] = $where;
     			$r = Dao_Node_Product::getInstance()->findAll($cond);
     			if($r['success']){
@@ -124,8 +124,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     			$categories = array();
     			if(count($child_cate) > 0){
     				foreach ($child_cate as $ca){
-    					//$where = array('category.id' => $ca['id']);
-    					$where = array();
+    					$where = array('parent_category_id' => $cate['id']);
+    					//$where = array();
     					$cond['where'] = $where;
     					$cond['limit'] = 3;
     					$r = Dao_Node_Product::getInstance()->find($cond);

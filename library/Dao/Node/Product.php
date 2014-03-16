@@ -60,7 +60,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'deal_price' => 'float',
     	        'origin_price' => 'float',
     	        'gallery' => 'array',
-        	    'parent_category_iid' => 'int',
+        	    'parent_category_id' => 'string',
     	        'u' => $user, //who posted this	
         	),
 	        'indexes' => array(

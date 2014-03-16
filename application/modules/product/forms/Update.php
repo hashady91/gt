@@ -15,7 +15,7 @@ class Product_Form_Update extends Product_Form_New
                 'supplierName','name', 'model','serialNumber', 'receivedDate',
                 'images', 'images_deleted','img_canvas','upload_img',
                 'note','description','saledate_start','saledate_end',
-                'deal_price','origin_price','parent_category_iid',
+                'deal_price','origin_price','parent_category_id',
     			'status',
     		);
 	    }

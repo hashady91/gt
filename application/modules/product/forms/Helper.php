@@ -21,14 +21,22 @@ class Product_Form_Helper extends Cl_Form_NodeHelper
     
     public function getParentCategoryList()
     {
-        $categories = Dao_Node_Category::getInstance()->getCategoryLevel('1');
-        $array = array();
-        foreach($categories as $category)
-        {
-            $tmp = array($category['iid'] => $category['name']);
-            array_push($array, $tmp);
-        }
-        return array('success' =>true, 'result' => $array);
+    	$where = array('level' => 2);
+    	$cond['where'] = $where;
+    	$r = Dao_Node_Category::getInstance()->findAll($cond);
+    	//v($r);
+    	$cates = array();
+    	if($r['success']){
+    		foreach ($r['result'] as $ca){
+    			$cate = array($ca['id'] => $ca['name']);
+    			 
+    			$cates = array_merge($cate,$cates);
+    		}
+    	
+    		return array('success' =>true, 'result' => $cates);
+    	}else{
+    		return array('success' =>true, 'result' => array());
+    	}
     }
     /*
     public function getItemsPerPageList($params)
