@@ -62,8 +62,7 @@
 							  	<?php foreach ($categories as $cate):?>
 								  <section class="deal-pack row pad-row">
 									  <div class="section-head">
-									  	<?php $cate['detail']['slug'] = isset($cate['detail']['slug']) ? $cate['detail']['slug'] : '';?>
-									      <a href="<?php echo category_link($cate['detail']['slug'])?>">
+									      <a href="<?php echo category_link($cate['detail'])?>">
 									      	<h2><?php echo $cate['detail']['name'];?></h2></a>
 									      <a class="view-all" href="" >Xem tất cả</a>
 									  </div>

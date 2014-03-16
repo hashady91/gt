@@ -377,7 +377,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 		if(count($cateIidsNew)){
 			$categories = array();
 			foreach ($cateIidsNew as $cateIid){
-				$where = array('category.iid' => $cateIidsNew);
+				$where = array('category.iid' => $cateIid);
 				//$where = array();
 				$cond['where'] = $where;
 				$cond['limit'] = $limit;
@@ -392,7 +392,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 					$products  = array();
 				}
 		
-				$where = array('iid' => $cateId);
+				$where = array('iid' => $cateIid);
 				$r = Dao_Node_Category::getInstance()->findOne($where);
 		
 				$detailCate = $r['result'];
