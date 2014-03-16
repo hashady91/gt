@@ -92,9 +92,9 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     public function viewAction()
     {
         //TODO Your permission here
-        $iid = $this->getStrippedParam('iid');
-        if($iid != '')
-            $r = Dao_Node_Product::getInstance()->ProductView($iid);
+        $id = $this->getStrippedParam('id');
+        if($id != '')
+            $r = Dao_Node_Product::getInstance()->ProductView($id);
         if ($r ['success'] && $r ['count'] > 0) {
             $this->setViewParam ( 'row', $r ['result'] );
         } else {

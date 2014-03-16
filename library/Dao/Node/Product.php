@@ -60,7 +60,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'deal_price' => 'float',
     	        'origin_price' => 'float',
     	        'gallery' => 'array',
-        	    'parent_category',
+        	    'parent_category' => 'int',
     	        'u' => $user, //who posted this	
         	),
 	        'indexes' => array(
@@ -267,8 +267,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 		*/
 	}
 	
-	public function ProductView($iid){
-	    $where = array('iid' => $iid);
+	public function ProductView($id){
+	    $where = array('id' => $id);
 	    $r = $this->findOne($where);
 	    if($r['success'] && $r['count'] >0)
 	       return $r;
