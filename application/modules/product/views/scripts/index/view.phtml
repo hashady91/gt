@@ -50,7 +50,11 @@ CL.NID = "<?php echo $row['id']; ?>";
 			              </tr>
 			              <tr id="discount-data">
 			                <td id="discount-value"><?php echo $row['origin_price'];?>₫</td>
+			                <?php if($row['origin_price'] > 0):?>
 			                <td id="discount-percent">$<?php echo $row['deal_price'] / $row['origin_price'] * 100;?>%</td>
+			                <?php else:?>
+			                <td id="discount-percent">0%</td>
+			                <?php endif;?>
 			                <?php if(isset($row['deal_price'])) 
 		                			$save = $row['origin_price'] - $row['deal_price'];
 			                	  else 

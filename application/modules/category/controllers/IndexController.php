@@ -102,12 +102,14 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     	$slug = $this->getStrippedParam('slug');
     	$where = array('iid' => $iid);
     	$r = Dao_Node_Category::getInstance()->findOne($where);
-    	$cate_name = $r['result']['name'];
     	if($r['success']){
+    	   $cate_name = $r['result']['name'];
     		$cate = $r['result'];
-    		if(isset($cate['level']) && $cate['level'] == 2){
+    		if(isset($cate['level']))
+    		    $cate['level'] = 1;
+    		if($cate['level'] == 2){
     			//Show all product of category
-    			$where = array('parent_category_id' => $cate['id']);
+    			$where = array('parent_category_iid' => $cate['iid']);
     			//$where = array();
     			$cond['where'] = $where;
     			$r = Dao_Node_Product::getInstance()->findAll($cond);
@@ -118,24 +120,23 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     			}
     			
     			$this->setViewParam('is_level', 2);
-    		}else{
+    		}elseif($cate['level'] == 1){
     			//show child categories
     			$child_cate = isset($cate['child_category']) ? $cate['child_category'] : array();
     			$categories = array();
     			if(count($child_cate) > 0){
     				foreach ($child_cate as $ca){
-    					$where = array('parent_category_id' => $cate['id']);
+    					$where = array('parent_category_iid' => $cate['iid']);
     					//$where = array();
     					$cond['where'] = $where;
     					$cond['limit'] = 3;
-    					$r = Dao_Node_Product::getInstance()->find($cond);
-    					
+    					$r = Dao_Node_Product::getInstance()->findAll($cond);
+    					if($r['success'])
+    					   $cateNew['products'] = $r['result'];
     					$cateNew['detail'] = $ca;
-    					$cateNew['products'] = $r['result'];
     					$categories[] = $cateNew;
     				}
     			}
-
     			//TODO:: Get product was recommended
     			$this->setViewParam('categories', $categories);
     			$this->setViewParam('row', $cate);

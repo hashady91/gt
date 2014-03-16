@@ -60,7 +60,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'deal_price' => 'float',
     	        'origin_price' => 'float',
     	        'gallery' => 'array',
-        	    'parent_category_id' => 'string',
+        	    'parent_category_iid' => 'string',
     	        'u' => $user, //who posted this	
     	        'category' => $category
         	),
@@ -113,7 +113,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 	        $data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
 	    }
 	    
-	    $where = array('id' => $data['parent_category_id']);
+	    $where = array('id' => $data['parent_category_iid']);
 	    $r = Dao_Node_Category::getInstance()->findOne($where);
 	    $category = array();
 	    if($r['success']){
@@ -136,8 +136,8 @@ class Dao_Node_Product extends Cl_Dao_Node
     /******************************UPDATE****************************/
     public function beforeUpdateNode($where, $data, $currentRow)
     {
-    	if($data['$set']['parent_category_id'] != $currentRow['parent_category_id']){
-	    	$where = array('id' => $data['$set']['parent_category_id']);
+    	if($data['$set']['parent_category_iid'] != $currentRow['parent_category_iid']){
+	    	$where = array('iid' => $data['$set']['parent_category_iid']);
 	    	$r = Dao_Node_Category::getInstance()->findOne($where);
 	    	$category = array();
 	    	if($r['success']){

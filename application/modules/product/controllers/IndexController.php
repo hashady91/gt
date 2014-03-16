@@ -95,8 +95,9 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         $id = $this->getStrippedParam('id');
         if($id != '')
             $r = Dao_Node_Product::getInstance()->ProductView($id);
-        if ($r ['success'] && $r ['count'] > 0) {
-            $this->setViewParam ( 'row', $r ['result'] );
+        
+        if ($r['success'] && $r['count'] > 0) {
+            $this->setViewParam ('row', $r ['result'] );
         } else {
             $this->_redirect ( "/" );
         }
