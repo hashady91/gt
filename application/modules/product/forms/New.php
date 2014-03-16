@@ -37,7 +37,7 @@ class Product_Form_New extends Cl_Form
     	        'deal_price',
     	        'origin_price',
     	        'gallery',
-		        'parent_category'
+		        'parent_category_iid'
 		);
 		$this->setCbHelper('Product_Form_Helper');
 		
@@ -449,7 +449,7 @@ class Product_Form_New extends Cl_Form
                             )
                     ),
             ),
-            'parent_category' => array(
+            'parent_category_iid' => array(
                     'type' => 'Select',
                     'options' => array(
                             'label' => "Parent Category",
