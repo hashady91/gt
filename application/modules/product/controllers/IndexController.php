@@ -100,7 +100,43 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         } else {
             $this->_redirect ( "/" );
         }
-        Bootstrap::$pageTitle = t("view_product",1);
+        
+        /**
+         * Get dealest products
+         * **/
+        
+        //$where = array('');
+        $order = array('deal_price' => 1);
+        $cond['order'] = $order;
+        $cond['limit'] = 4;
+        
+        $r = Dao_Node_Product::getInstance()->find($cond);
+        if($r['success']){
+        	$dealestProducts = $r['result'];
+        }else{
+   			$dealestProducts = array();     	
+        }
+
+        /**
+         * Get newest products
+         * **/
+        
+        //$where = array('');
+        $order = array('ts' => -1);
+        $cond['order'] = $order;
+        $cond['limit'] = 3;
+        
+        $r = Dao_Node_Product::getInstance()->find($cond);
+        if($r['success']){
+        	$newProducts = $r['result'];
+        }else{
+        	$newProducts = array();
+        }
+        
+        $this->setViewParam('newProducts',$newProducts);
+        $this->setViewParam('dealestProducts',$dealestProducts);
+        
+        Bootstrap::$pageTitle = 'Xem sản phẩm';
     }
     
     public function deleteNodePermissionCheck($row)

@@ -1,47 +1,115 @@
-<div class='row'>
 <?php 
-    $isPreview = is_preview();
+	$row = $this->row;
+	$products = $this->products;
+	$is_level = $this->is_level;
 ?>
-<?php if (!$isPreview) :?>
-<div class='col-md-12'>
-<?php echo $this->render('index/navbar.phtml');?>
-</div>
+<?php if($is_level == 1):?>
+	<?php $this->render('index/categories.phtml');?>
+<?php else :?>
+	<section class="main row">
+		<div class="twelve columns">
+			<section id="main" class="module">
+				<div id="content" class="module-body">
+					<div id="deal_content" class="three-col">
+						<div id="js-page-header" class="page_header">
+							<div data-bhw-path="BrowseHeader" data-bhw="BrowseHeader">
+								<h2 class="browse-title-heading">
+									<a  href="<?php echo category_link($row);?>">
+										<?php echo $row['name']?></a>
+								</h2>
+							</div>
+							
+							<div class="dotted-line"></div>
+						</div>
+						
+						<div id="deal-space" class="twelve columns deal-space deal-tile-grid-view ">
+							<div class="content">
+							   <?php $first = Dao_Node_Product::getInstance()->getStandedProduct($products[0]);?>
+								<figure class="featured-deal">
+									<div class="deal-tile" id="hero-tile">
+								      <a href="<?php echo node_link('product', $first);?>" class="hero-link">
+								        <img width="440" height="267" 
+								        	src="<?php echo STATIC_GT. $first['images'];?>" 
+								        		class="hero_deal_img ">
+								      </a>
+								    
+								      <figcaption>
+								        <div class="row hero-tile-text">
+								          
+								          <h2 class="hero-tile-merchant-name truncation"><?php echo $row['name'];?></h2>
+								          <h1 style="word-wrap: break-word;" class="should-truncate hero-tile-title">
+								          	<a href="<?php echo node_link('product', $first);?>">
+								          		<?php echo $first['name'];?></a></h1>
+								          <div style="word-wrap: break-word;" 
+								          		class="description should-truncate hero-tile-description">
+								          		<p><?php $content = isset($first['content']) ? $first['content'] : '';?></p>
+							          		</div>
+								          <div class="deal-location truncate-others ">
+								            <span class="deal-location-name">
+								            	<?php echo $first['counter']['buy'];?> đã mua</span> 
+								          </div>
+								          
+								        </div>
+								        <div class="row hero-tile-btns ">
+								          <p class="deal-price six columns">
+								            <s class="original-price">$<?php echo $first['price'];?></s>
+								            <s class="discount-price">$<?php echo $first['saled'];?></s>
+								          </p>
+								          <div class="view-deal six columns">
+								              <a href="<?php echo node_link('product', $first);?>" 
+								              	class="btn-buy">Xem chi tiết</a>
+								      </div>
+								        </div>
+								      </figcaption>
+								    </div>
+								</figure>
+								
+								<div id="browse-deals" class="block-grid browse-deals three-up" data-bhw-path="BrowseDeals" data-bhw="BrowseDeals">
+									<?php if(count($products) > 1):?>
+										<?php $i = 0;?>
+										<?php foreach ($products as $product):?>
+											<?php if($i > 0):?>
+												<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+												<figure class="deal-card deal-list-tile deal-tile deal-tile-standard">
+												    <a href="<?php echo node_link('product', $product);?>">
+												      <img width="300" height="182" 
+												      		src="<?php echo STATIC_GT . $product['images'];?>" class="">
+												      <figcaption>
+												        <div class="deal-tile-content">
+												          <p style="word-wrap: break-word;" class="deal-title should-truncate">
+												          	<?php echo $product['name'];?></p>
+												          <p class="merchant-name truncation "><?php echo $row['name'];?></p>
+												          <p class="deal-location truncate-others ">
+												            <span class="deal-location-name">
+												            	<?php echo $product['counter']['buy'];?> đã mua</span> 
+												          </p>
+												          <div style="word-wrap: break-word;" 
+												          	class="description should-truncate deal-tile-description"><p>
+												          		<?php $content = isset($product['content']) ? $product['content'] : '';?>
+												          		<?php echo $content;?></p></div>
+												        </div>
+												        <div class="purchase-info clearfix ">
+												          <p class="deal-price">
+												            <s class="original-price">$<?php echo $product['price'];?></s>
+												            <s class="discount-price">$<?php echo $product['saled'];?></s>
+												          </p>
+												          <p class="view-deal hide">
+												              <button class="btn-buy btn-small">Xem chi tiết</button>
+												        </p>
+												        </div>
+												      </figcaption>
+												    </a>
+												  </figure>
+											<?php endif;?>
+											<?php $i ++;?>
+										<?php endforeach;?>
+									<?php endif;?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>	
+		</div>
+	</section>
 <?php endif;?>
-
-<?php if (isset($this->row)):?>
-<?php 
-    $row = $this->row;
-    $lu = Zend_Registry::get('user');
-?>
-<script type="text/javascript">
-CL.NID = "<?php echo $row['id']; ?>";
-</script>
-
-<div <?php if (!$isPreview) :?>class='col-md-9'<?php endif;?>>
-    <h3><?php echo $row['name']?></h3>
-    <b>Status</b> : <?php Echo $row['status'];?>
-    <br/>
-    <?php echo $row['content'];?>
-    
-    <?php endif;?>
-    
-    <?php if (!$isPreview) :?>
-    <div><br/><br/><h3>Comments</h3></div>
-    <?php 
-        $this->comment_node_type = 'category';
-        if($lu['id'] != GUEST_ID)
-            $this->can_comment = true;
-        else 
-            $this->can_comment = false;
-        echo $this->render("widget/comments-wrapper.phtml");
-    ?>
-    <?php endif;?>
-</div>
-<?php $this->inlineScript()->captureStart();?>
-$(function(){
-    url = $(location).attr('href');
-    var id = url.substr(url.indexOf("#") + 1);
-    $("#" + id + ">.comment").css({'background' : 'yellow'});
-});
-<?php $this->inlineScript()->captureEnd();?>
-</div>

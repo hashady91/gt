@@ -21,6 +21,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'product',
         	'documentSchemaArray' => array(
+        		'ts' => 'int',
     	        'iid' => 'int',
     	        'supplierName' => 'string',
     	        'model' => 'string',
@@ -91,7 +92,10 @@ class Dao_Node_Product extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
-	    f($data);
+		if(!isset($data['ts'])){
+			$data['ts'] = time();
+		}
+		
 		if($data['images'] != ''){
 			$data['images'] = remove_ufiles_from_images_url($data['images']);	
 		}
@@ -122,6 +126,13 @@ class Dao_Node_Product extends Cl_Dao_Node
     /******************************UPDATE****************************/
     public function beforeUpdateNode($where, $data, $currentRow)
     {
+    	if(!isset($data['$set']['ts'])){
+    		$data['$set']['ts'] = time();
+    	}
+    	
+    	if($data['$set']['images'] != ''){
+    		$data['$set']['images'] = remove_ufiles_from_images_url($data['$set']['images']);
+    	}
         /*
          * You have $data['$set']['_cl_step'] and $data['$set']['_u'] available
          */
@@ -361,7 +372,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 					$products  = array();
 				}
 		
-				$where = array('id' => $cateId);
+				$where = array('iid' => $cateId);
 				$r = Dao_Node_Category::getInstance()->findOne($where);
 		
 				$detailCate = $r['result'];
