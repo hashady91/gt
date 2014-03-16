@@ -96,7 +96,8 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
         v($slug);
         die('123123');
         //TODO Your permission here
-        parent::viewAction();//no permission yet    
+        parent::viewAction();//no permission yet
+        v($this->row);    
         Bootstrap::$pageTitle = 'Xem chuyên mục';
     }
     

@@ -15,13 +15,15 @@
     <div class="three columns">
       <div data-bhw-path="LeftNavCategories" id="left-nav-categories" data-bhw="LeftNavCategories">
         <div class="side-title">
-          <img src="http://gtgiaodien.local/homepage-assets/left_nav-viewing_glass-3956c58010.png" class="explore-icon">
+          <img src="<?php echo ASSETS_CDN?>/homepage-assets/left_nav-viewing_glass-3956c58010.png" class="explore-icon">
           <h2>Chuyên mục</h2>
         </div>
         <ul>
           <?php if(isset($categories)):?>
           	<?php foreach ($categories as $ca):?>
-		      <li><a href=""><?php echo $ca['name']?>
+		      <li>
+		      	<a href="<?php echo category_link($ca)?>">
+		      		<?php echo $ca['name']?>
 		      <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
 		      		<span class="counter">(<?php echo $count_child;?>)</span></a></li>
           	<?php endforeach;?>
@@ -32,12 +34,13 @@
     <div class="nine columns">
       <div id="featured">
         <figure class="hero-deal">
-		  <a href="" title='<?php echo $hp_product['name'];?>'>
-		    <img src="https://img.grouponcdn.com/deal/ano8GcENUPt3hgXU431e/DB-2048x1229/v1/c698x422.jpg">
+		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
+		    <img src="<?php echo STATIC_GT . $hp_product['images'];?>" width='100%'>
 		  </a>
 		  <figcaption>
 		    <h2>
-		      <a href="" title='<?php echo $hp_product['name'];?>'><?php echo $hp_product['name'];?></a>
+		      <a href="<?php echo node_link('product', $hp_product);?>" 
+		      	title='<?php echo $hp_product['name'];?>'><?php echo $hp_product['name'];?></a>
 		    </h2>
 		
 		    <div class="deal-metadata">
@@ -54,7 +57,7 @@
 		      $<?php echo $hp_product['saled'];?>
 		    </p>
 		    <div class="view-deal">
-		      <a href="" class="btn-buy" data-bhw="ViewDealButton">Xem chi tiết</a>
+		      <a href="<?php echo node_link('product', $hp_product);?>" class="btn-buy">Xem chi tiết</a>
 		    </div>
 		  </figcaption>
 		</figure>
@@ -68,17 +71,17 @@
   <div id="featured-deals">
     <section class="deal-pack row pad-row">
 	  <div class="section-head">
-	      <a href="/browse">
+	      <a href="#">
 	      <h2>Sản phẩm có thể bạn thích</h2></a>
-	      <a class="view-all" href="/browse">Xem tất cả</a>
+	      <a class="view-all" href="#">Xem tất cả</a>
 	  </div>
 	  <div class="block-grid four-up">
 	  	  <?php if(count($recommend_products) > 0):?>
 	  	  	<?php foreach ($recommend_products as $product):?>
 	  	  	  <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 		      <figure class="deal-card">
-		        <a href="">
-		          <img src="https://img.grouponcdn.com/deal/mzY57gUUDKc3v1yo9EVe/xC-2048x1242/v1/c220x134.jpg">
+		        <a href="<?php echo node_link('product', $product);?>">
+		          <img src="<?php echo STATIC_GT.$product['images'];?>">
 		          <figcaption>
 		            <p style="word-wrap: break-word;" 
 		            	class="deal-title should-truncate"><?php echo $product['name'];?></p>
@@ -106,15 +109,15 @@
   */?>  
   <?php $style1_products = $this->style1_products;?>
   <div id="national-occasion" style='border: medium none;'>
-    <section class="row theme-image-three-up">
+    <section class="row theme-image-three-up" style='overflow: hidden'>
 	  <div class="theme-image-caption">
 	    <h2 class="theme-image-caption-header"></h2>
 	    <p class="theme-image-caption-subheader"></p>
 	  </div>
 	  
 	  <?php $first = $style1_products[0];?>
-	  <a class="six columns theme-image" href="">
-	    <img src="https://img.grouponcdn.com/deal/m2hkvgB2oTkmwaJnzJPXRo/hbw-spring_break-460x315">
+	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
+	    <img src=<?php echo STATIC_GT . $first['images'];?> width='100%'>
 	  </a>
 	  
 	  <div class="six columns deals">
@@ -124,11 +127,11 @@
 	  	  		<?php if($i > 0):?>
 	  	  			<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 	  	  			 <figure class="deal-card-mini">
-				        <a href="">
-				          <img src="https://img.grouponcdn.com/deal/pgb9941LrE1Eswgib6fC/Cq-2048x1229/v1/c125x75.jpg">
+				        <a href="<?php echo node_link('product', $product);?>">
+				          <img src="<?php echo STATIC_GT . $product['images'];?>" style='max-height: 60px;'>
 				        </a>
 				        <figcaption>
-				          <a href="">
+				          <a href="<?php echo node_link('product', $product);?>">
 				            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 				            	<?php echo $product['name'];?></p>
 				          </a>
@@ -145,7 +148,7 @@
 	  	  	<?php endforeach;?>
 	  	  <?php endif;?>
 	      <a class="view-all"
-	      	 href="/occasion/spring-break-beauty-deals">Xem tất cả</a>
+	      	 href="#">Xem tất cả</a>
 	  </div>
 	</section>
 
@@ -161,7 +164,9 @@
   	 <?php foreach ($categories_iids1 as $cate):?>
   	 	<section class="deal-pack row pad-row">
 		  <div class="section-head">
-		      <a href=""><h2><?php echo $cate['detail']['name'];?></h2></a>
+		  	  <?php $cate['detail']['slug'] = isset($cate['detail']['slug']) ? $cate['detail']['slug'] : '';?>
+		      <a href="<?php echo category_link($cate['detail']['slug'])?>"><h2>
+		      	<?php echo $cate['detail']['name'];?></h2></a>
 		      <a class="view-all" href="">Xem tất cả</a>
 		  </div>
 		  
@@ -171,8 +176,8 @@
 		  		<?php foreach ($products as $product):?>
 		  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
-			        <a href="">
-			          <img src="https://img.grouponcdn.com/deal/gMgyKW1cFX5e4MRj9Fj5/aD-2048x1229/v1/c220x134.jpg">
+			        <a href="<?php echo node_link('product', $product);?>">
+			          <img src="<?php echo STATIC_GT . $product['images'];?>">
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>
@@ -200,14 +205,14 @@
   */?>
   <?php $style2_products = $this->style2_products;?>
   <div id="manual-merchandising" style='border: medium none;'>
-    <section class="row theme-image-three-up">
+    <section class="row theme-image-three-up" style='overflow: hidden'>
 	  <div class="theme-image-caption">
 	    <h2 class="theme-image-caption-header"></h2>
 	    <p class="theme-image-caption-subheader"></p>
 	  </div>
 	   <?php $first = $style2_products[0];?>
-	  <a class="six columns theme-image" href="">
-	    <img src="https://img.grouponcdn.com/deal/f5agcyXmxw8dK3L5C7K4x6/top_destinations-getaways-460x315">
+	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
+	    <img src="<?php echo STATIC_GT . $first['images'];?>" width='100%'>
 	  </a>
 	  <div class="six columns deals">
 	     <?php if(count($style2_products) > 0):?>
@@ -216,11 +221,11 @@
 	  	  		<?php if($i > 0):?>
 	  	  			<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 	  	  			 <figure class="deal-card-mini">
-				        <a href="">
-				          <img src="https://img.grouponcdn.com/deal/pgb9941LrE1Eswgib6fC/Cq-2048x1229/v1/c125x75.jpg">
+				        <a href="<?php echo node_link('product', $product);?>">
+				          <img src="<?php echo STATIC_GT . $product['images'];?>"  style='max-height: 60px;'>
 				        </a>
 				        <figcaption>
-				          <a href="">
+				          <a href="<?php echo node_link('product', $product);?>">
 				            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 				            	<?php echo $product['name'];?></p>
 				          </a>
@@ -237,7 +242,7 @@
 	  	  	<?php endforeach;?>
 	  	  <?php endif;?>
 	      <a class="view-all"
-	      	 href="/occasion/spring-break-beauty-deals">Xem tất cả</a>
+	      	 href="#">Xem tất cả</a>
       </div>
     </section>
 	
@@ -251,7 +256,9 @@
   	<?php foreach ($categories_iids2 as $cate):?>
 	  <section class="deal-pack row pad-row">
 		  <div class="section-head">
-		      <a dhref="/getaways"><h2><?php echo $cate['detail']['name'];?></h2></a>
+		  	<?php $cate['detail']['slug'] = isset($cate['detail']['slug']) ? $cate['detail']['slug'] : '';?>
+		      <a href="<?php echo category_link($cate['detail']['slug'])?>">
+		      	<h2><?php echo $cate['detail']['name'];?></h2></a>
 		      <a class="view-all" href="" >Xem tất cả</a>
 		  </div>
 		  <div class="block-grid three-up">
@@ -260,8 +267,8 @@
 			  		<?php foreach ($products as $product):?>
 			  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
-			        <a href="">
-			          <img src="https://img.grouponcdn.com/deal/wabicVhyZth8ieDDBo3b/wr-960x582/v1/c300x181.jpg">
+			        <a href="<?php echo node_link('product', $product);?>">
+			          <img src="<?php echo STATIC_GT . $product['images'];?>">
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>

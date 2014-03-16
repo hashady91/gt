@@ -4,7 +4,7 @@ class Category_Form_New extends Cl_Form
 	public function init()
 	{
 		parent::init();
-		$this->fieldList = array('avatar', 'name', 'content', 'status', /*'parent_category',*/ 'code');
+		$this->fieldList = array('avatar', 'name', 'content', 'status', /*'parent_category',*/ 'slug');
 		$this->setCbHelper('Category_Form_Helper');
 		
 	}
@@ -26,10 +26,10 @@ class Category_Form_New extends Cl_Form
         		),
                 //'permission' => 'update_task'
         	),
-        	'code' => array(
+        	'slug' => array(
         			'type' => 'Text',
        				'options' => array(
-       						'label' => "Category code",
+       						'label' => "Category slug",
        						'required' => true,
        						'filters' => array('StringTrim', 'StripTags'),
        						'validators' => array('NotEmpty'),

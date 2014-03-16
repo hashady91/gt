@@ -6,7 +6,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     		'id' => 'string',
             'iid' => 'int',
     		'name' => 'string',
-    		'code' => 'string',
+    		'slug' => 'string',
     		'description' => 'string',
     		'avatar' => 'string',
     		//add other stuff u want
@@ -34,7 +34,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     		'id' => 'string',
     		'iid' => 'int',
     		'name' => 'string',
-    		'code' => 'string',
+    		'slug' => 'string',
     		'description' => 'string',
     		'avatar' => 'string',
 	    );
@@ -46,7 +46,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	         'iid' => 'int',
     	         "category_id"	=>'int',
         	     "category_type" =>'int',
-        		 'code' => 'string',//eg: Điện lạnh => code :: dienlanh
+        		 'slug' => 'string',//eg: Điện lạnh => slug :: dienlanh
     	         "name" => 'string',
         		 'avatar' => 'string',
     	         "description" => 'string',
@@ -75,7 +75,12 @@ class Dao_Node_Category extends Cl_Dao_Node
 	public function beforeInsertNode($data)
 	{
 		$data['level'] = 1;
-
+		
+		if (!isset($data['iid']))
+		{
+			$redis = init_redis(RDB_CACHE_DB);
+			$data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
+		}
         return array('success' => true, 'result' => $data);
 	}
 	

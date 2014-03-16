@@ -89,9 +89,8 @@
 	        	   <?php if(isset($categories) && count($categories) > 0):?>
 	        	   	   <?php foreach ($categories as $ca):?>
 			                <li data-bhw="<?php echo $ca['code'];?>" class="primary-nav-tab" 
-			                	id="<?php echo $ca['code'];?>" style="width: 92px;" 
-		                		data-bhw-path="<?php echo $c['code'];?>">
-			                 	 <a href="/category/list?cate=<?php echo $ca['code'];?>">
+			                	id="<?php echo $ca['code'];?>" style="width: 92px;" >
+			                 	 <a href="<?php echo category_link($ca);?>">
 			                  	<?php echo $ca['name'];?></a>
 			                </li>
 	        	   	   <?php endforeach;?>

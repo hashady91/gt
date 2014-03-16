@@ -22,15 +22,15 @@ class Site_IndexController extends Cl_Controller_Action_Index
     	 * recommend_products
     	 * */
     	
-    	$recommend_products_id = get_conf('recommend_products_id', 1);
-    	$recommend_product = Dao_Node_Product::getInstance()->getRecommendProduct($recommend_products_id);
+    	$recommend_products_iid = get_conf('recommend_products_iid', 1);
+    	$recommend_products = Dao_Node_Product::getInstance()->getRecommendProduct($recommend_products_iid);
     	 
     	$this->setViewParam('recommend_products', $recommend_products);
     	
     	/**LẤY DANH SÁCH SẢN PHẨM THEO IID ĐƯỢC CONFIG CỦA DANH SÁCH CHUYÊN MỤC :: STYLE 1**
   				Name_cofig:: category_iid_style1
   		*/
-  		$category_iid_style1 = get_conf('category_iid_style1','5321e82d0b08d18f16000000');
+  		$category_iid_style1 = get_conf('category_iid_style1','3');
   		$style1_products = Dao_Node_Product::getInstance()->getProductsByCategoryIid($category_iid_style1);
   		
   		$this->setViewParam('style1_products', $style1_products);
@@ -41,7 +41,7 @@ class Site_IndexController extends Cl_Controller_Action_Index
   			Name_cofig:: products_categories_iids1
   		 **/
   		
-  		$category_iids_style1 = get_conf('products_categories_iids1','5321e82d0b08d18f16000000');
+  		$category_iids_style1 = get_conf('products_categories_iids1','12');
   		$categories = Dao_Node_Product::getInstance()->getProductsByCategorysIids($category_iids_style1, 4);
   		
   		$this->setViewParam('categories_iids1', $categories);
@@ -61,7 +61,7 @@ class Site_IndexController extends Cl_Controller_Action_Index
   		/**
   		 	Name_cofig:: products_categories_iids2
   		 **/
-  		$category_iids_style2 = get_conf('products_categories_iids2','5321e82d0b08d18f16000000');
+  		$category_iids_style2 = get_conf('products_categories_iids2','13');
   		$categories = Dao_Node_Product::getInstance()->getProductsByCategorysIids($category_iids_style2, 3);
   		
   		$this->setViewParam('categories_iids2', $categories);
