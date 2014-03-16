@@ -90,15 +90,64 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function viewAction()
     {
-        $iid = $this->getStrippedParam('iid');
-        $slug = $this->getStrippedParam('slug');
-        v($iid);
-        v($slug);
-        die('123123');
+   		 /***
+    	 * Check category is level one?
+    	 * If category level 1
+    	 * 	  Show child categories
+    	 * Else
+    	 * 	  Show all product of category 
+    	 */
+
+    	$iid = $this->getStrippedParam('iid');
+    	$slug = $this->getStrippedParam('slug');
+    	$where = array('iid' => $iid);
+    	$r = Dao_Node_Category::getInstance()->findOne($where);
+    	$cate_name = $r['result']['name'];
+    	if($r['success']){
+    		$cate = $r['result'];
+    		if(isset($cate['level']) && $cate['level'] == 2){
+    			//Show all product of category
+    			//$where = array('category.id' => $cate['id']);
+    			$where = array();
+    			$cond['where'] = $where;
+    			$r = Dao_Node_Product::getInstance()->findAll($cond);
+    			if($r['success']){
+    				$products = $r['result'];
+    				$this->setViewParam('products', $products);
+    				$this->setViewParam('row', $cate);
+    			}
+    			
+    			$this->setViewParam('is_level', 2);
+    		}else{
+    			//show child categories
+    			$child_cate = isset($cate['child_category']) ? $cate['child_category'] : array();
+    			$categories = array();
+    			if(count($child_cate) > 0){
+    				foreach ($child_cate as $ca){
+    					//$where = array('category.id' => $ca['id']);
+    					$where = array();
+    					$cond['where'] = $where;
+    					$cond['limit'] = 3;
+    					$r = Dao_Node_Product::getInstance()->find($cond);
+    					
+    					$cateNew['detail'] = $ca;
+    					$cateNew['products'] = $r['result'];
+    					$categories[] = $cateNew;
+    				}
+    			}
+
+    			//TODO:: Get product was recommended
+    			$this->setViewParam('categories', $categories);
+    			$this->setViewParam('row', $cate);
+    		    //$this->_helper->viewRenderer->setNoRender(true);
+    			//echo $this->view->render('index/categories.phtml');
+    			$this->setViewParam('is_level', 1);
+    		}
+    	}
+
         //TODO Your permission here
-        parent::viewAction();//no permission yet
-        v($this->row);    
-        Bootstrap::$pageTitle = 'Xem chuyên mục';
+        //parent::viewAction();//no permission yet
+        Bootstrap::$pageTitle = 'Chuyên mục - ' . $cate_name;
     }
     
     public function deleteNodePermissionCheck($row)

@@ -1,0 +1,105 @@
+<?php
+	$categories = $this->categories;
+	$row = $this->row;
+?>
+<section class="main row">
+	<div class="twelve columns">
+		<section id="main" class="module">
+			<div id="content" class="module-body">
+				<div id="deal_content" class="three-col">
+					<div id="deal_content" class="three-col">
+						<div id="js-page-header" class="page_header">
+							<div>
+								<h2 class="browse-title-heading"> 
+									<a href="<?php echo $category_link($row);?>">
+									<?php echo $row['name'];?></a> </h2>
+							</div>
+							<div class="dotted-line"></div>
+						</div>
+						
+						<div class="main module">
+							<div class="row">
+								<div class="three columns">
+									<div id="left-nav-categories">
+										<?php if(count($categories) > 0):?>
+											<ul>
+												<?php foreach ($categories as $cate):?>
+													<li> 
+														<a href="<?php echo category_link($cate);?>"> 
+															<?php echo $cate['name'];?>
+															<span class="counter">
+																<?php $count = isset($cate['child_category']) ? count($cate['child_category']) : 0;?>
+																<?php echo $count;?></span> 
+															</a> </li>
+												<?php endforeach;?>
+											</ul>
+										<?php endif;?>
+									</div>
+								</div>
+								
+								<div class="nine columns">
+									<div id="featured">
+										<div id="featured">
+						                    <h2>Featured Deal</h2>
+						                    <figure class="hero-deal" > 
+						                    	<img src=""> </a>
+						                      <figcaption>
+						                        <h2> <a href="" >
+						                        	Delray 6-Piece Sheet Set</a> </h2>
+						                        <p class="deal-price">
+						                        	<s class="original-price">$120.00</s> $39.99</p>
+						                        <div class="view-deal"> 
+						                        	<a href="" class="btn-buy">Xem chi tiết</a> </div>
+						                      </figcaption>
+						                    </figure>
+						                  </div>
+									</div>
+								</div>
+							</div>
+							
+						    <?php if(count($categories) > 0):?>
+							  <div id="channel-deals">
+							  	<?php foreach ($categories as $cate):?>
+								  <section class="deal-pack row pad-row">
+									  <div class="section-head">
+									  	<?php $cate['detail']['slug'] = isset($cate['detail']['slug']) ? $cate['detail']['slug'] : '';?>
+									      <a href="<?php echo category_link($cate['detail']['slug'])?>">
+									      	<h2><?php echo $cate['detail']['name'];?></h2></a>
+									      <a class="view-all" href="" >Xem tất cả</a>
+									  </div>
+									  <div class="block-grid three-up">
+									  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
+										  	<?php if(count($products) > 0):?>
+										  		<?php foreach ($products as $product):?>
+										  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+										      <figure class="deal-card">
+										        <a href="<?php echo node_link('product', $product);?>">
+										          <img src="<?php echo STATIC_GT . $product['images'];?>">
+										          <figcaption>
+										            <p style="word-wrap: break-word;" class="deal-title should-truncate">
+										            	<?php echo $product['name'];?></p>
+										            <p style="word-wrap: break-word;" class="merchant-name should-truncate">
+										       		     <?php echo $product['category']['name'];?></p>
+										            <p style="word-wrap: break-word;" class="deal-location should-truncate">
+										          		 <?php echo $product['counter']['buy'];?> đã mua</p>
+										            <p class="deal-price">
+										                <s class="original-price">$<?php echo $product['price'];?></s>
+										        	   $<?php echo $product['saled'];?>
+										            </p>
+										          </figcaption>
+										        </a>
+										      </figure>
+									      <?php endforeach;?>
+									  	<?php endif;?>
+									  </div>
+									</section>
+							     <?php endforeach;?>
+							   </div>
+						    <?php endif;?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</section>

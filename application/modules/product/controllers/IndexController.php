@@ -100,7 +100,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         } else {
             $this->_redirect ( "/" );
         }
-        Bootstrap::$pageTitle = t("view_product",1);
+        Bootstrap::$pageTitle = 'Xem sản phẩm';
     }
     
     public function deleteNodePermissionCheck($row)

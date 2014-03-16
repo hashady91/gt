@@ -359,7 +359,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 					$products  = array();
 				}
 		
-				$where = array('id' => $cateId);
+				$where = array('iid' => $cateId);
 				$r = Dao_Node_Category::getInstance()->findOne($where);
 		
 				$detailCate = $r['result'];
