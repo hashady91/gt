@@ -36,37 +36,36 @@ class Product_Form_Helper extends Cl_Form_NodeHelper
      * @param unknown_type $val
      * @param unknown_type $reverse
      */
-    public function dateToUnixTimestamp($data, $elName, $val, $reverse = false, $elConfig = array())
+public function dateToUnixTimestampProduct($data, $elName, $val, $reverse = false, $elConfig = array())
     {
-    	if (defined('DATE_FORMAT'))
-    	{
-    		$format = defined('DATE_FORMAT') ? DATE_FORMAT : 'dd/mm/yy';
-    	}
-    	if ($format == 'dd/mm/yy')
-    		list($date, $month, $year) = explode("/", $val);
-    	else if ($format == 'mm/dd/yy')
-    		list($month, $date, $year) = explode("/", $val);
-    
-    	if (strpos($elName, '_cl_rrange') !== false)
-    	{
-    		$minute = 59;
-    		$second = 59;
-    		$hour = 23;
-    	}
-    	else // if (strpos($elName, '_cl_lrange') !== false)
-    	{
-    		$minute = 0;
-    		$second = 0;
-    		$hour = 0;
-    	}
-    
-    	if ($year < 100)
-    	{
-    		//TODO: make year a 4 digit number here
-    		$year = 2000 + $year;
-    	}
-    
-    	$ts = mktime($hour, $minute, $second, $month, $date, $year);
-    	return $ts;
+        if (!$reverse) //transform 08/12/2013 -> unix ts
+            {
+            $format = defined('DATE_FORMAT') ? DATE_FORMAT : 'dd/mm/yy';
+            if ($format == 'dd/mm/yy')
+                list($date, $month, $year) = explode("/", $val);
+            else if ($format == 'mm/dd/yy')
+                list($month, $date, $year) = explode("/", $val);
+            
+            if (strpos($elName, '_cl_rrange') !== false) {
+                $minute = 59;
+                $second = 59;
+                $hour   = 23;
+            } else // if (strpos($elName, '_cl_lrange') !== false)
+                {
+                $minute = 0;
+                $second = 0;
+                $hour   = 0;
+            }
+            
+            if ($year < 100) {
+                //TODO: make year a 4 digit number here
+                $year = 2000 + $year;
+            }
+            
+            $ts = mktime($hour, $minute, $second, $month, $date, $year);
+            return $ts;
+        } else {
+            return date('d/m/Y', $val);
+        }
     }
 }

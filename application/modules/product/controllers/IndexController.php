@@ -92,28 +92,14 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     public function viewAction()
     {
         //TODO Your permission here
-        parent::viewAction();//no permission yet
-       /* if ($row = $this->getViewParam('row'))
-        {
-            $id = $this->getStrippedParam('id');
-            $where = array('node.id' => $id);
-            $commentClass =$this->commentDaoClass;
-            $r = $commentClass::getInstance()->findAll(array('where' => $where));
-            if ($r['success'] && $r['count'] > 0)
-            {
-                $comments = $this->dao->generateCommentTree($r['result'], 0);
-                //Construct comment trees here
-                $this->setViewParam('comments', $comments);
-            }
-            if(is_rest()) {
-                if ($r['success'] && $r['count'] > 0)
-                {
-                    $row['comments'] = $comments;
-    	            $r = array('success' => true, 'result' => $row);
-                }
-    	        $this->handleAjaxOrMaster($r);
-            }
-        }*/        
+        $iid = $this->getStrippedParam('iid');
+        if($iid != '')
+            $r = Dao_Node_Product::getInstance()->ProductView($iid);
+        if ($r ['success'] && $r ['count'] > 0) {
+            $this->setViewParam ( 'row', $r ['result'] );
+        } else {
+            $this->_redirect ( "/" );
+        }
         Bootstrap::$pageTitle = t("view_product",1);
     }
     

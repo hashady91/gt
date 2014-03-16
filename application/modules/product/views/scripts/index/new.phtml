@@ -26,10 +26,9 @@
 <?php $this->inlineScript()->captureStart();?>
 
 	$(document).ready(function(){
-	 	var DATE_FORMAT={dateFormat: 'dd/mm/yy'};
-		$("#receivedDate").datepicker({
-	       maxDate: "+0D",
-	       dateFormat: 'dd/mm/yy'	
-		});
+	 	$('.datetimepicker').datetimepicker({
+             timepicker:false,
+             format:'d/m/Y'
+        });
     });
 <?php $this->inlineScript()->captureEnd();?>

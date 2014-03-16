@@ -88,7 +88,6 @@ class Product_Form_Search extends Cl_Form_Search
                             'filters' => array('StringTrim', 'StripTags')
                     ),
                     'multiOptionsCallback' => array(array('Product_Form_Helper', 'getStockStatus')),
-                    'defaultValue' => '1'
             ),
             'receivedDate' => array(
                 'type' => 'Text',

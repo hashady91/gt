@@ -48,11 +48,18 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'length' => 'float',
     	        "width" => 'float',
     	        'height' => 'float',
-    	        'counter'	=>	array(
+    	        'slug' => 'string',
+    	        'counter' => array(
     	                'saled' => 'int', // so luong hang ban duoc
     	                'viewed' => 'int', //so luot ghe tham san pham
     	                'instock' => 'int' //so luong hang ton kho
     	        ),
+    	        'saledate_start' => 'int',
+    	        'saledate_end' => 'int',
+    	        'deal_price' => 'float',
+    	        'origin_price' => 'float',
+    	        'gallery' => 'array',
+    	        'u' => $user, //who posted this	
         	),
 	        'indexes' => array(
 	                array(
@@ -85,6 +92,12 @@ class Dao_Node_Product extends Cl_Dao_Node
 	{
 		if($data['images'] != ''){
 			$data['images'] = remove_ufiles_from_images_url($data['images']);	
+		}
+		
+		if (!isset($data['slug']))
+		{
+		    $tempSlug = Cl_Utility::getInstance()->generateSlug($data['name']);
+		    $data['slug'] = $this->generateUniqueSlug(explode('-', $tempSlug));
 		}
 		
 	    if (!isset($data['iid']))
@@ -239,6 +252,13 @@ class Dao_Node_Product extends Cl_Dao_Node
 		$ret['slug'] = $currentRow['slug'];
 		return $ret;
 		*/
+	}
+	
+	public function ProductView($iid){
+	    $where = array('iid' => $iid);
+	    $r = $this->findOne($where);
+	    if($r['success'] && $r['count'] >0)
+	       return $r;
 	}
 	
 	public function getStandedProduct($product){

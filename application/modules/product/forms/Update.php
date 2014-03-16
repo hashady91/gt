@@ -7,12 +7,18 @@ class Product_Form_Update extends Product_Form_New
     }
     public function setStep($step, $currentRow = null)
     {
-        if ($step == '' )
-        {
-            //$this->fieldList = array('name', 'content', 'status');
-        }
         $this->setCbHelper('Product_Form_Helper');
 	    parent::setStep($step, $currentRow);
+	    if($step = '')
+	    {
+           $this->fieldList = array(
+                'supplierName','name', 'model','serialNumber', 'receivedDate',
+                'images', 'images_deleted','img_canvas','upload_img',
+                'note','description','saledate_start','saledate_end',
+                'deal_price','origin_price',
+    			'status',
+    		);
+	    }
     }
     
     /**

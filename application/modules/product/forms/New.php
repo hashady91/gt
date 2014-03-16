@@ -32,6 +32,11 @@ class Product_Form_New extends Cl_Form
     	        'saled',
     	        'counter',
 				'status',
+		        'saledate_start',
+    	        'saledate_end',
+    	        'deal_price',
+    	        'origin_price',
+    	        'gallery',
 		);
 		$this->setCbHelper('Product_Form_Helper');
 		
@@ -43,7 +48,7 @@ class Product_Form_New extends Cl_Form
 			$this->fieldList = array(
 	            'supplierName','name', 'model','serialNumber', 'receivedDate',
 	            'images', 'images_deleted','img_canvas','upload_img',
-	            'note','description',
+	            'note','description','saledate_start','saledate_end',
 	            'price',
 				'status',
 			);
@@ -122,10 +127,13 @@ class Product_Form_New extends Cl_Form
                 'type' => 'Text',
                 'options' => array(
                     'label' => "Received Date",
+                    'class' => 'datetimepicker',
+                    'autocomplete'=>'off',
+                    'placeholder'=>'click here to pick a date',
                     'disableLoadDefaultDecorators' => false,
                     'required' => true,
                     'transformers' => array(
-                        'dateToUnixTimestamp'
+                        'dateToUnixTimestampProduct'
                     )
                 ),
                 'filters' => array(
@@ -133,11 +141,47 @@ class Product_Form_New extends Cl_Form
                     'StripTags'
                 ),
             ),
+            'saledate_start' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "Ngày bắt đầu bán",
+                            'class' => 'datetimepicker',
+                            'autocomplete'=>'off',
+                            'placeholder'=>'click here to pick a date',
+                            'disableLoadDefaultDecorators' => false,
+                            'required' => true,
+                            'transformers' => array(
+                                    'dateToUnixTimestampProduct'
+                            )
+                    ),
+                    'filters' => array(
+                            'StringTrim',
+                            'StripTags'
+                    ),
+            ),
+            'saledate_end' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "Ngày kết thúc",
+                            'class' => 'datetimepicker',
+                            'autocomplete'=>'off',
+                            'placeholder'=>'click here to pick a date',
+                            'disableLoadDefaultDecorators' => false,
+                            'required' => true,
+                            'transformers' => array(
+                                    'dateToUnixTimestampProduct'
+                            )
+                    ),
+                    'filters' => array(
+                            'StringTrim',
+                            'StripTags'
+                    ),
+            ),
             'modifiedDate' => array(
                     'type' => 'Text',
                     'options' => array(
                             'label' => "ModifiedDate",
-                    		'class' => 'datepicker',
+                    		'class' => 'datetimepicker',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -359,6 +403,30 @@ class Product_Form_New extends Cl_Form
                     'type' => 'Text',
                     'options' => array(
                             'label' => "price",
+                            'filters' => array('StringTrim', 'StripTags','Digits'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'deal_price' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "deal price",
+                            'filters' => array('StringTrim', 'StripTags','Digits'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            )
+                    ),
+            ),
+            'origin_price' => array(
+                    'type' => 'Text',
+                    'options' => array(
+                            'label' => "origin price",
                             'filters' => array('StringTrim', 'StripTags','Digits'),
                             'prefixPath' => array(
                                     "filter" => array (
