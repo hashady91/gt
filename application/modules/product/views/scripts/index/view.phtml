@@ -18,7 +18,8 @@ CL.NID = "<?php echo $row['id']; ?>";
       <section class="module deal">
         <div class="module-body">
               <h2 class="deal-page-title">
-              <?php echo $row['name'];?> <?php if($row['deal_price'] != 0 && $row['origin_price'] != 0): ?>(giá giảm tới <?php echo ($row['deal_price']/$row['origin_price'])*100;?> ) <?php endif;?>
+              <?php echo $row['name'];?> <?php if($row['deal_price'] != 0 && $row['origin_price'] != 0): ?>
+              	(giá giảm tới <?php echo ($row['deal_price']/$row['origin_price'])*100;?> ) <?php endif;?>
               </h2>
             
               <h3 class="deal-subtitle">
@@ -32,8 +33,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 			    		<?php if(isset($row['deal_price']))
                                   echo $row['deal_price'];
                               else
-                                  echo $row['price'];
-                         ?> VND
+                                  echo $row['origin_price'];
+                         ?> ₫
 			    	</span>
 			         <a class="btn-buy-big btn-multi-deal show-multi-option-modal state-buy-multi " href="#">
 			          Mua!
@@ -48,14 +49,14 @@ CL.NID = "<?php echo $row['id']; ?>";
 			                <th>Tiết kiệm</th>
 			              </tr>
 			              <tr id="discount-data">
-			                <td id="discount-value"><?php echo $row['price'];?>VND</td>
-			                <td id="discount-percent">$<?php echo $row['deal_price'] / $row['price'] * 100;?>%</td>
+			                <td id="discount-value"><?php echo $row['origin_price'];?>₫</td>
+			                <td id="discount-percent">$<?php echo $row['deal_price'] / $row['origin_price'] * 100;?>%</td>
 			                <?php if(isset($row['deal_price'])) 
-		                			$save = $row['price'] - $row['deal_price'];
+		                			$save = $row['origin_price'] - $row['deal_price'];
 			                	  else 
 			                	  	$save = 0;
 			                ?>
-			                <td id="discount-you-save"><?php echo $save;?>VND</td>
+			                <td id="discount-you-save"><?php echo $save;?>₫</td>
 			              </tr>
 			            </tbody>
 			          </table>
@@ -168,8 +169,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 					    <p style="word-wrap: break-word;" class="deal-location should-truncate">
 					    	<?php echo $product['counter']['buy'];?> đã mua</p>
 				        <p class="deal-price">
-			                <s class="original-price">$<?php echo $product['price'];?></s>
-					        $<?php echo $product['saled'];?>
+			                <s class="original-price">$<?php echo $product['origin_price'];?>₫</s>
+					        <?php echo $product['deal_price'];?> ₫
 			            </p>
 			          </figcaption>
 			        </a>
@@ -205,8 +206,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 			            <p style="word-wrap: break-word;" class="deal-location should-truncate">
 			          		 <?php echo $product['counter']['buy'];?> đã mua</p>
 			            <p class="deal-price">
-			                <s class="original-price">$<?php echo $product['price'];?></s>
-			        	   $<?php echo $product['saled'];?>
+			                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
+			        	   <?php echo $product['deal_price'];?>₫
 			            </p>
 			          </figcaption>
 			        </a>

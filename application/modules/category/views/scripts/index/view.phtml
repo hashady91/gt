@@ -52,8 +52,8 @@
 								        </div>
 								        <div class="row hero-tile-btns ">
 								          <p class="deal-price six columns">
-								            <s class="original-price">$<?php echo $first['price'];?></s>
-								            <s class="discount-price">$<?php echo $first['saled'];?></s>
+								            <s class="original-price"><?php echo $first['origin_price'];?>₫</s>
+								            <s class="discount-price"><?php echo $first['deal_price'];?>₫</s>
 								          </p>
 								          <div class="view-deal six columns">
 								              <a href="<?php echo node_link('product', $first);?>" 
@@ -90,8 +90,8 @@
 												        </div>
 												        <div class="purchase-info clearfix ">
 												          <p class="deal-price">
-												            <s class="original-price">$<?php echo $product['price'];?></s>
-												            <s class="discount-price">$<?php echo $product['saled'];?></s>
+												            <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
+												            <s class="discount-price"><?php echo $product['deal_price'];?>₫</s>
 												          </p>
 												          <p class="view-deal hide">
 												              <button class="btn-buy btn-small">Xem chi tiết</button>

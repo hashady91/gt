@@ -298,8 +298,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 		$productNew = $product;
 		$productNew['category']['name'] = isset($product['category']['name']) ? $product['category']['name'] : '';
 		$productNew['counter']['buy'] = isset($product['count']['buy']) ? $product['count']['buy'] : 0;
-		$productNew['price'] = isset($product['price']) ? $product['price'] : 0;
-		$productNew['saled'] = isset($product['saled']) ? $product['saled'] : 0;
+		$productNew['origin_price'] = isset($product['origin_price']) ? $product['origin_price'] : 0;
+		$productNew['deal_price'] = (isset($product['deal_price']) && $product['deal_price'] != 0) ? $product['deal_price'] : $productNew['origin_price'];
 		$product['images'] = isset($product['images']) ? $product['images'] : default_avatar('product');
 	
 		return $productNew;
