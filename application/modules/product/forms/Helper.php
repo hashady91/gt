@@ -24,13 +24,11 @@ class Product_Form_Helper extends Cl_Form_NodeHelper
     	$where = array('level' => 2);
     	$cond['where'] = $where;
     	$r = Dao_Node_Category::getInstance()->findAll($cond);
-    	//v($r);
     	$cates = array();
     	if($r['success']){
     		foreach ($r['result'] as $ca){
-    			$cate = array($ca['id'] => $ca['name']);
-    			 
-    			$cates = array_merge($cate,$cates);
+    			$cate = array($ca['iid'] => $ca['name']);
+    			array_push($cates, $cate);
     		}
     	
     		return array('success' =>true, 'result' => $cates);

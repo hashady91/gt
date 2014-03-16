@@ -5,11 +5,7 @@
         	<?php if($this->total > 0) :?>
                 <?php echo $this->render("widget/pagination.phtml");?>
             <?php endif;?>
-        	<form action="/product/search" method="GET" class=''>
-        	<?php 
-        	      $this->form->setDisplayInline ();
-        	      $this->form->setAttrib ( 'id', 'search_form' );
-            ?>
+        	<form action="/product/search" method="GET" class='' id="search_form" style="display: inline;">
             <div class="col-md-4">
                 <?php echo $this->form->supplierName;?>
                 <?php echo $this->form->model;?>

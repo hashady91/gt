@@ -11,13 +11,13 @@
         if ($this->total > $perPage) {
             $nrOfPages = floor(($this->total - 1) / $perPage) + 1;
 ?>
-divided into <?php echo $nrOfPages;?> pages :
+<?echo t('divided_into');?> <?php echo $nrOfPages;?> <?php echo t('pages')?> :
 
-<div class="pagination">
-  <ul>
+<div class="">
+  <ul class="pagination">
 	<?php if ($page - $range > 1): ?>
-	  <li><a href="#" page="1">First</a></li>
-	  <li><a href="#" page="<?php echo $page - 1;?>">&laquo; Prev</a></li>
+	  <li><a href="#" page="1"><?php echo t('first',1)?></a></li>
+	  <li><a href="#" page="<?php echo $page - 1;?>">&laquo; <?php echo t('prev',1);?></a></li>
 	<?php else: ?>
 	 <!--  <li><a href="#">Prev</a></li>  -->
 	<?php endif; ?>

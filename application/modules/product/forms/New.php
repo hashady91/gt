@@ -463,7 +463,7 @@ class Product_Form_New extends Cl_Form
                                     )
                             ),
                     ),
-                    'multiOptionsCallback' => array(array('Product_Form_Helper', 'getParentCategoryList')),
+                    'multiOptionsCallback' => array('getParentCategoryList'),
                     'defaultValue' => 'NoParent'
             ),
             'status' => array(

@@ -1,8 +1,8 @@
 <?
 function node_link($type, $node)
 {
-    //return "/{$type}/view?id={$node['id']}";
-	return "/{$type}/views/{$node['iid']}";
+    return "/{$type}/view?id={$node['id']}";
+	//return "/{$type}/views/{$node['iid']}";
 }
 
 function category_link($category){

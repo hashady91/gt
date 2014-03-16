@@ -113,7 +113,7 @@ class Dao_Node_Product extends Cl_Dao_Node
 	        $data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
 	    }
 	    
-	    $where = array('id' => $data['parent_category_iid']);
+	    $where = array('iid' => $data['parent_category_iid']);
 	    $r = Dao_Node_Category::getInstance()->findOne($where);
 	    $category = array();
 	    if($r['success']){
