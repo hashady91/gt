@@ -37,6 +37,7 @@ class Product_Form_New extends Cl_Form
     	        'deal_price',
     	        'origin_price',
     	        'gallery',
+		        'parent_category'
 		);
 		$this->setCbHelper('Product_Form_Helper');
 		
@@ -49,7 +50,7 @@ class Product_Form_New extends Cl_Form
 	            'supplierName','name', 'model','serialNumber', 'receivedDate',
 	            'images', 'images_deleted','img_canvas','upload_img',
 	            'note','description','saledate_start','saledate_end',
-	            'price',
+	            'price','parent_category',
 				'status',
 			);
 	}
@@ -447,6 +448,20 @@ class Product_Form_New extends Cl_Form
                                     )
                             )
                     ),
+            ),
+            'parent_category' => array(
+                    'type' => 'Select',
+                    'options' => array(
+                            'label' => "Parent Category",
+                            'filters' => array('StringTrim','StripTags'),
+                            'prefixPath' => array(
+                                    "filter" => array (
+                                            "Filter" => "Filter/"
+                                    )
+                            ),
+                    ),
+                    'multiOptionsCallback' => array(array('Product_Form_Helper', 'getParentCategoryList')),
+                    'defaultValue' => 'NoParent'
             ),
             'status' => array(
             		'type' => 'Select',

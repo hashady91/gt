@@ -59,6 +59,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'deal_price' => 'float',
     	        'origin_price' => 'float',
     	        'gallery' => 'array',
+        	    'parent_category',
     	        'u' => $user, //who posted this	
         	),
 	        'indexes' => array(
@@ -90,6 +91,7 @@ class Dao_Node_Product extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
+	    f($data);
 		if($data['images'] != ''){
 			$data['images'] = remove_ufiles_from_images_url($data['images']);	
 		}

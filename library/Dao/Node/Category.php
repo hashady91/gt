@@ -293,4 +293,21 @@ class Dao_Node_Category extends Cl_Dao_Node
 			return array();
 		}
 	}
+	
+	public function getCategoryLevel($level){
+	    if(isset($level) || $level != '')
+	       $level = $level;
+	    else
+	        $level = 1;
+	    
+	    $where = array('level' => $level);
+	    $cond['where'] = $where;
+	    $r = $this->findAll($cond);
+	
+	    if($r['success']){
+	        return $r['result'];
+	    }else{
+	        return array();
+	    }
+	}
 }
