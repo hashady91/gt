@@ -50,7 +50,7 @@ class Product_Form_New extends Cl_Form
 	            'supplierName','name', 'model','serialNumber', 'receivedDate',
 	            'images', 'images_deleted','img_canvas','upload_img',
 	            'note','description','saledate_start','saledate_end',
-	            'price','parent_category',
+	            'price','parent_category_iid',
 				'status',
 			);
 	}
