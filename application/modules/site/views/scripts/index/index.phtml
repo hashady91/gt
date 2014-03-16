@@ -90,7 +90,7 @@
 		            <p style="word-wrap: break-word;" 
 		            	class="merchant-name should-truncate"><?php echo $product['category']['name'];?></p>
 			        <p style="word-wrap: break-word;" 
-			        	class="deal-location should-truncate"><?php echo $product['count']['buy'];?> đã mua</p>
+			        	class="deal-location should-truncate"><?php echo $product['counter']['buy'];?> đã mua</p>
 			        	
 		  	        <p class="deal-price">
 						<s class="original-price"><?php echo $product['origin_price'];?>₫</s>
@@ -164,15 +164,15 @@
   <?php if(count($categories_iids1) > 0):?>
   	 <div id="category-deals">
   	 <?php foreach ($categories_iids1 as $cate):?>
-  	 	<section class="deal-pack row pad-row">
-		  <div class="section-head">
-		      <a href="<?php echo category_link($cate['detail'])?>"><h2>
-		      	<?php echo $cate['detail']['name'];?></h2></a>
-		  </div>
+	  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
+	  	<?php if(count($products) > 0):?>
+	  	 	<section class="deal-pack row pad-row">
+			  <div class="section-head">
+			      <a href="<?php echo category_link($cate['detail'])?>"><h2>
+			      	<?php echo $cate['detail']['name'];?></h2></a>
+			  </div>
 		  
-		  <div class="block-grid four-up">
-		  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
-		  	<?php if(count($products) > 0):?>
+		     <div class="block-grid four-up">
 		  		<?php foreach ($products as $product):?>
 		  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
@@ -193,9 +193,9 @@
 			        </a>
 			      </figure>
 		  		<?php endforeach;?>
-		  	<?php endif;?>
-		  </div>
-		</section>
+				  </div>
+			</section>
+	  	<?php endif;?>
   	 <?php endforeach;?>
   	 </div>
   <?php endif;?>
@@ -254,15 +254,15 @@
   <?php if(count($categories_iids2) > 0):?>
   <div id="channel-deals">
   	<?php foreach ($categories_iids2 as $cate):?>
-	  <section class="deal-pack row pad-row">
-		  <div class="section-head">
-		      <a href="<?php echo category_link($cate['detail'])?>">
-		      	<h2><?php echo $cate['detail']['name'];?></h2></a>
-		  </div>
-		  <div class="block-grid three-up">
-		  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
-			  	<?php if(count($products) > 0):?>
-			  		<?php foreach ($products as $product):?>
+  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
+	  	<?php if(count($products) > 0):?>
+		  <section class="deal-pack row pad-row">
+			  <div class="section-head">
+			      <a href="<?php echo category_link($cate['detail'])?>">
+			      	<h2><?php echo $cate['detail']['name'];?></h2></a>
+			  </div>
+			  <div class="block-grid three-up">
+			  	<?php foreach ($products as $product):?>
 			  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
@@ -281,10 +281,10 @@
 			          </figcaption>
 			        </a>
 			      </figure>
-		      <?php endforeach;?>
-		  	<?php endif;?>
-		  </div>
-		</section>
+			      <?php endforeach;?>
+			  </div>
+			</section>
+	  	<?php endif;?>
 	<?php endforeach;?>
   </div>
 	<?php endif;?>
