@@ -18,6 +18,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
+	    $category = Dao_Node_Category::getInstance()->cSchema;
     	return array(
     		'collectionName' => 'product',
         	'documentSchemaArray' => array(
@@ -34,7 +35,6 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'stockStatus' => 'string', // 0 NOTINStock, 1 => InStock, 2 => Missing
     	        'note' => 'string',
     	        'images' => 'string',
-    	        'category' => 'array',
     	        'weight' => 'float',
     	        'type' => 'string',
     	        "name" => 'string',
@@ -62,6 +62,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'gallery' => 'array',
         	    'parent_category_id' => 'string',
     	        'u' => $user, //who posted this	
+    	        'category' => $category
         	),
 	        'indexes' => array(
 	                array(
@@ -111,6 +112,15 @@ class Dao_Node_Product extends Cl_Dao_Node
 	        $redis = init_redis(RDB_CACHE_DB);
 	        $data['iid'] = $redis->incr($this->nodeType . ":iid"); //unique node id
 	    }
+	    
+	    $where = array('id' => $data['parent_category_id']);
+	    $r = Dao_Node_Category::getInstance()->findOne($where);
+	    $category = array();
+	    if($r['success']){
+	    	$category = $r['result'];
+	    	$data['category'] = $category;
+	    }
+	    
         return array('success' => true, 'result' => $data);
 	}
 	
@@ -126,6 +136,16 @@ class Dao_Node_Product extends Cl_Dao_Node
     /******************************UPDATE****************************/
     public function beforeUpdateNode($where, $data, $currentRow)
     {
+    	if($data['$set']['parent_category_id'] != $currentRow['parent_category_id']){
+	    	$where = array('id' => $data['$set']['parent_category_id']);
+	    	$r = Dao_Node_Category::getInstance()->findOne($where);
+	    	$category = array();
+	    	if($r['success']){
+	    		$category = $r['result'];
+	    		$data['$set']['category'] = $category;
+	    	}
+    	}
+    	
     	if(!isset($data['$set']['ts'])){
     		$data['$set']['ts'] = time();
     	}
@@ -325,8 +345,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 	}
 	
 	public function getProductsByCategoryIid($category_iid){
-		//$where = array('category.iid' => $category_iid);
-		$where = array();
+		$where = array('category.iid' => $category_iid);
+		//$where = array();
 		$cond['where'] = $where;
 		$cond['limit'] = 4;
 		//$order['ts'] = 1;
@@ -357,8 +377,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 		if(count($cateIidsNew)){
 			$categories = array();
 			foreach ($cateIidsNew as $cateIid){
-				//$where = array('category.iid' => $cateIidsNew);
-				$where = array();
+				$where = array('category.iid' => $cateIidsNew);
+				//$where = array();
 				$cond['where'] = $where;
 				$cond['limit'] = $limit;
 				//$order['ts'] = 1;
