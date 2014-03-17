@@ -1,29 +1,44 @@
+<?php $categories = $this->categories;?>
 <?php 
-	$row = $this->row;
 	$products = $this->products;
-	$is_level = $this->is_level;
+	$key = $this->key;
 ?>
-<?php if($is_level == 1):?>
-	<?php $this->render('index/categories.phtml');?>
-<?php else :?>
-	<section class="main row">
-		<div class="twelve columns">
-			<section id="main" class="module">
-				<div id="content" class="module-body">
-					<div id="deal_content" class="three-col">
-						<div id="js-page-header" class="page_header">
-							<div data-bhw-path="BrowseHeader" data-bhw="BrowseHeader">
-								<h2 class="browse-title-heading">
-									<a  href="<?php echo category_link($row);?>">
-										<?php echo $row['name']?></a>
-								</h2>
-							</div>
-							
-							<div class="dotted-line"></div>
+<section class="main row">
+	<div class="twelve columns">
+		<section id="main" class="module">
+			<div id="content" class="module-body">
+				<div id="deal_content" class="two-col-nav">
+					<div id="js-page-header" class="page_header">
+						<div>
+							<h2 class="browse-title-heading">
+                				<span data-bhc="query:sho" >
+                				"<?php echo $key;?>" deals</span>
+						    </h2>
 						</div>
-						
-						<div id="deal-space" class="twelve columns deal-space deal-tile-grid-view ">
-							<div class="content">
+						<div class="dotted-line"></div>
+					</div>
+					
+					<div id="refinement-bar" class="three columns">
+						<div id="refinement-box refinement-links-wrapper" class="refinement-links-wrapper">
+							<div data-id="travel" class="refinement flat-refinements top-category-links">
+							    <h4> Chuyên mục</h4>
+							    <ul id="travel-list">
+							        <?php if(isset($categories)):?>
+							          	<?php foreach ($categories as $ca):?>
+									      <li>
+									      	<a href="<?php echo category_link($ca)?>">
+									      		<?php echo $ca['name']?>
+									      <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
+									      		<span class="counter">(<?php echo $count_child;?>)</span></a></li>
+							          	<?php endforeach;?>
+							          <?php endif;?>
+							  </ul>
+							  </div>
+						</div>
+					</div>
+					
+					<div id="deal-space" class="nine columns deal-space deal-tile-grid-view ">
+						<div class="content">
 							   <?php $first = Dao_Node_Product::getInstance()->getStandedProduct($products[0]);?>
 							   <?php if(isset($first)):?>
 								<figure class="featured-deal">
@@ -58,7 +73,7 @@
 								          </p>
 								          <div class="view-deal six columns">
 								              <a href="<?php echo node_link('product', $first);?>" 
-								              	class="btn-buy">Xem chi tiết</a>
+								              	class="btn-buy">Chi tiết</a>
 								      </div>
 								        </div>
 								      </figcaption>
@@ -108,10 +123,9 @@
 									<?php endif;?>
 								</div>
 							</div>
-						</div>
 					</div>
 				</div>
-			</section>	
-		</div>
-	</section>
-<?php endif;?>
+			</div>
+		</section>
+	</div>
+</section>

@@ -8,26 +8,23 @@
             <div class="ten columns ">
               <div class="row">
                   <div class="eight columns search-bar-wrapper">
-                    <form data-bhw="SearchBar" id="search-bar" class="search-bar free-text-search-enabled" data-bhw-path="Header|SearchBar">
+                    <form data-bhw="SearchBar" id="search-bar" class="search-bar free-text-search-enabled">
 		              <div class="rounded-input left active-search">
 		                <label for="search" class="icon-magnifying-glass"></label>
 		                <input type="search" autofocus="" 
-		                	data-bhw="FreeTextSearchField" id="search" 
-		                	placeholder="Nhập sản phẩm bạn tìm kiếm" spellcheck="false" 
-	                		autocomplete="off" name="search" 
-	                		data-bhw-path="Header|SearchBar|FreeTextSearchField">
-                		<div data-bhw="SearchBarAutoComplete"
-                		 class="search typeahead-response" style="display: none;"></div>
-              </div>
-              <div data-error-availability="We are experiencing difficulty finding your location. Try again later." data-error-bad_location="We couldn't understand that location. Try another ZIP/Postal Code, neighborhood or address." data-error-generic="There was an error" class="rounded-input right">
-                <label for="location" class="icon-marker"></label>
-                <input type="text" data-bhw="LocationBarField" id="location" spellcheck="false" 
-                		placeholder="Nhập vào địa điểm" autocomplete="off" 
-                		name="location" data-bhw-path="Header|SearchBar|LocationBarField">
-                		<div data-bhw="SearchBarAutoComplete" class="location typeahead-response" 
-                		style="width: auto; display: none;"></div>
-		              </div>
-		              <input type="submit" data-bhw="LocationBarFindDeals" class="btn-rounded btn-search" value="Go" name="submit_search">
+		            		id="search" 
+		                	placeholder="Nhập sản phẩm bạn tìm kiếm" name="search">
+                		<div class="search typeahead-response" style="display: none;"></div>
+              		   </div>
+		                <div class="rounded-input right">
+		                <label for="location" class="icon-marker"></label>
+		                <input type="text" id="location" spellcheck="false" 
+		                		placeholder="Nhập vào địa điểm"  
+		                		name="location">
+		                		<div data-bhw="SearchBarAutoComplete" class="location typeahead-response" 
+		                  		style="width: auto; display: none;"></div>
+		                </div>
+		              <input type="submit" class="btn-rounded btn-search" value="Go" name="submit_search">
 		            </form>
           
           		 <?php /*

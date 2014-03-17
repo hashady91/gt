@@ -81,6 +81,28 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         Bootstrap::$pageTitle = 'Quản lý sản phẩm';        
     }
     
+    public function searchKeyAction()
+    {
+    	/**Get categories*/
+    	$categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();
+    	$this->setViewParam('categories', $categories);
+    	
+    	$key = $this->getStrippedParam('key');
+
+    	$r = Dao_Node_Product::getInstance()->find(array('name'=> array('$regex' => 'm')));
+    	if($r['success']){
+    		$products = $r['result'];
+    	}else{
+    		$products = array();
+    	}
+    	
+    	$this->setViewParam('products',$products);
+    	$this->setViewParam('key',$key);
+    	//assure_perm("search_product");//by default
+    	//$this->genericSearch("Product_Form_Search", $this->daoClass, "Node");
+    	Bootstrap::$pageTitle = 'Tìm kiếm sản phẩm';
+    }
+    
     public function searchCommentAction()
     {
         assure_perm("search_product");//by default

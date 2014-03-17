@@ -36,7 +36,7 @@ CL.NID = "<?php echo $row['id']; ?>";
                                   echo $row['origin_price'];
                          ?> ₫
 			    	</span>
-			         <a class="btn-buy-big btn-multi-deal show-multi-option-modal state-buy-multi " href="#">
+			         <a class="btn-buy-big btn-multi-deal show-multi-option-modal" href="#">
 			          Mua!
 			        	</a>
 		          </div>
@@ -51,7 +51,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 			              <tr id="discount-data">
 			                <td id="discount-value"><?php echo $row['origin_price'];?>₫</td>
 			                <?php if($row['origin_price'] > 0):?>
-			                <td id="discount-percent">$<?php echo $row['deal_price'] / $row['origin_price'] * 100;?>%</td>
+			                <td id="discount-percent">$<?php echo number_format($row['deal_price'] / $row['origin_price'] * 100,1);?>%</td>
 			                <?php else:?>
 			                <td id="discount-percent">0%</td>
 			                <?php endif;?>
