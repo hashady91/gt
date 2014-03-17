@@ -105,7 +105,7 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     	if($r['success']){
     	   $cate_name = $r['result']['name'];
     		$cate = $r['result'];
-    		if(isset($cate['level']))
+    		if(!isset($cate['level']))
     		    $cate['level'] = 1;
     		if($cate['level'] == 2){
     			//Show all product of category
@@ -126,7 +126,7 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     			$categories = array();
     			if(count($child_cate) > 0){
     				foreach ($child_cate as $ca){
-    					$where = array('parent_category_iid' => $cate['iid']);
+    					$where = array('parent_category_iid' => $ca['iid']);
     					//$where = array();
     					$cond['where'] = $where;
     					$cond['limit'] = 3;
@@ -137,6 +137,12 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     					$categories[] = $cateNew;
     				}
     			}
+    			
+    			$iid = get_conf('home_page_product_iid', 1);
+    			$hp_product = Dao_Node_Product::getInstance()->getHomePageProduct($iid);
+    			 
+    			$this->setViewParam('hp_product', $hp_product);
+    			
     			//TODO:: Get product was recommended
     			$this->setViewParam('categories', $categories);
     			$this->setViewParam('row', $cate);

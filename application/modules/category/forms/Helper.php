@@ -7,6 +7,12 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
     	return array('success' =>true, 'result' => $ret);
     }
     
+    public function getLevel()
+    {
+    	$ret = array('1' => 'Level 1', '2' => 'Level 2');
+    	return array('success' =>true, 'result' => $ret);
+    }
+    
     public function getParentCategory(){
     	$where = array('level' => 1);
     	$cond['where'] = $where;

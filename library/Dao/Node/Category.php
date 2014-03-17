@@ -93,6 +93,9 @@ class Dao_Node_Category extends Cl_Dao_Node
     /******************************UPDATE****************************/
     public function beforeUpdateNode($where, $data, $currentRow)
     {
+    	if($data['$set']['_cl_step'] == 'is_level'){
+    		$data['$set']['level'] = (int)$data['$set']['level'];
+    	}
     	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$data['$set']['level'] = 2;
     	}else{
@@ -107,6 +110,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     
 	public function afterUpdateNode($where, $data, $currentRow)
     {
+    	v($data['$set']['level']);
     	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$id = $data['$set']['parent_category'];
     		$where = array('id' => $id);
@@ -131,7 +135,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 	    				}
 	    			}
 	    			
-	    			if($count == 0){
+	    			if($count > 0){
 	    				$boolen = true;
 	    				$childCateNew[] = $currentRow;
 	    				$childCateIdNew[] = $currentRow['id'];
@@ -155,6 +159,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     			}
     		}
     	}
+    	
         return array('success' => true, 'result' => $data);    
     }   
      
