@@ -6,7 +6,7 @@
 define('SITE_URL', 'http://q.fcabal.com');
 //define('SITE_URL', 'http://www.oakq.com');
 define('SAND_ASSETS_CDN', 'http://sandassets.fcabal.net/');
-define('ASSETS_CDN', 'assets.fcabal.net');
+define('ASSETS_CDN', 'http://assets.fcabal.net');
 
 define('NOREPLY_EMAIL', 'noreply@fcabal.net');
 define('DOMAIN', 'q.fcabal.net');
