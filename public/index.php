@@ -5,6 +5,7 @@ ini_set('display_errors', false);
 */
 //$a = time() + microtime();
 
+phpinfo();
 define('bootstrap3', 1);
 
 defined('PUBLIC_PATH')
