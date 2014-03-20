@@ -5,8 +5,6 @@ ini_set('display_errors', false);
 */
 //$a = time() + microtime();
 
-define('bootstrap3', 1);
-
 defined('PUBLIC_PATH')
 || define('PUBLIC_PATH', realpath(dirname(__FILE__)));
 
