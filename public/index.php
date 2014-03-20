@@ -5,8 +5,8 @@ ini_set('display_errors', false);
 */
 //$a = time() + microtime();
 
-echo "Website đang trong quá trình xây dựng.Mong mọi người thông cảm!";
-die();
+//echo "Underconstruction -  come back soon";
+//die();
 define('bootstrap3', 1);
 
 defined('PUBLIC_PATH')
