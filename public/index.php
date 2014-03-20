@@ -5,6 +5,8 @@ ini_set('display_errors', false);
 */
 //$a = time() + microtime();
 
+//echo "Underconstruction -  come back soon";
+//die();
 define('bootstrap3', 1);
 
 defined('PUBLIC_PATH')

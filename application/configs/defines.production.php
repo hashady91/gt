@@ -3,13 +3,14 @@
  * SITE specifics
  */
 //define('POST_PAGE_SIZE', 30);
-define('SITE_URL', 'http://demo.sandphp.com');
+define('SITE_URL', 'http://q.fcabal.net');
 //define('SITE_URL', 'http://www.oakq.com');
-define('SAND_ASSETS_CDN', 'http://bao30.com/');
-define('ASSETS_CDN', 'http://demo.sandphp.com/assets/');
+define('SAND_ASSETS_CDN', 'http://sandassets.fcabal.net/');
+define('ASSETS_CDN', 'https://assets.fcabal.net/');
+define('STATIC_GT', 'http://static.fcabal.net/');
 
-define('NOREPLY_EMAIL', 'noreply@sandphp.com');
-define('DOMAIN', 'x.codersquare.com');
+define('NOREPLY_EMAIL', 'noreply@fcabal.net');
+define('DOMAIN', 'q.fcabal.net');
 define('CONTACT_EMAIL', 'contact@demo.com');
 define('USE_AMAZON_SES', false); // true => send mail with amazon SES
 define('FILES_UPLOAD_PATH', realpath(APPLICATION_PATH . "/../") . "/hidden/");
@@ -20,7 +21,7 @@ define('PAGE_RANGES', 7);//numbers pagination links at a time
  * DB connections
  */
 //include_once('functions.php');
-define('MONGO_HOST', 'localhost');
+define('MONGO_HOST', '127.0.0.1');
 //define('DICT_BACKEND', 'mongo');
 define('DICT_BACKEND', 'redis');
 define('REDIS_PORT', 6379);
