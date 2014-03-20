@@ -105,7 +105,7 @@ class Category_IndexController extends Cl_Controller_Action_NodeIndex
     	if($r['success']){
     	   $cate_name = $r['result']['name'];
     		$cate = $r['result'];
-    		if(!isset($cate['level']))
+			if(!isset($cate['level']))
     		    $cate['level'] = 1;
     		if($cate['level'] == 2){
     			//Show all product of category

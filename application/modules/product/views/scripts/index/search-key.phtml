@@ -2,6 +2,8 @@
 <?php 
 	$products = $this->products;
 	$key = $this->key;
+	$dealestProducts = $this->dealestProducts;
+	$newProducts = $this->newProducts;
 ?>
 <section class="main row">
 	<div class="twelve columns">
@@ -38,7 +40,8 @@
 					</div>
 					
 					<div id="deal-space" class="nine columns deal-space deal-tile-grid-view ">
-						<div class="content">
+					  <?php if(count($product) > 0):?>
+							<div class="content">
 							   <?php $first = Dao_Node_Product::getInstance()->getStandedProduct($products[0]);?>
 							   <?php if(isset($first)):?>
 								<figure class="featured-deal">
@@ -122,6 +125,89 @@
 										<?php endforeach;?>
 									<?php endif;?>
 								</div>
+						  <?php else:?>
+							<div id="deal_space_message_content" style="display: block;">
+							  	<div class="notification info">
+							  	  <div class="no-deals-message">
+										 Hiện tại không có sản phẩm nào tương đồng với kết quả "<?php echo $key;?>"
+								  	  	</div>
+							  	    <div class="no-deals-suggestion">
+							  	    	Bạn có thể lựa chọn các sản phẩm ưu đãi khác của <?php echo SITE_NAME;?>.</div>
+								</div>
+							</div>
+							
+							 <?php if(count($dealestProducts) > 0):?>
+						        <div  class="module deal-widget " data-bhw-path="TopDeals">
+								  <div class="module-body">
+								    <div class="section-head">
+									     <h2>
+									       Sản phẩm giảm giá nhiều
+									      </h2>
+							           <a href="#" class="see-all">Xem tất cả</a>
+									</div>
+									  
+									<div class="block-grid four-up">
+									<?php foreach ($dealestProducts as $product):?>
+									<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+									  <figure class="deal-card">
+									        <a href="<?php echo node_link('product', $product);?>">
+									          <img src="<?php echo STATIC_GT . $product['images'];?>">
+									          <figcaption>
+									            <p style="word-wrap: break-word;" class="deal-title should-truncate">
+									            	<?php echo $product['name'];?></p>
+									            <p style="word-wrap: break-word;" class="merchant-name should-truncate">
+									            	<?php echo $product['category']['name'];?></p>
+											    <p style="word-wrap: break-word;" class="deal-location should-truncate">
+											    	<?php echo $product['counter']['buy'];?> đã mua</p>
+										        <p class="deal-price">
+									                <s class="original-price">$<?php echo $product['origin_price'];?>₫</s>
+											        <?php echo $product['deal_price'];?> ₫
+									            </p>
+									          </figcaption>
+									        </a>
+									      </figure>
+							        <?php endforeach;?>
+							    </div>
+							    </div>
+							  </div>
+							  <?php endif;?>
+							  
+							  <?php if(count($newProducts) > 0):?>
+							  	  <div class="module deal-widget ">
+								    <div class="module-body">
+							          <div class="section-head">
+									     <h2>
+									        Sản phẩm mới nhất
+									      </h2>
+								        <a href="#" class="see-all">Xem tất cả</a>
+									    </div>
+									    
+									     <div class="block-grid three-up">
+									     <?php foreach ($newProducts as $product):?>
+								          <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+										      <figure class="deal-card">
+										        <a href="<?php echo node_link('product', $product);?>">
+										          <img src="<?php echo STATIC_GT . $product['images'];?>">
+										          <figcaption>
+										            <p style="word-wrap: break-word;" class="deal-title should-truncate">
+										            	<?php echo $product['name'];?></p>
+										            <p style="word-wrap: break-word;" class="merchant-name should-truncate">
+										       		     <?php echo $product['category']['name'];?></p>
+										            <p style="word-wrap: break-word;" class="deal-location should-truncate">
+										          		 <?php echo $product['counter']['buy'];?> đã mua</p>
+										            <p class="deal-price">
+										                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
+										        	   <?php echo $product['deal_price'];?>₫
+										            </p>
+										          </figcaption>
+										        </a>
+										      </figure>
+									      <?php endforeach;?>
+									    </div>
+								  </div>
+							  	 </div>
+							  	 <?php endif;?>
+						  <?php endif;?>
 							</div>
 					</div>
 				</div>

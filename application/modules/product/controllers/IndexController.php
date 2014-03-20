@@ -89,11 +89,61 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     	
     	$key = $this->getStrippedParam('key');
 
-    	$r = Dao_Node_Product::getInstance()->find(array('name'=> array('$regex' => 'm')));
-    	if($r['success']){
+    	$form = new Product_Form_Search();
+    	
+    	$data = array( 
+    		'name' => $key, 
+    	);
+    	
+    	$form->build($data);
+    	
+    	$conditions = $form->buildSearchConditions();
+    	
+    	$conditions['total'] = 1;
+    	
+    	$dao = Dao_Node_Product::getInstance();
+    	$r = $dao->findNode($conditions, true);
+
+    	if($r['success'] && $r['total'] > 0){
     		$products = $r['result'];
     	}else{
     		$products = array();
+    		
+    		/**
+    		 * Get dealest products
+    		 * **/
+    		
+    		//$where = array('');
+    		$order = array('deal_price' => 1);
+    		$cond['order'] = $order;
+    		$cond['limit'] = 4;
+    		
+    		$r = Dao_Node_Product::getInstance()->find($cond);
+    		if($r['success']){
+    			$dealestProducts = $r['result'];
+    		}else{
+    			$dealestProducts = array();
+    		}
+    		
+    		
+    		/**
+    		 * Get newest products
+    		 * **/
+    		
+    		//$where = array('');
+    		$order = array('ts' => -1);
+    		$cond['order'] = $order;
+    		$cond['limit'] = 3;
+    		
+    		$r = Dao_Node_Product::getInstance()->find($cond);
+    		if($r['success']){
+    			$newProducts = $r['result'];
+    		}else{
+    			$newProducts = array();
+    		}
+    		
+    		$this->setViewParam('newProducts',$newProducts);
+    		$this->setViewParam('dealestProducts',$dealestProducts);
     	}
     	
     	$this->setViewParam('products',$products);

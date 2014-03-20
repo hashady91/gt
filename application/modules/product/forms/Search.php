@@ -38,6 +38,7 @@ class Product_Form_Search extends Cl_Form_Search
                         'StringToUpper'
                     )
                 ),
+                'op' => '$eq',
                 //'op' => '$in' // like %$value% . 
                 //$in , $eq, $lte,<=
             ),
@@ -52,6 +53,7 @@ class Product_Form_Search extends Cl_Form_Search
                                     'StringToUpper'
                             )
                     ),
+                    'op' => '$like',
                     //'op' => '$in' // like %$value% .
                     //$in , $eq, $lte,<=
             ),
@@ -66,6 +68,7 @@ class Product_Form_Search extends Cl_Form_Search
                         'StringToUpper'
                     )
                 ),
+                'op' => '$eq',
             ),
             'supplierName' => array(
                     'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
