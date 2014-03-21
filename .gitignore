@@ -3,7 +3,6 @@
 .settings/
 logs
 public/cache
-public/ufiles
 public/downloaded
 public/tinymce
 sand-core
