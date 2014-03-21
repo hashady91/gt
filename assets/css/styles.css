@@ -88,3 +88,8 @@ div.voteWrapper a
 	display: block;
 	overflow: scroll;
 }
+
+
+.logo-giasomot > img {
+    margin-top: 9px;
+}
