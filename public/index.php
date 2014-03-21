@@ -5,6 +5,8 @@ ini_set('display_errors', false);
 */
 //$a = time() + microtime();
 
+define('bootstrap3', 1);
+
 defined('PUBLIC_PATH')
 || define('PUBLIC_PATH', realpath(dirname(__FILE__)));
 
@@ -36,8 +38,7 @@ function is_root_by_checking_cookie()
 }
 
 $ignore = false;
-    
-    
+      
 if(!$ignore){
 
 	/** Zend_Application */
