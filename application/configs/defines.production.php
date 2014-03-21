@@ -7,7 +7,7 @@ define('SITE_URL', 'http://giasomot.vn');
 //define('SITE_URL', 'http://www.oakq.com');
 define('SAND_ASSETS_CDN', 'http://sandassets.fcabal.net/');
 define('ASSETS_CDN', 'http://assets.giasomot.vn/');
-define('STATIC_GT', 'http://static.giasomot.vn/');
+define('STATIC_GT', 'http://assets.giasomot.vn/ufiles/');
 
 define('NOREPLY_EMAIL', 'noreply@fcabal.net');
 define('DOMAIN', 'giasomot.vn');
