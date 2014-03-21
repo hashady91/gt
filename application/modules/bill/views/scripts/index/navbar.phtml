@@ -1,0 +1,13 @@
+<?php $page = Zend_Registry::get('page');?>
+<ul class='nav nav-pills'>
+	<li <?php if ($page == 'bill/index/new') echo "class='active';"?>><a href="/bill/new">New</a></li>
+	<? if (isset($this->row)) :?>    
+	<li <?php if ($page == 'bill/index/update') echo "class='active';"?>><a href="/bill/update<?php if (isset($this->row['id'])) echo "?id=" . $this->row['id'];?>"">Update</a></li>
+	<?php endif;?>    
+	<li <?php if ($page == 'bill/index/search') echo "class='active';"?>><a href="/bill/search">Search</a></li>
+    <li <?php if ($page == 'bill/index/search-comment') echo "class='active';"?>><a href="/bill/search-comment">Search Comment</a></li>
+	<? if (isset($this->row)) :?>    
+	<li <?php if ($page == 'bill/index/view') echo "class='active';"?>><a href="/bill/<?php if (isset($this->row['id'])) echo "" . $this->row['id'];?>">View</a></li>
+	<?php endif;?>
+</ul>
+<div class='separator'></div>

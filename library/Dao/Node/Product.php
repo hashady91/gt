@@ -1,7 +1,7 @@
 <?php
 class Dao_Node_Product extends Cl_Dao_Node
 {
-    public $nodeType = 'samx';
+    public $nodeType = 'product';
     public $cSchema = array('id' => 'string', 'iid' => 'string', 'name' => 'string', 'images' => 'string');
         
     protected function relationConfigs($subject = 'user')
