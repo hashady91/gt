@@ -26,6 +26,27 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
     {
 
     }
+    
+    public function buyAction()
+    {
+    	$productIid = $this->getStrippedParam('iid');
+    	$where = array('iid'=>$productIid);
+    	$r = Dao_Node_Product::getInstance()->findOne($where);
+    	if($r['success']){
+    		$product = $r['result'];
+    	}else 
+    		$product = array();
+    	
+    	//TODO: populate value to form
+    	$this->setViewParam('product', $product);
+    	
+    	$this->genericNew("Bill_Form_New", "Dao_Node_Bill", "Node");
+    	
+    	if(isset($this->ajaxData)) {
+    		//TODO: redirect to my cart
+    	}
+    	Bootstrap::$pageTitle = 'Tạo hóa đơn mua hàng';
+    }
 
     public function newAction()
     {

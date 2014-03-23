@@ -4,8 +4,8 @@ class Bill_Form_New extends Cl_Form
 	public function init()
 	{
 		parent::init();
-		$this->fieldList = array('uname', 'umail', 'uadress', 'ucity', 'status', 'uphone', 
-				'note', 'product.model', 'product.serialNumber',
+		$this->fieldList = array('uname', 'umail', 'uage', 'uadress', 'ucity', 'status', 'uphone', 
+				'note', 'pmodel', 'pserialNumber',
 		);
 		$this->setCbHelper('Bill_Form_Helper');
 		
@@ -25,8 +25,18 @@ class Bill_Form_New extends Cl_Form
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags'),
                     'validators' => array('NotEmpty'),
+        			'placeholder' => 'Nhập tên của bạn'
         		),
         	),
+        	'uage' => array(
+        			'type' => 'Text',
+       				'options' => array(
+       						'label' => "Tuổi của bạn",
+       						'required' => true,
+       						'filters' => array('StringTrim', 'StripTags'),
+       						'validators' => array('NotEmpty'),
+       				),
+       		),
         	'umail' => array(
         			'type' => 'Text',
         				'options' => array(
@@ -34,6 +44,7 @@ class Bill_Form_New extends Cl_Form
        						'required' => true,
        						'filters' => array('StringTrim', 'StripTags'),
        						'validators' => array('NotEmpty'),
+		        			'placeholder' => 'Bạn có thể để trống nêu không có'
        				),
        		),
        		'uadress' => array(
@@ -43,6 +54,7 @@ class Bill_Form_New extends Cl_Form
         					'required' => true,
        						'filters' => array('StringTrim', 'StripTags'),
        						'validators' => array('NotEmpty'),
+		       				'placeholder' => 'Ghi rõ địa chỉ để tiện nhận hàng'
        				),
        		),
        		'ucity' => array(
@@ -61,6 +73,7 @@ class Bill_Form_New extends Cl_Form
         					'required' => true,
        						'filters' => array('StringTrim', 'StripTags'),
        						'validators' => array('NotEmpty'),
+		        			'placeholder' => 'Ghi số điện thoại để tiện liên lạc'
        				),
        		),
         	'note' => array(
@@ -73,7 +86,8 @@ class Bill_Form_New extends Cl_Form
         				"filter" => array (
         					"Filter" => "Filter/"
         				)
-        			)
+        			),
+        			'placeholder' => 'Ví dụ: Màu đen'
         		),
         	),
             'status' => array(
@@ -84,7 +98,7 @@ class Bill_Form_New extends Cl_Form
             		),
             		'multiOptionsCallback' => array('getStatus')
             ),
-        	'product.model' => array(
+        	'pmodel' => array(
         			'type' => 'Text',
        				'options' => array(
        						'label' => "Model sản phẩm",
@@ -93,7 +107,7 @@ class Bill_Form_New extends Cl_Form
        						'validators' => array('NotEmpty'),
        				),
        		),
-        	'product.serialNumber' => array(
+        	'pserialNumber' => array(
         			'type' => 'Text',
        					'options' => array(
        						'label' => "SerialNumber Sản phẩm",
