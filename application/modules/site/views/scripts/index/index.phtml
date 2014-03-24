@@ -68,44 +68,6 @@
     </div>
   </div>
   
-  
-  <?php /**DANH SÁCH SẢN PHẨM ĐƯỢC ADMIN GỢI Ý**/?>
-  <div id="featured-deals">
-    <section class="deal-pack row pad-row">
-	  <div class="section-head">
-	      <a href="#">
-	      <h2>Sản phẩm có thể bạn thích</h2></a>
-	      <a class="view-all" href="#">Xem tất cả</a>
-	  </div>
-	  <div class="block-grid four-up">
-	  	  <?php if(count($recommend_products) > 0):?>
-	  	  	<?php foreach ($recommend_products as $product):?>
-	  	  	  <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
-		      <figure class="deal-card">
-		        <a href="<?php echo node_link('product', $product);?>">
-		          <img src="<?php echo STATIC_GT.$product['images'];?>">
-		          <figcaption>
-		            <p style="word-wrap: break-word;" 
-		            	class="deal-title should-truncate"><?php echo $product['name'];?></p>
-		            <p style="word-wrap: break-word;" 
-		            	class="merchant-name should-truncate"><?php echo $product['category']['name'];?></p>
-			        <p style="word-wrap: break-word;" 
-			        	class="deal-location should-truncate"><?php echo $product['counter']['buy'];?> đã mua</p>
-			        	
-		  	        <p class="deal-price">
-						<s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-						<?php echo $product['deal_price'];?>₫
-		            </p>
-		          </figcaption>
-		        </a>
-		      </figure>
-	  	  	<?php endforeach;?>
-	  	  <?php endif;?>
-	  </div>
-	</section>
-  </div>
-  
-  
   <?php /**LẤY DANH SÁCH SẢN PHẨM THEO IID ĐƯỢC CONFIG CỦA DANH SÁCH CHUYÊN MỤC :: STYLE 1**
   		Name_cofig:: products_iids1
   */?>  
@@ -154,6 +116,42 @@
 	  </div>
 	</section>
 
+  </div>
+  
+  <?php /**DANH SÁCH SẢN PHẨM ĐƯỢC ADMIN GỢI Ý**/?>
+  <div id="featured-deals">
+    <section class="deal-pack row pad-row">
+	  <div class="section-head">
+	      <a href="#">
+	      <h2>Sản phẩm có thể bạn thích</h2></a>
+	      <a class="view-all" href="#">Xem tất cả</a>
+	  </div>
+	  <div class="block-grid four-up">
+	  	  <?php if(count($recommend_products) > 0):?>
+	  	  	<?php foreach ($recommend_products as $product):?>
+	  	  	  <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+		      <figure class="deal-card">
+		        <a href="<?php echo node_link('product', $product);?>">
+		          <img src="<?php echo STATIC_GT.$product['images'];?>">
+		          <figcaption>
+		            <p style="word-wrap: break-word;" 
+		            	class="deal-title should-truncate"><?php echo $product['name'];?></p>
+		            <p style="word-wrap: break-word;" 
+		            	class="merchant-name should-truncate"><?php echo $product['category']['name'];?></p>
+			        <p style="word-wrap: break-word;" 
+			        	class="deal-location should-truncate"><?php echo $product['counter']['buy'];?> đã mua</p>
+			        	
+		  	        <p class="deal-price">
+						<s class="original-price"><?php echo $product['origin_price'];?>₫</s>
+						<?php echo $product['deal_price'];?>₫
+		            </p>
+		          </figcaption>
+		        </a>
+		      </figure>
+	  	  	<?php endforeach;?>
+	  	  <?php endif;?>
+	  </div>
+	</section>
   </div>
   
   <?php /**LẤY DANH SÁCH SẢN PHẨM THEO IID ĐƯỢC CONFIG CỦA DANH SÁCH CÁC CHUYÊN MỤC :: LOẠI 1*
