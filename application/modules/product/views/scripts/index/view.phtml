@@ -31,9 +31,9 @@ CL.NID = "<?php echo $row['id']; ?>";
                 	<span class="price-label">Giá</span>
 			    	<span class="price" style='font-size: 20px;'>
 			    		<?php if(isset($row['deal_price']))
-                                  echo $row['deal_price'];
+                                  echo show_money($$row['deal_price']);
                               else
-                                  echo $row['origin_price'];
+                                  echo show_money($row['origin_price']);
                          ?> ₫
 			    	</span>
 			         <a class="btn-buy-big btn-multi-deal show-multi-option-modal" 
@@ -66,7 +66,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 			            </tbody>
 			          </table>
 			        </div>
-                    
+                   
+                   <?php /*
 	               <div class="limited-time">
 				  	 <span class="icon-hourglass"></span>
 					 <span class="no-counter">Limited time remaining!</span>
@@ -81,6 +82,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 				          Limited quantity available
 				        </div>
 				  </div>
+                   */?> 
    
 				    <ul data-bhw="DealSharingButtons" class="share-links" data-bhw-path="FeaturedDeal|deal:lifetime-health-wellness-2|DealSharingButtons">
 				          <script type="text/javascript">
@@ -115,7 +117,26 @@ CL.NID = "<?php echo $row['id']; ?>";
 	              <figure data-bhd="{&quot;height&quot;:&quot;1977&quot;,&quot;width&quot;:&quot;3295&quot;}" data-bhw="FeaturedImage" data-bhw-path="FeaturedDeal|deal:lifetime-health-wellness-2|FeaturedImage">
 	                <div class="gallery-single">
 				    <div class="gallery-featured" style="height: 420px;">
-				        <img data-id="c1" src="<?php echo STATIC_GT.$row['images'];?>" id="featured-image">
+				   	    <img src="<?php
+		                   echo STATIC_GT . $row['images'];
+		                   $url = STATIC_GT . $row['images'];
+		                   ?>"
+		                   <?php  /*Giup hien thi phan giua cua anh*/
+		                   /*(Filled image widget new|hot|vote)*/
+			               list($width, $height) = getimagesize($url);
+			               $heightFilledImage = 422;//height class filedImage img
+							$widthFilledImage = 702;
+			                
+			                //Get height (chieu dai thuc cua anh ty le
+			                // voi chieu dai cua khung chua anh)
+			                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+			                
+			                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+			                if($gap > 0){
+			                	echo "style = 'margin-top: -{$gap}px'";
+			                }
+			                ?>
+		                    width='100%' id="featured-image">
 				    </div>
 				    <div class="gallery-controls" style="height: 423px;">
 				      <div class="image-zoom"></div>
@@ -165,7 +186,14 @@ CL.NID = "<?php echo $row['id']; ?>";
 			<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			  <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
-			          <img src="<?php echo STATIC_GT . $product['images'];?>">
+			          <img src="<?php
+			            $checkImage =  @getimagesize(STATIC_GT . $product['images']);
+			            if(is_array($checkImage)){
+				          	echo STATIC_GT . $product['images'];
+						}else{
+							echo default_avatar('product');
+						}
+			          	?>">
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>
@@ -174,8 +202,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 					    <p style="word-wrap: break-word;" class="deal-location should-truncate">
 					    	<?php echo $product['counter']['buy'];?> đã mua</p>
 				        <p class="deal-price">
-			                <s class="original-price">$<?php echo $product['origin_price'];?>₫</s>
-					        <?php echo $product['deal_price'];?> ₫
+			                <s class="original-price">$<?php echo show_money($product['origin_price']);?>₫</s>
+					        <?php echo show_money($product['deal_price']);?> ₫
 			            </p>
 			          </figcaption>
 			        </a>
@@ -211,8 +239,8 @@ CL.NID = "<?php echo $row['id']; ?>";
 			            <p style="word-wrap: break-word;" class="deal-location should-truncate">
 			          		 <?php echo $product['counter']['buy'];?> đã mua</p>
 			            <p class="deal-price">
-			                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-			        	   <?php echo $product['deal_price'];?>₫
+			                <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+			        	   <?php echo show_money($product['deal_price']);?>₫
 			            </p>
 			          </figcaption>
 			        </a>

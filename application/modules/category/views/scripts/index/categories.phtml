@@ -43,7 +43,26 @@
 									<div id="featured">
 								        <figure class="hero-deal">
 										  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
-										    <img src="<?php echo STATIC_GT . $hp_product['images'];?>" width='100%'>
+										   <img src="<?php
+							                   echo STATIC_GT . $hp_product['images'];
+							                   $url = STATIC_GT . $hp_product['images'];
+							                   ?>"
+							                   <?php  /*Giup hien thi phan giua cua anh*/
+							                   /*(Filled image widget new|hot|vote)*/
+								               list($width, $height) = getimagesize($url);
+								               $heightFilledImage = 422;//height class filedImage img
+												$widthFilledImage = 702;
+								                
+								                //Get height (chieu dai thuc cua anh ty le
+								                // voi chieu dai cua khung chua anh)
+								                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+								                
+								                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+								                if($gap > 0){
+								                	echo "style = 'margin-top: -{$gap}px'";
+								                }
+								                ?>
+							                    width='100%'>
 										  </a>
 										  <figcaption>
 										    <h2>
@@ -63,8 +82,9 @@
 										    </div>
 										
 										    <p class="deal-price">
-										        <s class="original-price" title='Giá ban đầu'><?php echo $hp_product['origin_price'];?>₫</s>
-										      <?php echo $hp_product['deal_price'];?>₫
+										        <s class="original-price" title='Giá ban đầu'>
+										        <?php echo show_money($hp_product['origin_price']);?>₫</s>
+										        <?php echo show_money($hp_product['deal_price']);?>₫
 										    </p>
 										    <div class="view-deal">
 										      <a href="<?php echo node_link('product', $hp_product);?>" class="btn-buy">Xem chi tiết</a>
@@ -100,8 +120,9 @@
 										            <p style="word-wrap: break-word;" class="deal-location should-truncate">
 										          		 <?php echo $product['counter']['buy'];?> đã mua</p>
 										            <p class="deal-price">
-										                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-										        	   <?php echo $product['deal_price'];?>₫
+										                <s class="original-price">
+										                <?php echo show_money($product['origin_price']);?>₫</s>
+										        	    <?php echo show_money($product['deal_price']);?>₫
 										            </p>
 										          </figcaption>
 										        </a>

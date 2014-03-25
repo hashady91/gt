@@ -12,7 +12,7 @@
 				<div id="content" class="module-body">
 					<div id="deal_content" class="three-col">
 						<div id="js-page-header" class="page_header">
-							<div data-bhw-path="BrowseHeader" data-bhw="BrowseHeader">
+							<div>
 								<h2 class="browse-title-heading">
 									<a  href="<?php echo category_link($row);?>">
 										<?php echo $row['name']?></a>
@@ -29,9 +29,26 @@
 								<figure class="featured-deal">
 									<div class="deal-tile" id="hero-tile">
 								      <a href="<?php echo node_link('product', $first);?>" class="hero-link">
-								        <img width="440" height="267" 
-								        	src="<?php echo STATIC_GT. $first['images'];?>" 
-								        		class="hero_deal_img ">
+								      <img src="<?php
+							                   echo STATIC_GT . $first['images'];
+							                   $url = STATIC_GT . $first['images'];
+							                   ?>"
+							                   <?php  /*Giup hien thi phan giua cua anh*/
+							                   /*(Filled image widget new|hot|vote)*/
+								               list($width, $height) = getimagesize($url);
+								               $heightFilledImage = 267;//height class filedImage img
+												$widthFilledImage = 440;
+								                
+								                //Get height (chieu dai thuc cua anh ty le
+								                // voi chieu dai cua khung chua anh)
+								                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+								                
+								                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+								                if($gap > 0){
+								                	echo "style = 'margin-top: -{$gap}px'";
+								                }
+								                ?>
+							                    width='100%' class="hero_deal_img ">
 								      </a>
 								    
 								      <figcaption>
@@ -53,8 +70,8 @@
 								        </div>
 								        <div class="row hero-tile-btns ">
 								          <p class="deal-price six columns">
-								            <s class="original-price"><?php echo $first['origin_price'];?>₫</s>
-								            <s class="discount-price"><?php echo $first['deal_price'];?>₫</s>
+								            <s class="original-price"><?php echo show_money($first['origin_price']);?>₫</s>
+								            <s class="discount-price"><?php echo show_money($first['deal_price']);?>₫</s>
 								          </p>
 								          <div class="view-deal six columns">
 								              <a href="<?php echo node_link('product', $first);?>" 
@@ -66,7 +83,8 @@
 								</figure>
 								<?php endif;?>
 								
-								<div id="browse-deals" class="block-grid browse-deals three-up" data-bhw-path="BrowseDeals" data-bhw="BrowseDeals">
+								<div id="browse-deals" 
+										class="block-grid browse-deals three-up" style='margin-top: 50px;'>
 									<?php if(count($products) > 1):?>
 										<?php $i = 0;?>
 										<?php foreach ($products as $product):?>
@@ -74,8 +92,26 @@
 												<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 												<figure class="deal-card deal-list-tile deal-tile deal-tile-standard">
 												    <a href="<?php echo node_link('product', $product);?>">
-												      <img width="300" height="182" 
-												      		src="<?php echo STATIC_GT . $product['images'];?>" class="">
+												    <img src="<?php
+									                   echo STATIC_GT . $product['images'];
+									                   $url = STATIC_GT . $product['images'];
+									                   ?>"
+									                   <?php  /*Giup hien thi phan giua cua anh*/
+									                   /*(Filled image widget new|hot|vote)*/
+										               list($width, $height) = getimagesize($url);
+										               $heightFilledImage = 182;//height class filedImage img
+														$widthFilledImage = 300;
+										                
+										                //Get height (chieu dai thuc cua anh ty le
+										                // voi chieu dai cua khung chua anh)
+										                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+										                
+										                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+										                if($gap > 0){
+										                	echo "style = 'margin-top: -{$gap}px'";
+										                }
+										                ?>
+									                    width='100%' class="hero_deal_img ">
 												      <figcaption>
 												        <div class="deal-tile-content">
 												          <p style="word-wrap: break-word;" class="deal-title should-truncate">
@@ -92,8 +128,8 @@
 												        </div>
 												        <div class="purchase-info clearfix ">
 												          <p class="deal-price">
-												            <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-												            <s class="discount-price"><?php echo $product['deal_price'];?>₫</s>
+												            <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+												            <s class="discount-price"><?php echo show_money($product['deal_price']);?>₫</s>
 												          </p>
 												          <p class="view-deal hide">
 												              <button class="btn-buy btn-small">Xem chi tiết</button>
