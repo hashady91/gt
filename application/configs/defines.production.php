@@ -4,6 +4,7 @@
  */
 //define('POST_PAGE_SIZE', 30);
 define('SITE_URL', 'http://giasomot.vn');
+define('SITE_NAME', 'Gía Số Một');
 //define('SITE_URL', 'http://www.oakq.com');
 define('SAND_ASSETS_CDN', 'http://sandassets.fcabal.net/');
 define('ASSETS_CDN', 'http://assets.giasomot.vn/');
