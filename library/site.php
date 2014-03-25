@@ -1,4 +1,11 @@
 <?
+function show_money($money)
+{
+	if($money > 100000000)
+		return number_format($money, 0);
+	else 
+		return number_format($money, 1);
+}
 function node_link($type, $node)
 {
     return "/{$type}/view?id={$node['id']}";

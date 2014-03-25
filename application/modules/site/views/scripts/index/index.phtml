@@ -35,7 +35,26 @@
       <div id="featured">
         <figure class="hero-deal">
 		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
-		    <img src="<?php echo STATIC_GT . $hp_product['images'];?>" width='100%'>
+              <img src="<?php
+                   echo STATIC_GT . $hp_product['images'];
+                   $url = STATIC_GT . $hp_product['images'];
+                   ?>"
+                   <?php  /*Giup hien thi phan giua cua anh*/
+                   /*(Filled image widget new|hot|vote)*/
+	               list($width, $height) = getimagesize($url);
+	               $heightFilledImage = 422;//height class filedImage img
+					$widthFilledImage = 702;
+	                
+	                //Get height (chieu dai thuc cua anh ty le
+	                // voi chieu dai cua khung chua anh)
+	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+	                
+	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+	                if($gap > 0){
+	                	echo "style = 'margin-top: -{$gap}px'";
+	                }
+	                ?>
+                    width='100%'>
 		  </a>
 		  <figcaption>
 		    <h2>
@@ -81,7 +100,26 @@
 	  
 	  <?php $first = $style1_products[0];?>
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
-	    <img src=<?php echo STATIC_GT . $first['images'];?> width='100%'>
+	    <img src="<?php
+                   echo STATIC_GT . $first['images'];
+                   $url = STATIC_GT . $first['images'];
+                   ?>"
+                   <?php  /*Giup hien thi phan giua cua anh*/
+                   /*(Filled image widget new|hot|vote)*/
+	               list($width, $height) = getimagesize($url);
+	               $heightFilledImage = 317;//height class filedImage img
+					$widthFilledImage = 462;
+	                
+	                //Get height (chieu dai thuc cua anh ty le
+	                // voi chieu dai cua khung chua anh)
+	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+	                
+	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+	                if($gap > 0){
+	                	echo "style = 'margin-top: -{$gap}px'";
+	                }
+	                ?>
+                    width='100%'>
 	  </a>
 	  
 	  <div class="six columns deals">
@@ -100,8 +138,8 @@
 				            	<?php echo $product['name'];?></p>
 				          </a>
 				          <p class="deal-price">
-				            <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-				            	 <?php echo $product['deal_price'];?>₫
+				            <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+				            	 <?php echo show_money($product['deal_price']);?>₫
 				          </p>
 				            <p style="word-wrap: break-word;" class="deal-location should-truncate">
 				            <?php echo $product['category']['name'];?></p>
@@ -142,8 +180,8 @@
 			        	class="deal-location should-truncate"><?php echo $product['counter']['buy'];?> đã mua</p>
 			        	
 		  	        <p class="deal-price">
-						<s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-						<?php echo $product['deal_price'];?>₫
+						<s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+						<?php echo show_money($product['deal_price']);?>₫
 		            </p>
 		          </figcaption>
 		        </a>
@@ -184,8 +222,8 @@
 					    <p style="word-wrap: break-word;" class="deal-location should-truncate">
 					    	<?php echo $product['counter']['buy'];?> đã mua</p>
 				        <p class="deal-price">
-			                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-					        <?php echo $product['deal_price'];?>₫
+			                <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+					        <?php echo show_money($product['deal_price']);?>₫
 			            </p>
 			          </figcaption>
 			        </a>
@@ -210,7 +248,27 @@
 	  </div>
 	   <?php $first = $style2_products[0];?>
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
-	    <img src="<?php echo STATIC_GT . $first['images'];?>" width='100%'>
+	    <img src="<?php
+                   echo STATIC_GT . $first['images'];
+                   $url = STATIC_GT . $first['images'];
+                   ?>"
+                   <?php  /*Giup hien thi phan giua cua anh*/
+                   /*(Filled image widget new|hot|vote)*/
+	               list($width, $height) = getimagesize($url);
+	               $heightFilledImage = 317;//height class filedImage img
+					$widthFilledImage = 462;
+	                
+	                //Get height (chieu dai thuc cua anh ty le
+	                // voi chieu dai cua khung chua anh)
+	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+	                
+	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+	                if($gap > 0){
+	                	echo "style = 'margin-top: -{$gap}px'";
+	                }
+	                ?>
+                    width='100%'>
+	    
 	  </a>
 	  <div class="six columns deals">
 	     <?php if(count($style2_products) > 0):?>
@@ -228,7 +286,7 @@
 				            	<?php echo $product['name'];?></p>
 				          </a>
 				          <p class="deal-price">
-				            <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
+				            <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
 				            	 <?php echo $product['deal_price'];?>₫
 				          </p>
 				            <p style="word-wrap: break-word;" class="deal-location should-truncate">
@@ -264,7 +322,26 @@
 			  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
-			          <img src="<?php echo STATIC_GT . $product['images'];?>">
+			          <img src="<?php
+		                   echo STATIC_GT . $product['images'];
+		                   $url = STATIC_GT . $product['images'];
+		                   ?>"
+		                   <?php  /*Giup hien thi phan giua cua anh*/
+		                   /*(Filled image widget new|hot|vote)*/
+			               list($width, $height) = getimagesize($url);
+			               $heightFilledImage = 134;//height class filedImage img
+							$widthFilledImage = 222;
+			                
+			                //Get height (chieu dai thuc cua anh ty le
+			                // voi chieu dai cua khung chua anh)
+			                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+			                
+			                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+			                if($gap > 0){
+			                	echo "style = 'margin-top: -{$gap}px'";
+			                }
+			                ?>
+		                    width='100%'>
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>
@@ -273,8 +350,8 @@
 			            <p style="word-wrap: break-word;" class="deal-location should-truncate">
 			          		 <?php echo $product['counter']['buy'];?> đã mua</p>
 			            <p class="deal-price">
-			                <s class="original-price"><?php echo $product['origin_price'];?>₫</s>
-			        	   <?php echo $product['deal_price'];?>₫
+			                <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+			        	   <?php echo show_money($product['deal_price']);?>₫
 			            </p>
 			          </figcaption>
 			        </a>
