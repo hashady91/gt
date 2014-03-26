@@ -288,7 +288,9 @@ class Dao_Node_Category extends Cl_Dao_Node
 	}
 	
 	public function getCategoryLevelOne(){
-		$where = array('level' => 1);
+		$where = array('level' => 1,
+					   'status' => 'approved'
+		);
 		$cond['where'] = $where;
 		$r = $this->findAll($cond);
 		
