@@ -9,7 +9,7 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
     
     public function getLevel()
     {
-    	$ret = array('1' => 'Level 1', '2' => 'Level 2');
+    	$ret = array(1 => 'Level 1', 2 => 'Level 2');
     	return array('success' =>true, 'result' => $ret);
     }
     

@@ -40,26 +40,31 @@
         	</thead>
         	<tbody>
         		<?php foreach($this->list as $row) :?>
+        		<?php $row['level'] = isset($row['level']) ? $row['level'] : 1;?>
         		<tr id="<?php echo $row['id'];?>">
         			<td><input type="checkbox" value="<?php echo $row['id'];?>" class="check-item" /></td>
         			<td><a href="<?php echo node_link('category',$row);?>"><?php echo $row['name'];?></a></td>
         			<td>
                         <div class="btn-group">
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&level=1&_cl_step=is_level"
-        			    	class="btn btn-primary btn-xs <?php if($row['level']==1) echo 'active';?> cl_ajax" 
+        			    	class="btn <?php if($row['level']==1):?>btn-primary<?php else: ?>btn-default<?php endif;?> btn-xs cl_ajax" 
         			    	_cl_get_metadata="active_button_group"> Make Level 1 </a>
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&level=2&_cl_step=is_level"
-        			    	class="btn btn-primary btn-xs <?php if(!isset($row['level']) || $row['level']== 2) echo 'active';?> cl_ajax" 
+        			    	class="btn btn-xs <?php if($row['level']== 2):?>btn-primary<?php else: ?>btn-default<?php endif;?>	 cl_ajax" 
         			    	_cl_get_metadata="active_button_group"> UnLevel 1</a>
         			    </div> 
         			</td>
         			<td>
+        			<?php
+        				$row['status'] = isset($row['status']) ? $row['status'] : 'queued';
+        			?>
                         <div class="btn-group">
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
-        			    	class="btn btn-primary btn-xs <?php if($row['status']=='queued') echo 'active';?> cl_ajax" 
+        			    	class="btn btn-xs <?php if($row['status']=='queued'):?> btn-primary <?php else:?> btn-default <?php endif;?> cl_ajax" 
         			    	_cl_get_metadata="active_button_group"> Queued </a>
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&status=approved&_cl_step=status"
-        			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax" _cl_get_metadata="active_button_group"> Approved</a>
+        			    	class="btn btn-xs <?php if($row['status']=='approved'):?> btn-primary <?php else:?> btn-default <?php endif;?> cl_ajax"
+        			    		 _cl_get_metadata="active_button_group"> Approved</a>
         			    </div> 
         			</td>
         			

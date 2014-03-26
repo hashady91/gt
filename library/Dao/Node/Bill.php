@@ -60,16 +60,12 @@ class Dao_Node_Bill extends Cl_Dao_Node
      */
 	public function beforeInsertNode($data)
 	{
-		f($data);
-		v($data);
 		//get product base on model
         return array('success' => true, 'result' => $data);
 	}
 	
 	public function afterInsertNode($data, $row)
 	{
-		f($data);
-		v($data);
         return array('success'=> true, 'result' => $row);
 	}
 	
