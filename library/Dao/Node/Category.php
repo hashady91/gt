@@ -97,9 +97,10 @@ class Dao_Node_Category extends Cl_Dao_Node
     		$data['$set']['level'] = (int)$data['$set']['level'];
     	}
     	
-    	/*if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$data['$set']['level'] = 2;
-    	}else{
+    	}
+    	/*else{
     		$data['$set']['level'] = 1;
     	}*/
     	
