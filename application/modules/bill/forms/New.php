@@ -5,7 +5,7 @@ class Bill_Form_New extends Cl_Form
 	{
 		parent::init();
 		$this->fieldList = array('uname', 'umail', 'uage', 'uadress', 'ucity', 'status', 'uphone', 
-				'note', 'pmodel', 'pserialNumber',
+				'note', 'product.model', 'product.serialNumber', 'product.id', 'product.iid'
 		);
 		$this->setCbHelper('Bill_Form_Helper');
 		
@@ -76,6 +76,12 @@ class Bill_Form_New extends Cl_Form
 		        			'placeholder' => 'Ghi số điện thoại để tiện liên lạc'
        				),
        		),
+        	'product.id' => array(
+        			'type' => 'Hidden',
+        	),
+        	'product.iid' => array(
+        			'type' => 'Hidden',
+       		),
         	'note' => array(
         		'type' => 'Textarea',
         		'options' => array(
@@ -98,7 +104,7 @@ class Bill_Form_New extends Cl_Form
             		),
             		'multiOptionsCallback' => array('getStatus')
             ),
-        	'pmodel' => array(
+        	'product.model' => array(
         			'type' => 'Text',
        				'options' => array(
        						'label' => "Model sản phẩm",
@@ -107,7 +113,7 @@ class Bill_Form_New extends Cl_Form
        						'validators' => array('NotEmpty'),
        				),
        		),
-        	'pserialNumber' => array(
+        	'product.serialNumber' => array(
         			'type' => 'Text',
        					'options' => array(
        						'label' => "SerialNumber Sản phẩm",

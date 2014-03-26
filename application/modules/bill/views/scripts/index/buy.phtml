@@ -99,6 +99,10 @@
                      <?php echo $form->ucity;?>
                     </div>
                     
+                    <div>
+                     <?php echo $form->uphone;?>
+                    </div>
+                    
                   </div>
               
                   <div class="six columns">
@@ -107,12 +111,18 @@
                     </div>
               
                     <div>
-                     <?php echo $form->pmodel;?>
+                     <?php echo $form->product__model;?>
                     </div>
               
                     <div>
-                     <?php echo $form->pserialNumber;?>
+                     <?php echo $form->product__serialNumber;?>
                     </div>
+                    
+                    <div>
+                     <?php echo $form->status;?>
+                    </div>
+                    <input id="product__iid" type="hidden" value="<?php echo $product['iid'];?>" name="product__iid">
+                    <input id="product__id" type="hidden" value="<?php echo $product['id'];?>" name="product__id">
                   </div>
                 </div>
               </div>
@@ -120,8 +130,11 @@
           </div>
 
           <div class="row complete-order-container">
+          <?php echo $this->form->_cl_submit;?>
+          <?php /*
             <input type="submit" value="Đồng ý" id="complete-order"
              class="btn four">
+          */?>
           </div>
         </div>
       </section>
