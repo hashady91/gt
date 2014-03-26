@@ -56,7 +56,7 @@ class Dao_Node_Category extends Cl_Dao_Node
 				 "top" => 'int',
 				 "column" => 'int',
 				 "sort_order" =>'int',
-				 "status" => 'int',
+				 "status" => 'string',
 				 "date_added" => 'float',
 				 "date_modified" => 'float',
         		 "child_category" => array(
@@ -96,11 +96,12 @@ class Dao_Node_Category extends Cl_Dao_Node
     	if($data['$set']['_cl_step'] == 'is_level'){
     		$data['$set']['level'] = (int)$data['$set']['level'];
     	}
-    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+    	
+    	/*if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$data['$set']['level'] = 2;
     	}else{
     		$data['$set']['level'] = 1;
-    	}
+    	}*/
     	
         /*
          * You have $data['$set']['_cl_step'] and $data['$set']['_u'] available
@@ -110,7 +111,6 @@ class Dao_Node_Category extends Cl_Dao_Node
     
 	public function afterUpdateNode($where, $data, $currentRow)
     {
-    	v($data['$set']['level']);
     	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$id = $data['$set']['parent_category'];
     		$where = array('id' => $id);
