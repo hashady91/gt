@@ -43,7 +43,9 @@
         		<?php $row['level'] = isset($row['level']) ? $row['level'] : 1;?>
         		<tr id="<?php echo $row['id'];?>">
         			<td><input type="checkbox" value="<?php echo $row['id'];?>" class="check-item" /></td>
-        			<td><a href="<?php echo node_link('category',$row);?>"><?php echo $row['name'];?></a></td>
+        			<td><a href="<?php echo node_link('category',$row);?>"><?php echo $row['name'];?></a>
+        				(<?php echo $row['iid'];?>)
+        			</td>
         			<td>
                         <div class="btn-group">
         			    	<a href="/category/update?id=<?php echo $row['id'];?>&level=1&_cl_step=is_level"
