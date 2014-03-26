@@ -52,5 +52,14 @@ class Term_IndexController extends Cl_Controller_Action_NodeIndex
     	Bootstrap::$pageTitle = 'Câu hỏi thường gặp';
     }
     
+    public function privacyAction()
+    {
+    	Bootstrap::$pageTitle = 'Bảo vệ quyền riêng tư';
+    }
+    
+    public function termsAction()
+    {
+    	Bootstrap::$pageTitle = 'Điều khoản sử dụng';
+    }
 }
 
