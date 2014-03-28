@@ -187,13 +187,13 @@ CL.NID = "<?php echo $row['id']; ?>";
 			  <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
 			          <img src="<?php
-			            $checkImage =  @getimagesize(STATIC_GT . $product['images']);
-			            if(is_array($checkImage)){
+				          $file_header = @get_headers(STATIC_GT . $product['images']);
+				          if($file_header[0] == 'HTTP/1.1 404 Not Found'){
+				          	echo default_avatar('product');
+				          }else{
 				          	echo STATIC_GT . $product['images'];
-						}else{
-							echo default_avatar('product');
-						}
-			          	?>">
+				          }
+				          ?>">
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>

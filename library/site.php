@@ -1,4 +1,12 @@
 <?
+function url_exists($url) {
+	$hdrs = @get_headers($url);
+
+	//echo @$hdrs[1]."\n";
+
+	return is_array($hdrs) ? preg_match('/^HTTP\\/\\d+\\.\\d+\\s+2\\d\\d\\s+.*$/',$hdrs[0]) : false;
+}
+
 function show_money($money)
 {
 	if($money > 100000000)

@@ -36,23 +36,29 @@
         <figure class="hero-deal">
 		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
               <img src="<?php
-                   echo STATIC_GT . $hp_product['images'];
-                   $url = STATIC_GT . $hp_product['images'];
+ 				  $url = STATIC_GT . $hp_product['images'];
+	              $file_header = @get_headers(STATIC_GT . $hp_product['images']);
+	              if(!url_exists($url)){
+	              	$url = default_avatar('product');
+	              }
+	              	echo $url;
                    ?>"
                    <?php  /*Giup hien thi phan giua cua anh*/
                    /*(Filled image widget new|hot|vote)*/
-	               list($width, $height) = getimagesize($url);
-	               $heightFilledImage = 422;//height class filedImage img
-					$widthFilledImage = 702;
-	                
-	                //Get height (chieu dai thuc cua anh ty le
-	                // voi chieu dai cua khung chua anh)
-	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
-	                
-	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
-	                if($gap > 0){
-	                	echo "style = 'margin-top: -{$gap}px'";
-	                }
+                   if(url_exists($url)){
+		               list($width, $height) = getimagesize($url);
+		               $heightFilledImage = 422;//height class filedImage img
+					   $widthFilledImage = 702;
+		                
+		                //Get height (chieu dai thuc cua anh ty le
+		                // voi chieu dai cua khung chua anh)
+		                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+		                
+		                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+		                if($gap > 0){
+		                	echo "style = 'margin-top: -{$gap}px'";
+		                }
+					}
 	                ?>
                     width='100%'>
 		  </a>
@@ -101,8 +107,12 @@
 	  <?php $first = $style1_products[0];?>
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
 	    <img src="<?php
-                   echo STATIC_GT . $first['images'];
-                   $url = STATIC_GT . $first['images'];
+				 $url = STATIC_GT . $first['images'];
+	              $file_header = @get_headers(STATIC_GT . $first['images']);
+	              if(!url_exists($url)){
+	              	$url = default_avatar('product');
+	              }
+	              echo $url;
                    ?>"
                    <?php  /*Giup hien thi phan giua cua anh*/
                    /*(Filled image widget new|hot|vote)*/
@@ -250,8 +260,13 @@
 	   <?php $first = $style2_products[0];?>
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
 	    <img src="<?php
-                   echo STATIC_GT . $first['images'];
-                   $url = STATIC_GT . $first['images'];
+ 				  $url = STATIC_GT . $first['images'];
+	              $file_header = @get_headers(STATIC_GT . $first['images']);
+	              if(!url_exists($url)){
+	              	$url = default_avatar('product');
+	              }
+	              
+	              echo $url;
                    ?>"
                    <?php  /*Giup hien thi phan giua cua anh*/
                    /*(Filled image widget new|hot|vote)*/
@@ -324,8 +339,12 @@
 			      <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
 			          <img src="<?php
-		                   echo STATIC_GT . $product['images'];
-		                   $url = STATIC_GT . $product['images'];
+		 				  $url = STATIC_GT . $first['images'];
+			              $file_header = @get_headers(STATIC_GT . $first['images']);
+			              if(!url_exists($url)){
+			              	$url = default_avatar('product');
+			              }
+			              echo $url;
 		                   ?>"
 		                   <?php  /*Giup hien thi phan giua cua anh*/
 		                   /*(Filled image widget new|hot|vote)*/
