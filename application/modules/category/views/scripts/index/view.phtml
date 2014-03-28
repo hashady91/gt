@@ -31,7 +31,6 @@
 								      <a href="<?php echo node_link('product', $first);?>" class="hero-link">
 								      <img src="<?php
 										      $url = STATIC_GT . $first['images'];
-								              $file_header = @get_headers(STATIC_GT . $first['images']);
 								              if(!url_exists($url)){
 								              	$url = default_avatar('product');
 								              }
@@ -100,8 +99,7 @@
 												<figure class="deal-card deal-list-tile deal-tile deal-tile-standard">
 												    <a href="<?php echo node_link('product', $product);?>">
 												    <img src="<?php
-		 											  $url = STATIC_GT . $hp_product['images'];
-										              $file_header = @get_headers(STATIC_GT . $hp_product['images']);
+		 											  $url = STATIC_GT . $product['images'];
 										              if(!url_exists($url)){
 										              	$url = default_avatar('product');
 										              }

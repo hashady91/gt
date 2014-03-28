@@ -37,7 +37,6 @@
 		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
               <img src="<?php
  				  $url = STATIC_GT . $hp_product['images'];
-	              $file_header = @get_headers(STATIC_GT . $hp_product['images']);
 	              if(!url_exists($url)){
 	              	$url = default_avatar('product');
 	              }
@@ -108,7 +107,6 @@
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
 	    <img src="<?php
 				 $url = STATIC_GT . $first['images'];
-	              $file_header = @get_headers(STATIC_GT . $first['images']);
 	              if(!url_exists($url)){
 	              	$url = default_avatar('product');
 	              }
@@ -261,7 +259,6 @@
 	  <a class="six columns theme-image" href="<?php echo node_link('product', $first);?>">
 	    <img src="<?php
  				  $url = STATIC_GT . $first['images'];
-	              $file_header = @get_headers(STATIC_GT . $first['images']);
 	              if(!url_exists($url)){
 	              	$url = default_avatar('product');
 	              }
@@ -339,8 +336,7 @@
 			      <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
 			          <img src="<?php
-		 				  $url = STATIC_GT . $first['images'];
-			              $file_header = @get_headers(STATIC_GT . $first['images']);
+		 				  $url = STATIC_GT . $product['images'];
 			              if(!url_exists($url)){
 			              	$url = default_avatar('product');
 			              }

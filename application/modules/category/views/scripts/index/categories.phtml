@@ -45,7 +45,6 @@
 										  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
 										   <img src="<?php
 											  $url = STATIC_GT . $hp_product['images'];
-								              $file_header = @get_headers(STATIC_GT . $hp_product['images']);
 								              if(!url_exists($url)){
 								              	$url = default_avatar('product');
 								              }
