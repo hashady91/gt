@@ -32,6 +32,7 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
     	$productIid = $this->getStrippedParam('iid');
     	$where = array('iid'=>$productIid);
     	$r = Dao_Node_Product::getInstance()->findOne($where);
+    	$lu = Zend_Registry::get('user');
     	if($r['success']){
     		$product = $r['result'];
     	}else 
@@ -40,6 +41,16 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
     	//TODO: populate value to form
     	$this->setViewParam('product', $product);
     	
+    	$form = new Bill_Form_New();
+    	//TODO:: populate product'fields into form
+    	$data = array(
+    			'uname' => $lu['name'],
+    	);
+    	 
+    	$r = $form->build($data);
+    	 
+    	//$conditions = $form->buildSearchConditions();
+    	 
     	$this->genericNew("Bill_Form_New", "Dao_Node_Bill", "Node");
     	
     	if(isset($this->ajaxData)) {

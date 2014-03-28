@@ -70,6 +70,21 @@ class User_IndexController extends Cl_Controller_Action_UserIndex
 	
 	public function cartsAction(){
 		//TODO: Lay ra danh sach cac don hang cua nguoi dung
+		if(is_guest()){
+			//TODO:: redirect login
+		}else{
+			$lu = Zend_Registry::get('user');
+			$where = array('umail' => $lu['mail']);
+
+			$cond['where'] = $where;
+			$r = Dao_Node_Bill::getInstance()->findAll($cond);
+			if($r['success'] && count($r['total'])){
+				$this->setViewParam('list', $r['result']);
+			}else{
+				$this->setViewParam('list', array());
+			}
+		}
+		
 		Bootstrap::$pageTitle = 'Đơn hàng của bạn';
 	}
 	

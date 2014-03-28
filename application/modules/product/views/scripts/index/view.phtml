@@ -23,6 +23,7 @@ CL.NID = "<?php echo $row['id']; ?>";
               </h2>
             
               <h3 class="deal-subtitle">
+              	  <?php $row['location'] = isset($row['location']) ? $row['location'] : '';?>
                   <?php echo $row['location'];?>
               </h3>
           <div class="row deal-container ">
@@ -30,10 +31,9 @@ CL.NID = "<?php echo $row['id']; ?>";
                  <div class="buy ">
                 	<span class="price-label">Giá</span>
 			    	<span class="price" style='font-size: 20px;'>
-			    		<?php if(isset($row['deal_price']))
-                                  echo show_money($$row['deal_price']);
-                              else
-                                  echo show_money($row['origin_price']);
+			    		<?php $row['deal_price'] = isset($row['deal_price']) ? $row['deal_price'] : $row['origin_price'];?>
+			    		<?php 
+                                  echo show_money(	$row['deal_price']);
                          ?> ₫
 			    	</span>
 			         <a class="btn-buy-big btn-multi-deal show-multi-option-modal" 
@@ -118,23 +118,27 @@ CL.NID = "<?php echo $row['id']; ?>";
 	                <div class="gallery-single">
 				    <div class="gallery-featured" style="height: 420px;">
 				   	    <img src="<?php
-		                   echo STATIC_GT . $row['images'];
 		                   $url = STATIC_GT . $row['images'];
+		                   if(!url_exists($url)){
+		                   	$url = default_avatar('product');
+		                   }
 		                   ?>"
 		                   <?php  /*Giup hien thi phan giua cua anh*/
 		                   /*(Filled image widget new|hot|vote)*/
-			               list($width, $height) = getimagesize($url);
-			               $heightFilledImage = 422;//height class filedImage img
-							$widthFilledImage = 702;
-			                
-			                //Get height (chieu dai thuc cua anh ty le
-			                // voi chieu dai cua khung chua anh)
-			                $heightFilledImageNew = $widthFilledImage * $height/ $width;
-			                
-			                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
-			                if($gap > 0){
-			                	echo "style = 'margin-top: -{$gap}px'";
-			                }
+		                   if(url_exists($url)){
+				               list($width, $height) = getimagesize($url);
+				               $heightFilledImage = 422;//height class filedImage img
+								$widthFilledImage = 702;
+				                
+				                //Get height (chieu dai thuc cua anh ty le
+				                // voi chieu dai cua khung chua anh)
+				                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+				                
+				                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+				                if($gap > 0){
+				                	echo "style = 'margin-top: -{$gap}px'";
+				                }
+						   }
 			                ?>
 		                    width='100%' id="featured-image">
 				    </div>

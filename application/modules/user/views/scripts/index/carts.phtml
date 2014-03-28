@@ -1,6 +1,7 @@
 <?php
 $lu = $this->row;
 $step = get_value('_cl_step', '');
+$list = $this->list;
 ?>
 
 <section class="main row">
@@ -32,8 +33,63 @@ $step = get_value('_cl_step', '');
 		  <div class="twelve columns">
 		    <section class="module" id="divisions">
 		      <div class="module-body">
-		        <!-- end my_account_subdescription -->
-				Giỏ hàng của bạn:
+			      <div id="deal_content" class="three-col">
+      				<?php if(count($list) > 0):?>
+			      	<div style='margin-top: 66px;'></div>
+			      	<div id="deal-space" class="twelve columns deal-space deal-tile-grid-view">
+			      		<div class="content">
+			      			<div id="browse-deals" class="block-grid browse-deals three-up">
+				      				<?php foreach ($list as $bill):?>
+				      					<?php $product = $bill['product'];?>
+								  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+								      <figure class="deal-card">
+								        <a href="<?php echo node_link('product', $product);?>">
+								          <img src="<?php
+							 				  $url = STATIC_GT . $product['images'];
+								              if(!url_exists($url)){
+								              	$url = default_avatar('product');
+								              }
+								              echo $url;
+							                   ?>"
+							                   <?php  /*Giup hien thi phan giua cua anh*/
+							                   /*(Filled image widget new|hot|vote)*/
+								               list($width, $height) = getimagesize($url);
+								               $heightFilledImage = 134;//height class filedImage img
+												$widthFilledImage = 222;
+								                
+								                //Get height (chieu dai thuc cua anh ty le
+								                // voi chieu dai cua khung chua anh)
+								                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+								                
+								                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+								                if($gap > 0){
+								                	echo "style = 'margin-top: -{$gap}px'";
+								                }
+								                ?>
+							                    width='100%'>
+								          <figcaption>
+								            <p style="word-wrap: break-word;" class="deal-title should-truncate">
+								            	<?php echo $product['name'];?></p>
+								            <p style="word-wrap: break-word;" class="merchant-name should-truncate">
+								       		     <?php echo $product['category']['name'];?></p>
+								            <p style="word-wrap: break-word;" class="deal-location should-truncate">
+								          		 <?php echo $product['counter']['buy'];?> đã mua</p>
+								            <p class="deal-price">
+								                <s class="original-price"><?php echo show_money($product['origin_price']);?>₫</s>
+								        	   <?php echo show_money($product['deal_price']);?>₫
+								            </p>
+								          </figcaption>
+								        </a>
+								      </figure>
+								      <?php endforeach;?>
+			      			</div>
+			      		</div>
+			      	</div>
+			      	<?php else:?>
+			      	    <h1>Bạn chưa có sản phẩm nào trong giỏ hàng</h1>
+			      	    <div style='min-height: 300px;'> </div>
+			        <?php endif;?>
+			      </div>
 		      </div>
 		    </section>
 		  </div>
