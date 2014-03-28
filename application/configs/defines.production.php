@@ -6,13 +6,13 @@
 define('SITE_URL', 'http://giasomot.vn');
 define('SITE_NAME', 'Gía Số Một');
 //define('SITE_URL', 'http://www.oakq.com');
-define('SAND_ASSETS_CDN', 'http://sandassets.fcabal.net/');
+define('SAND_ASSETS_CDN', 'http://sandassets.giasomot.vn/');
 define('ASSETS_CDN', 'http://assets.giasomot.vn/');
-define('STATIC_GT', 'http://assets.giasomot.vn/ufiles/');
+define('STATIC_GT', 'http://static.giasomot.vn/');
 
-define('NOREPLY_EMAIL', 'noreply@fcabal.net');
+define('NOREPLY_EMAIL', 'noreply@giasomot.vn');
 define('DOMAIN', 'giasomot.vn');
-define('CONTACT_EMAIL', 'contact@demo.com');
+define('CONTACT_EMAIL', 'contact@giasomot.vn');
 define('USE_AMAZON_SES', false); // true => send mail with amazon SES
 define('FILES_UPLOAD_PATH', realpath(APPLICATION_PATH . "/../") . "/hidden/");
 define('JSVERSION', '1340447153');
