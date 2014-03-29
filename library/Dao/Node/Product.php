@@ -53,7 +53,8 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'counter' => array(
     	                'saled' => 'int', // so luong hang ban duoc
     	                'viewed' => 'int', //so luot ghe tham san pham
-    	                'instock' => 'int' //so luong hang ton kho
+    	                'instock' => 'int', //so luong hang ton kho
+    	        		'queued' => 'int', //so luong hang da dat
     	        ),
     	        'saledate_start' => 'int',
     	        'saledate_end' => 'int',

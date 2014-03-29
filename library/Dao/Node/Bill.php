@@ -30,7 +30,8 @@ class Dao_Node_Bill extends Cl_Dao_Node
     		'counter' => array(
     	    	'saled' => 'int', // so luong hang ban duoc
     	        'viewed' => 'int', //so luot ghe tham san pham
-    	        'instock' => 'int' //so luong hang ton kho
+    	        'instock' => 'int', //so luong hang ton kho
+				'queued' => 'int', //so luong hang da dat    	        			
     	    ),
     		'deal_price' => 'float',
     		'origin_price' => 'float',
@@ -62,10 +63,14 @@ class Dao_Node_Bill extends Cl_Dao_Node
 	{
 		//get product base on model
 		$product_id = $data['product']['id'];
-		$r = Dao_Node_Product::getInstance()->findOne(array('id'=>$product_id));
+		$where = array('id'=>$product_id);
+		$r = Dao_Node_Product::getInstance()->findOne($where);
 		if($r['success']){
 			$product = $r['result'];
 			$data['product'] = $product;
+			$update = array('$inc' => array('counter.queued' => 1));
+			
+			$r = Dao_Node_Product::getInstance()->update($where, $update);
 		}
 		
         return array('success' => true, 'result' => $data);

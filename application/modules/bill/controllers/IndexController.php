@@ -113,6 +113,35 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
         Bootstrap::$pageTitle = t("search_bill",1);        
     }
     
+    public function searchCartsAction()
+    {
+    	assure_perm('sudo');
+    	$status = get_value('status','queued');
+    	$form = new Bill_Form_Search();
+    	 
+    	$data = array(
+    			'status' => array('$in' => $status),
+    	);
+    	 
+    	$form->build($data);
+    	
+    	$conditions = $form->buildSearchConditions();
+    	$conditions['total'] = 1;
+    	 
+    	$dao = Dao_Node_Bill::getInstance();
+    	$r = $dao->findNode($conditions, true);
+    	if($r['success'] && $r['total'] > 0){
+    		$products = $r['result'];
+    	}else{
+    		$products = array();
+    	}
+    	
+    	$this->setViewParam('status', $status);
+    	$this->setViewParam('list', $products);
+    	
+    	Bootstrap::$pageTitle = 'Quản lý sản phẩm';
+    }
+    
     public function searchCommentAction()
     {
         assure_perm("search_bill");//by default
