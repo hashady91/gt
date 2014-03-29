@@ -5,7 +5,7 @@ class Bill_Form_New extends Cl_Form
 	{
 		parent::init();
 		$this->fieldList = array('uname', 'umail', 'uage', 'uadress', 'ucity', 'status', 'uphone', 
-				'note', 'product.model', 'product.serialNumber', 'product.id', 'product.iid'
+				'note', 'product.id', 'product.iid'
 		);
 		$this->setCbHelper('Bill_Form_Helper');
 		

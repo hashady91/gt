@@ -26,7 +26,7 @@ class Dao_Node_Bill extends Cl_Dao_Node
     		'name' => 'string',
     		'iid' => 'int',
     		'id' => 'string',
-    		'image' => 'string',
+    		'images' => 'string',
     		'counter' => array(
     	    	'saled' => 'int', // so luong hang ban duoc
     	        'viewed' => 'int', //so luot ghe tham san pham
@@ -41,7 +41,7 @@ class Dao_Node_Bill extends Cl_Dao_Node
     	return array(
     		'collectionName' => 'bill',
         	'documentSchemaArray' => array(
-        		'status' => 'int', // 1 => đợi thanh toán, 2 => đã thanh toán, 3 => hủy thanh toán
+        		'status' => 'string', // queued => đợi thanh toán, buy => đã thanh toán, cancel=> hủy thanh toán
 				'uname' => 'string',
         		'umail' => 'string',
         		'uaddress' => 'string',
@@ -61,6 +61,13 @@ class Dao_Node_Bill extends Cl_Dao_Node
 	public function beforeInsertNode($data)
 	{
 		//get product base on model
+		$product_id = $data['product']['id'];
+		$r = Dao_Node_Product::getInstance()->findOne(array('id'=>$product_id));
+		if($r['success']){
+			$product = $r['result'];
+			$data['product'] = $product;
+		}
+		
         return array('success' => true, 'result' => $data);
 	}
 	

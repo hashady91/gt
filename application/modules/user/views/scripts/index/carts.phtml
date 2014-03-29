@@ -1,6 +1,5 @@
 <?php
 $lu = $this->row;
-$step = get_value('_cl_step', '');
 $list = $this->list;
 ?>
 
@@ -13,16 +12,16 @@ $list = $this->list;
         <div class="row">
           <div class="tabs-container">
             <ul  class="tabs">
-              <li <?php if($step == 'account'):?>class="active"<?php endif;?>>
+              <li>
               		<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=account">
               			Sửa thông tin</a></li>
-              <li <?php if($step == 'change_pass'):?>class="active"<?php endif;?>>
+              <li>
               	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=change_pass">
               	 		Đổi mật khẩu</a></li>
-              <li <?php if($step == 'adress'):?>class="active"<?php endif;?>>
+              <li>
               	 	<a href="/user/update?id=<?php echo $lu['id'];?>&_cl_step=adress">
               	 		Địa chỉ</a></li>
-             <li >
+             <li class='active'>
               		<a href="/user/carts">Giỏ hàng</a></li>
             </ul>
           </div>

@@ -95,7 +95,10 @@
                      <?php echo $form->uage;?>
                     </div>
                     
-                    <div>
+                  </div>
+              
+                  <div class="six columns">
+                   <div>
                      <?php echo $form->ucity;?>
                     </div>
                     
@@ -103,26 +106,24 @@
                      <?php echo $form->uphone;?>
                     </div>
                     
-                  </div>
-              
-                  <div class="six columns">
                     <div>
                      <?php echo $form->note;?>
                     </div>
               
                     <div>
-                     <?php echo $form->product__model;?>
+                     <?php //echo $form->product__model;?>
                     </div>
               
                     <div>
-                     <?php echo $form->product__serialNumber;?>
+                     <?php //echo $form->product__serialNumber;?>
                     </div>
                     
                     <div>
-                     <?php echo $form->status;?>
+                     <?php //echo $form->status;?>
                     </div>
                     <input id="product__iid" type="hidden" value="<?php echo $product['iid'];?>" name="product__iid">
                     <input id="product__id" type="hidden" value="<?php echo $product['id'];?>" name="product__id">
+                    <input id="status" type="hidden" value="queued" name="status">
                   </div>
                 </div>
               </div>
