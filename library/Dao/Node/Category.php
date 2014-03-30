@@ -44,7 +44,7 @@ class Dao_Node_Category extends Cl_Dao_Node
         	'documentSchemaArray' => array(
     	         'id' => 'string',
     	         'iid' => 'int',
-    	         "category_id"	=>'int',
+    	         "category_id"	=>'string',
         	     "category_type" =>'int',
         		 'slug' => 'string',//eg: Điện lạnh => slug :: dienlanh
     	         "name" => 'string',
@@ -52,7 +52,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	         "description" => 'string',
     	         "meta_description" => 'string',
 			     "category_image" => 'string',
-				 "parent_id" => 'int',
+				 "parent_id" => 'string',
 				 "top" => 'int',
 				 "column" => 'int',
 				 "sort_order" =>'int',
@@ -99,6 +99,7 @@ class Dao_Node_Category extends Cl_Dao_Node
     	
     	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
     		$data['$set']['level'] = 2;
+    		$data['$set']['parent_id'] = $data['$set']['parent_category'];
     	}
     	/*else{
     		$data['$set']['level'] = 1;
@@ -112,7 +113,9 @@ class Dao_Node_Category extends Cl_Dao_Node
     
 	public function afterUpdateNode($where, $data, $currentRow)
     {
-    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != ''){
+    	$currentRow['parent_id'] = isset($currentRow['parent_id']) ? $currentRow['parent_id'] : '';
+    	if(isset($data['$set']['parent_category']) && $data['$set']['parent_category'] != '' 
+    			&& $data['$set']['parent_category'] != $currentRow['parent_id']){
     		$id = $data['$set']['parent_category'];
     		$where = array('id' => $id);
     		$r = $this->findOne($where);
@@ -158,6 +161,50 @@ class Dao_Node_Category extends Cl_Dao_Node
     				
     				$r = $this->update($where,$update);
     			}
+    			
+    			
+    		}
+    		
+    		//Xoa category khoi danh sach child_category
+    		if($currentRow['parent_id'] != ''){
+    			$where2 = array('id' => $currentRow['parent_id']);
+	    		$r = $this->findOne($where2);
+	    		if($r['success']){
+		    		$cate = $r['result'];
+	    			$child_category = (isset($cate['child_category']) && $cate['child_category']) ? $cate['child_category'] : array();
+	    	
+	    			$childCateNew2 = array();
+	    			$childCateIdNew2 = array('');
+	    			$boolen = false;
+	    			$count = 0;
+	    			
+	    			if(count($child_category) > 0){
+		    			foreach ($child_category as $ca){
+		    				if	($ca['id'] != $currentRow['id']){
+		    					$childCateNew2[] = $ca;
+		    					$childCateIdNew2[] = $ca['id'];
+		    				}else{
+		    					$count ++;
+		    				}
+		    			}
+		    			
+		    			if($count > 0){
+		    				$boolen = true;
+		    			}
+	    			}
+	    			
+	    			if($boolen){
+	    				$update2 = array(
+	    						'$set' => 
+		    						array(
+		    						'child_cate_id' => $childCateIdNew2,
+		    						'child_category' => $childCateNew2
+		    					)
+		    				);
+	    				
+	    				$r = $this->update($where2,$update2);
+	    			}
+	    		}
     		}
     	}
     	

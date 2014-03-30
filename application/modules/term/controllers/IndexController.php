@@ -61,5 +61,10 @@ class Term_IndexController extends Cl_Controller_Action_NodeIndex
     {
     	Bootstrap::$pageTitle = 'Điều khoản sử dụng';
     }
+    
+    public function hopTacVoiChungToiAction()
+    {
+    	Bootstrap::$pageTitle = 'Hợp tác với chúng tôi';
+    }
 }
 
