@@ -56,6 +56,27 @@ div.navbar ul.breadcrumb > li
 .prom-night .deal-list-tile .deal-price, .prom-night figure.deal-card .deal-price, .prom-night .deal-list-tile .price, .prom-night figure.deal-card .price{
 	font-size: 17px !important;
 }
+.box_social {
+    float: left;
+}
+.box_payments, .box_social {
+    height: auto;
+    margin: 20px auto 0;
+}
+.box_social ul {
+    display: block;
+    margin: 0;
+}
+.box_social ul li {
+    float: left;
+    margin: 0 5px;
+}
+.box_social a {
+    text-decoration: none;
+}
+.border-footer-gsm{
+	border-bottom: 1px solid #5D5D5D;
+}
 </style>
 <?php 
 $format = "DD/MM/YYYY";
@@ -78,37 +99,51 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 <footer class="footer-i18n">
     <div class="row">
         <div class="columns nine footer-i18n-payload">
-			  <div class="row footer-i18n-sitemap footer-i18n-flexLinks">
-	              <div class="columns three footer-links">
+			  <div class="row  footer-i18n-flexLinks">
+	              <div class="columns four footer-links">
 	                <h6 style='font-size: 15px;' class="footer-link-headline">Chính sách</h6>
-	                  <a title="" href="/term/hinh-thuc-thanh-toan">Hình thức thanh toán</a>
+	                <a title="" href="/term/ve-chung-toi">Về chúng tôi</a>
+	                <a title="" href="/term/hinh-thuc-thanh-toan">Hình thức thanh toán</a>
 	                <a title="" href="/term/chinh-sach-van-chuyen">Chính sách vận chuyển</a>
 	                <a title="" href="/term/chinh-sach-doi-tra-hang">Chính sách đổi trả hàng</a>
-	            </div>
-	            <div class="columns three footer-links">
-	                <h6 style='font-size: 15px;' class="footer-link-headline">Hợp tác với GiaSoMot</h6>
+	            	</div>
+            	<div class="columns four footer-links">
+	                <h6 style='font-size: 15px;' class="footer-link-headline">Hợp tác với GiaSoMot.vn</h6>
 	                  <a title="Trợ giúp khách hàng" href="/term/tro-giup-khach-hang">Trợ giúp khách hàng</a>
 	                <a title="Câu hỏi thường gặp" href="/term/cau-hoi-thuong-gap">Câu hỏi thường gặp</a>
 	                <a title="Follow Facebook" href="#">Follow Facebook</a>
 	                <a title="Subcribe email" href="#">Subcribe email</a>
-	            </div>
-	            <div class="columns three footer-links">
+	            	</div>
+	            <div class="columns four footer-links">
 	                <h6 style='font-size: 15px;' class="footer-link-headline">Thông tin</h6>
 	                  <a title="Địa chỉ liên hệ" href="#">Địa chỉ</a>
 	                <a title="Số điện thoại" href="#">(046).328.7272</a>
 	                <a title="Hotline" href="#">0943.959.698</a>
 	                <a title="" href="/term/hop-tac-voi-chung-toi">Hợp tác với chúng tôi</a>
-	            </div>
-					<div class="columns three">
-			            <h6 style='font-size: 15px;' class="footer-link-headline">Follow Us</h6>
-			          <div class="follow-us">
-			            <a class="icon-twitter" title="Twitter" href="http://twitter.com/giasomot"></a>
-			            <a class="icon-facebook" title="Facebook" href="http://facebook.com/giasomot"></a>
-			            <a class="icon-feed" title="RSS Feed" href="http://feeds.feedburner.com/giasomot"></a>
-			            <a class="icon-email" title="Subscribe via Email" href="/subscribe"></a>
-			          </div>
-					</div>
-	  			</div>
+           		  </div>
+  			</div>
+  			
+  			<div class="row footer-i18n-sitemap border-footer-gsm" style='margin-bottom: 5px;'>
+  				<div class="box_social">
+		            <ul>
+		                <li><a title="Tìm Giá Số Một trên Facebook" 
+		                	href="http://www.facebook.com/giasomot">
+		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/facebook500.png'?>"
+		                		width='46px' height='46px'>
+	                		</a></li>
+		                <li><a title="Kênh Youtube - Giá Số Một" 
+		                	href="http://www.youtube.com/giasomot">
+		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/youtube.png'?>"
+		                		width='46px' height='46px'>
+                			</a></li>
+		                <li><a title="Khách hàng góp ý" 
+		                	href="/khach-hang-chia-se-thong-tin">
+		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/user-comments-icon.png'?>"
+		                		width='50px' height='50px'>
+	                		</a></li>
+		            </ul>
+		        </div>
+  			</div>
 			  			
             <div class="row">
                 <div class="columns twelve footer-i18n-seo">

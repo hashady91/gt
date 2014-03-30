@@ -64,7 +64,24 @@ class Term_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function hopTacVoiChungToiAction()
     {
+    	$this->genericNew("Contact_Form_New", "Dao_Node_Contact", "Node");
     	Bootstrap::$pageTitle = 'Hợp tác với chúng tôi';
+    }
+    
+    public function veChungToiAction()
+    {
+    	Bootstrap::$pageTitle = 'Về chúng tôi';
+    }
+    
+    public function thankContactAction()
+    {
+    	$id = (string) $this->getStrippedParam('id');
+    	$r = Dao_Node_Contact::getInstance()->findOne(array('id' => $id), true /*convert id*/);
+    	if ($r['success'] && $r['count'] > 0)
+    	{
+    	     $this->setViewParam('row', $r['result']);
+    	}   
+    	Bootstrap::$pageTitle = 'Cảm ơn khách hàng';
     }
 }
 

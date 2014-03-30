@@ -1,41 +1,67 @@
+<?php  
+	$form = $this->form;
+?>
 <div class="main row">
-	<div class="twelve columns">
-		<div class="module">
-			<div class="module-body">
-				<h1 class="section-title">Về chúng tôi </h1>
-					 <h2>Nhiệm vụ :</h2>
-					
-					<p>• Mang đến cho khách hàng sản phẩm điện máy, công nghệ giá tốt nhất với chất lượng và 
-					
-					dịch vụ hoàn hảo nhất.</p>
-					
-					<h2>Vì sao giá chúng tôi luôn là số một :</h2>
-					
-					<p>• Khả năng đàm phán số lượng hàng lớn với các nhà cung cấp giúp chúng tôi có được giá 
-					
-					tốt nhất</p>
-					
-					<p>• Bán hàng qua mạng giúp chúng tôi tiết kiệm chi phí mặt bằng, nhân sự, vận hành…</p>
-					
-					<h2>Vì sao chất lượng của chúng tôi luôn là số một :</h2>
-					
-					<p>• Hàng hóa của chúng tôi có nguồn gốc chính hãng nên chất lượng hàng hóa được đảm 
-					
-					bảo 100%.</p>
-					
-					<p>• Hàng hóa có đầy đủ tem và được bảo hành chính hãng.</p>
-					
-					<p>• Chúng tôi cam kết không bán hàng kém chất lượng, không có nguồn gốc xuất xứ.</p>
-					
-					<h2>Vì sao dịch vụ của chúng tôi luôn là số một :</h2>
-					
-					<p>• Đội ngũ tư vấn bán hàng online chuyên nghiệp</p>
-					
-					<p>• Hàng hóa của chúng tôi được giao nhận và lắp đặt tại nhà</p>
-					
-					<p>• Chính sách một đổi một nếu hàng bị lỗi bởi nhà sản xuất</p>
-			
+  <section class="nine columns">
+    <form method="post" class='cl_ajax' action="/contact/new">
+      <section class="module">
+        <div class="module-body">
+          <div id="account-billing-info">
+            <h1 class="section-title">Thông tin khách hàng</h1>
+
+              <div data-bhw="CreditCards" id="credit-card" data-bhw-path="ConfirmationForm|CreditCards">
+                <div class="row">
+                  <div class="five columns">
+                    <div>
+                      <?php echo $form->name;?>
+                    </div>
+              
+                    <div>
+                      <?php echo $form->email;?>
+                    </div>
+              
+                    <div>
+                     <?php echo $form->city;?>
+                    </div>
+              
+              		<div>
+                     <?php echo $form->phone;?>
+                    </div>
+                    
+                  </div>
+              
+                  <div class="seven columns">
+                   <div>
+                     <?php echo $form->company;?>
+                    </div>
+                    
+                    <div>
+                     <?php echo $form->info;?>
+                    </div>
+                    <input id="status" type="hidden" value="queued" name="status">
+                  </div>
+                </div>
+              </div>
+              
+          </div>
+
+          <div class="row complete-order-container">
+          <?php echo $this->form->_cl_submit;?>
+          </div>
+        </div>
+      </section>
+
+    </form>
+  </section>
+  
+	<section class="three columns" style='margin-top: 15px;'>
+		<h3 style='font-weight: bold;'>Thông tin về Giá Số Một</h3>
+		<br>
+		<div class="mTop20">
+			<b style='font-weight: bold;'>Địa chỉ (Đang cập nhật)</b><br>
+			<b style='font-weight: bold;'>Liên hệ </b><span style="color: #FF0000">(046).328.7272</span></span><br>
+			<b style='font-weight: bold;'>Hotline </b><span style="color: #FF0000">0943.959.698</span><br>
+			<b style='font-weight: bold;'>Email: </b><a href="mailto:contact@giasomot.vn">contact@giasomot.vn</a>
 			</div>
-		</div>
-	</div> 
+	</section>
 </div>

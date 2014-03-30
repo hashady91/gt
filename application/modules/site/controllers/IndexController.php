@@ -65,7 +65,7 @@ class Site_IndexController extends Cl_Controller_Action_Index
   		
   		$this->setViewParam('categories_iids2', $categories);
   		
-        Bootstrap::$pageTitle = "Trang chủ - GT";
+        Bootstrap::$pageTitle = "Trang chủ - Giá Tốt";
     }
 	public function errorAction()
 	{
