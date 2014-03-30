@@ -56,7 +56,8 @@
                        <?php endif;?>
 
                       <?php if(!is_guest()):?>
-	                      <div data-bhw="CartWidget" class="cart-widget" data-bhw-path="Header|CartWidget"><div class="cart-name">
+	                      <div class="cart-widget" >
+	                      	<div class="cart-name">
 							  <a class="btn-secondary btn-small" href="/user/carts">
 							  	<span class="icon-goods"></span> Giỏ hàng</a>
 							</div>
@@ -82,8 +83,8 @@
 				<?php $categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();?>
 	        	   <?php if(isset($categories) && count($categories) > 0):?>
 	        	   	   <?php foreach ($categories as $ca):?>
-			                <li data-bhw="<?php echo $ca['code'];?>" class="primary-nav-tab" 
-			                	id="<?php echo $ca['code'];?>" style="width: 92px;" >
+			                <li class="primary-nav-tab menu-category-hover" 
+			                	cate-id="<?php echo $ca['id'];?>" style="width: 92px;" >
 			                 	 <a href="<?php echo category_link($ca);?>">
 			                  	<?php echo $ca['name'];?></a>
 			                </li>
@@ -93,4 +94,92 @@
             </div>
           </div>
         </nav>
+        
+        <nav class="subnav">
+        	<?php $i = 0;?>
+	        <?php if(isset($categories) && count($categories) > 0):?>
+	        	 <?php foreach ($categories as $ca):?>
+	        	 		<?php 
+	        	 			$child_cates = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? $ca['child_category'] : array();
+	        	 			//v($child_cates);	
+	        	 		?>
+	        	 		
+	        	 		<?php if(count($child_cates) > 0):?>
+			               <nav class="subnav-flyout all-tab-flyout row parent-id-<?php echo $ca['id'];?>" 
+			               		parent-id='<?php echo $ca['id'];?>'
+			               		style="display: none;">
+					            <div class="categories">
+					            	<div class="column">
+					            	  <?php $countChild = 1;?>
+						              <?php foreach ($child_cates as $child_cate):?>
+						              	<?php if($countChild % 6 == 0):?>
+						              		 </div>
+						              		 <div class="column">
+						              	<?php endif;?>
+							              	<a id="all-deals" href="<?php echo category_link($child_cate);?>">
+							                  <span class="title"><?php echo $child_cate['name'];?></span>
+							                  <?php /*<span class="count"></span>*/?>
+							                </a>
+						              	<?php $countChild ++;?>
+						              <?php endforeach;?>
+					                 </div>
+					   		  </div>
+					          
+					          <div class="megamind">
+					              <div class="widget">
+					                <a href="#">
+					                <span>
+					                  <img src="https://img.grouponcdn.com/deal/jhuX7u2chHHm2e26jxEmwS/BOG_Subnav-440x420">
+					                </span>
+					                </a>
+					              </div>
+					      		  <div class="widget">
+					                <a href="#">
+					                <span>
+					                  <img src="https://img.grouponcdn.com/deal/xiXuesdTMpuDDyMidfkBnF/mu_local-eventsactivities_jpg-440x420">
+					                </span>
+					                </a>
+					              </div>
+					          </div>
+				          	</nav>
+				          <?php endif;?>
+				          <?php $i ++;?>
+	        	   	   <?php endforeach;?>
+	        <?php endif;?>
+        </nav>
       </div>
+<?php $this->inlineScript()->captureStart();?>
+	$(function(){
+		var timerId = null;
+		$('.menu-category-hover').hover( function(){
+			$('.subnav-flyout').hide();
+			$this = $(this);
+			var cate_id = $this.attr('cate-id');
+			
+			$obj = $('.parent-id-'+cate_id);
+			$obj.show();
+		});
+		
+		$('.menu-category-hover').mouseout( function(){
+			$this = $(this);
+			var cate_id = $this.attr('cate-id');
+			
+			$obj = $('.parent-id-'+cate_id);
+			timerId = setTimeout(function(){
+				$obj.fadeOut('slow');}, 2000
+			);
+		});
+		
+		$('.subnav-flyout').mouseover(function(){
+			$(this).show();
+			 if(timerId){
+		        clearTimeout(timerId);
+		        timerId = null;
+		     }
+		});
+		
+		$('.subnav-flyout').mouseout(function(){
+			$(this).hide();
+		});
+	});
+<?php $this->inlineScript()->captureEnd();?>
