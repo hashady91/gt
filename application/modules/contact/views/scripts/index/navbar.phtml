@@ -5,7 +5,6 @@
 	<li <?php if ($page == 'contact/index/update') echo "class='active';"?>><a href="/contact/update<?php if (isset($this->row['id'])) echo "?id=" . $this->row['id'];?>"">Update</a></li>
 	<?php endif;?>    
 	<li <?php if ($page == 'contact/index/search') echo "class='active';"?>><a href="/contact/search">Search</a></li>
-    <li <?php if ($page == 'contact/index/search-comment') echo "class='active';"?>><a href="/contact/search-comment">Search Comment</a></li>
 	<? if (isset($this->row)) :?>    
 	<li <?php if ($page == 'contact/index/view') echo "class='active';"?>><a href="/contact/<?php if (isset($this->row['id'])) echo "" . $this->row['id'];?>">View</a></li>
 	<?php endif;?>
