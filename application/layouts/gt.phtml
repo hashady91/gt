@@ -90,6 +90,9 @@ body.prom-night
 {
 	font-family: Calibri !important;
 }
+.prom-night .footer-i18n a{
+	text-decoration: none !important;
+}
 </style>
 <?php 
 $format = "DD/MM/YYYY";
@@ -128,13 +131,14 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 	            	</div>
 	            <div class="columns four footer-links">
 	                <h6 style='font-size: 15px;' class="footer-link-headline">Thông tin</h6>
-	                  <a title="Địa chỉ liên hệ" href="#">Phố Mễ Trì - Hà Nội</a>
+	                  <a title="Địa chỉ liên hệ" href="#">Số 25, Ngõ 7, Phố Mễ Trì, Từ Liêm, Hà Nội</a>
 	                <a title="Số điện thoại" href="#">(046).328.7272</a>
 	                <a title="Hotline" href="#">0943.959.698</a>
            		  </div>
   			</div>
   			
   			<div class="row footer-i18n-sitemap border-footer-gsm" style='margin-bottom: 5px;'>
+  				<?php /*
   				<div class="box_social">
 		            <ul>
 		                <li><a title="Tìm Giá Số Một trên Facebook" 
@@ -154,6 +158,7 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 	                		</a></li>
 		            </ul>
 		        </div>
+  				*/?>
   			</div>
 			  			
             <div class="row">
@@ -225,7 +230,6 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 	</script>
 <?php echo $this->headScript();?>
 <?php print $this->inlineScript();?>
-</div>
 </body>
 </html>
 
