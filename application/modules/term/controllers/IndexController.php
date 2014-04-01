@@ -73,6 +73,11 @@ class Term_IndexController extends Cl_Controller_Action_NodeIndex
     	Bootstrap::$pageTitle = 'Về chúng tôi';
     }
     
+    public function quyTrinhDatCocAction()
+    {
+    	Bootstrap::$pageTitle = 'Quy trình đặt cọc';
+    }
+    
     public function thankContactAction()
     {
     	$id = (string) $this->getStrippedParam('id');
