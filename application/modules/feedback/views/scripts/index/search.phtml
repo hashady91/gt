@@ -23,9 +23,10 @@
     
     <?php if($this->count > 0) :?>
 	
-    	<h3>Search results</h3>
+    	<h3>Kết quả tìm kiếm</h3>
     	<?php //echo $this->render('widget/table.phtml');?>
-    	<a href="/feedback/bulk-delete" id='bulk-delete' class="cl_ajax btn btn-xs btn-danger"><?php echo t('delete_selected',1);?></a>
+    	<a href="/feedback/bulk-delete" id='bulk-delete' class="cl_ajax btn btn-xs btn-danger">
+    		Xóa bỏ mục đã chọn</a>
     	<div class="clear"></div>
     	<br/>
         <table class="table table-striped table-bordered table-condensed">
@@ -35,7 +36,7 @@
         			<th>Tên</th>
         			<th>Email</th>
         			<th>Chú ý</th>
-        			<th>Status</th>
+        			<th>Trạng thái</th>
         			<th>Action</th>
         		</tr>
         	</thead>
@@ -50,19 +51,21 @@
                         <div class="btn-group">
         			    	<a href="/feedback/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
         			    	class="btn btn-primary btn-xs <?php if($row['status']=='queued') echo 'active';?> cl_ajax" 
-        			    	_cl_get_metadata="active_button_group"> Queued </a>
+        			    	_cl_get_metadata="active_button_group"> Đang chờ </a>
         			    	<a href="/feedback/update?id=<?php echo $row['id'];?>&status=approved&_cl_step=status"
-        			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax" _cl_get_metadata="active_button_group"> Approved</a>
+        			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax" 
+        			    		_cl_get_metadata="active_button_group"> Đã duyệt</a>
         			    </div> 
         			</td>
         			
         			<td>
-        				<a href="/feedback/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default"><i class="icon-edit"></i> Edit</a>
+        				<a href="/feedback/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default">
+        					<i class="icon-edit"></i> Sửa</a>
         				<a href="/feedback/delete?id=<?php echo $row['id']?>" 
         					class="btn btn-xs btn-danger cl_ajax" _cl_get_metadata="remove_my_parent:2"
         					_cl_ajax_confirm='Are you sure you want to permanently delete this item?'
         					>
-        					<i class="icon-remove"></i> Delete
+        					<i class="icon-remove"></i> Xóa
         				</a>
         			</td>
         		</tr>

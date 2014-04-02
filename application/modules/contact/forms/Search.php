@@ -23,7 +23,7 @@ class Contact_Form_Search extends Cl_Form_Search
     	'status' => array(
     		'type' => 'MultiCheckbox', /* 'MultiCheckbox', */
     		'options' => array(
-				'label' => "",
+				'label' => "Trạng thái",
     			'disableLoadDefaultDecorators' => true,
 //    			'required' => true,
 	    		'filters' => array('StringTrim', 'StripTags'),
@@ -35,7 +35,7 @@ class Contact_Form_Search extends Cl_Form_Search
     	'name' => array(
     		'type' => 'Text',
     		'options' => array(
-    			'label' => "Contact name",
+    			'label' => "Tên người liên lạc",
 	    		'filters' => array('StringTrim', 'StripTags')
     		),
     		'op' => '$like',

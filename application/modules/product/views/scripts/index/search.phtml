@@ -25,7 +25,7 @@
             </form>
         </div>
         <div class="separator"></div>
-         <h4>Product item list</h4>
+         <h4>Danh sách sản phẩm</h4>
         
         <div class="clear"></div>
         <br>
@@ -36,16 +36,16 @@
     				<tr>
                         <th><b><input type="checkbox" class="checkall" /></b></th>
                         <th><b>iid</b></th>
-                        <th><b>SupplierName</b></th>
-                        <th><b>Name</b></th>
+                        <th><b>Người tạo</b></th>
+                        <th><b>Tên</b></th>
                         <th><b>Model</b></th>
                         <th><b>SerialNumber</b></th>
-                        <th><b>ReceivedDate</b></th>
+                        <th><b>Ngày nhận</b></th>
                         <th><b>StockStatus</b></th>
-                        <th><b>Note</b></th>
-                        <th><b>Description</b></th>
-                        <th><b>Price</b></th>
-                        <th><b>Set Status</b></th>
+                        <th><b>Chú ý</b></th>
+                        <th><b>Mô t</b></th>
+                        <th><b>Giá</b></th>
+                        <th><b>Trạng thái</b></th>
                         <th><b>Actions</b></th>
                     </tr>
     		</thead>
@@ -62,7 +62,9 @@
     				<td><?php echo $row['model'];?></td>
     				<td><?php echo $row['serialNumber'];?></td>
     				<td><?php echo $row['receivedDate'];?></td>
-    				<td><?php echo $row['stockStatus'];?></td>
+    				<td><?php 
+    					$row['stockStatus'] = isset($row['stockStatus']) ? $row['stockStatus'] : 0;
+    					echo $row['stockStatus'];?></td>
     				<td><?php echo $row['note'];?></td>
     				<td><?php echo $row['description'];?></td>
     				<td><?php echo $row['price'];?></td>				
@@ -70,19 +72,21 @@
                         <div class="btn-group">
         			    	<a href="/product/update?id=<?php echo $row['id'];?>&status=queued&_cl_step=status"
         			    	class="btn btn-primary btn-xs <?php if($row['status']=='queued') echo 'active';?> cl_ajax" 
-        			    	_cl_get_metadata="active_button_group"> Queued </a>
+        			    	_cl_get_metadata="active_button_group"> Đang ch </a>
         			    	<a href="/product/update?id=<?php echo $row['id'];?>&status=approved&_cl_step=status"
-        			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax" _cl_get_metadata="active_button_group"> Approved</a>
+        			    	class="btn btn-primary btn-xs <?php if($row['status']=='approved') echo 'active';?> cl_ajax"
+        			    	 _cl_get_metadata="active_button_group"> Đã duyệt</a>
         			    </div> 
         			</td>
     				<td>
-    				    <a href="/product/update?id=<?php echo $row['id'];?>" class="btn btn-mini"><i class="icon-edit"></i>Edit</a>
+    				    <a href="/product/update?id=<?php echo $row['id'];?>" class="btn btn-xs">
+    				    	<i class="icon-edit"></i>Sửa</a>
     				    <?php if (has_perm('admin_product')):?>
-    				    <a href="/product/delete?id=<?php echo $row['id'];?>" class="btn btn-mini btn-danger cl_ajax" 
+    				    <a href="/product/delete?id=<?php echo $row['id'];?>" class="btn btn-xs btn-danger cl_ajax" 
     				        _cl_get_metadata="remove_my_parent:2"
     				        _cl_ajax_confirm='Are you sure you want to permanently delete this item?'
     				        >
-                           <i class="icon-remove"></i>Delete
+                           <i class="icon-remove"></i>Xóa
     				       </a>
     				    <?php endif;?>
     			   </td>

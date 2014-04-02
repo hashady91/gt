@@ -87,7 +87,7 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
                 }
             }
         }
-        Bootstrap::$pageTitle = 'Tạo hóa đơn mới';
+        Bootstrap::$pageTitle = 'Tạo đơn hàng mới';
     }
 
     public function updateAction()
@@ -101,7 +101,7 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
          * @NOTE: object is already filtered in Index.php, done in Cl_Dao_Node::filterUpdatedObjectForAjax()
          */
         $this->genericUpdate("Bill_Form_Update", $this->daoClass ,"", "Node");
-        Bootstrap::$pageTitle = 'Cập nhật hóa đơn';
+        Bootstrap::$pageTitle = 'Cập nhật đơn hàng';
     }
 
     public function searchAction()
@@ -110,7 +110,7 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
     	$this->setLayout("admin");
         //assure_perm("search_bill");//by default
         $this->genericSearch("Bill_Form_Search", $this->daoClass, "Node");
-        Bootstrap::$pageTitle = t("search_bill",1);        
+        Bootstrap::$pageTitle = 'Tìm kiếm đơn hàng';        
     }
     
     public function searchCartsAction()
@@ -154,7 +154,7 @@ class Bill_IndexController extends Cl_Controller_Action_NodeIndex
     {
         //TODO Your permission here
         parent::viewAction();//no permission yet
-        Bootstrap::$pageTitle = t("view_bill",1);
+        Bootstrap::$pageTitle = 'Xem đơn hàng';
     }
     
     public function deleteNodePermissionCheck($row)

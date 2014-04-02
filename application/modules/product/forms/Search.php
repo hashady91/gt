@@ -45,7 +45,7 @@ class Product_Form_Search extends Cl_Form_Search
             'name' => array(
                     'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
                     'options' => array(
-                            'label' => "Product name",
+                            'label' => "Tên sản phẩm",
                             'disableLoadDefaultDecorators' => true,
                             'filters' => array(
                                     'StringTrim',
@@ -73,7 +73,7 @@ class Product_Form_Search extends Cl_Form_Search
             'supplierName' => array(
                     'type' => 'Text', //Text, Textarea, Select, Checkbox, MultiCheckbox, Radio, Hidden
                     'options' => array(
-                            'label' => "SupplierName",
+                            'label' => "Người tạo sản phẩm",
                             'disableLoadDefaultDecorators' => true,
                             'filters' => array(
                                     'StringTrim',
@@ -95,7 +95,7 @@ class Product_Form_Search extends Cl_Form_Search
             'receivedDate' => array(
                 'type' => 'Text',
                 'options' => array(
-                    'label' => "Received Date",
+                    'label' => "Ngày nhận",
                     'disableLoadDefaultDecorators' => false,
                     'required' => true,
                     'transformers' => array(
@@ -110,7 +110,7 @@ class Product_Form_Search extends Cl_Form_Search
             'note' =>  array(
                 'type' => 'Checkbox',
                 'options' => array(
-                    'label' => "Show details",
+                    'label' => "Chú ý",
                     'disableLoadDefaultDecorators' => false,
                 ),
                 'filters' => array(
@@ -122,7 +122,7 @@ class Product_Form_Search extends Cl_Form_Search
             'description' =>  array(
             		'type' => 'Textarea',
             		'options' => array(
-            				'label' => "Description",
+            				'label' => "Mô tả",
             				'disableLoadDefaultDecorators' => false,
             		),
             		'filters' => array(
@@ -134,7 +134,7 @@ class Product_Form_Search extends Cl_Form_Search
             'price' =>  array(
                     'type' => 'Text',
                     'options' => array(
-                        				'label' => "Price",
+                        				'label' => "Giá",
                         				'disableLoadDefaultDecorators' => false,
                     ),
                     'filters' => array(
@@ -146,7 +146,7 @@ class Product_Form_Search extends Cl_Form_Search
             'iid' =>  array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "Price",
+                            'label' => "Iid",
                             'disableLoadDefaultDecorators' => false,
                     ),
                     'filters' => array(

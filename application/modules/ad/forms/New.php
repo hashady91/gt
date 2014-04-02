@@ -19,7 +19,7 @@ class Ad_Form_New extends Cl_Form
         	'name' => array(
         		'type' => 'Text',
         		'options' => array(
-        			'label' => "Ad name",
+        			'label' => "Tên quảng cáo",
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags'),
                     'validators' => array('NotEmpty'),
@@ -29,7 +29,7 @@ class Ad_Form_New extends Cl_Form
         	'content' => array(
         		'type' => 'Textarea',
         		'options' => array(
-        	        'label' => "Ad Content",
+        	        'label' => "Nội dung",
         	        'class' => 'isEditor',
     	    		'filters' => array('StringTrim', 'NodePost'),
         			'prefixPath' => array(
@@ -42,7 +42,7 @@ class Ad_Form_New extends Cl_Form
             'status' => array(
             		'type' => 'Select',
             		'options' => array(
-            				'label' => 'Status',
+            				'label' => 'Trạng thái',
             				'required' => true,
             		),
             		'multiOptionsCallback' => array('getStatus')

@@ -63,7 +63,7 @@ class Product_Form_New extends Cl_Form
         	'supplierName' => array(
         		'type' => 'Text',
         		'options' => array(
-        			'label' => "Supplier name",
+        			'label' => "Tên người up",
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags'),
                     'validators' => array('NotEmpty'),
@@ -105,7 +105,7 @@ class Product_Form_New extends Cl_Form
             'location' => array(
                     'type' => 'Select',
                     'options' => array(
-                            'label' => "Location",
+                            'label' => "Địa chỉ",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -117,7 +117,7 @@ class Product_Form_New extends Cl_Form
             'category' => array(
                     'type' => 'Select',
                     'options' => array(
-                            'label' => "category",
+                            'label' => "Chuyên mục",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -129,7 +129,7 @@ class Product_Form_New extends Cl_Form
             'receivedDate' => array(
                 'type' => 'Text',
                 'options' => array(
-                    'label' => "Received Date",
+                    'label' => "Ngày nhận",
                     'class' => 'datetimepicker',
                     'autocomplete'=>'off',
                     'placeholder'=>'click here to pick a date',
@@ -233,7 +233,7 @@ class Product_Form_New extends Cl_Form
             'images' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "image",
+                            'label' => "Ảnh",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -245,7 +245,7 @@ class Product_Form_New extends Cl_Form
             'weight' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "weight",
+                            'label' => "Cân nặng",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -257,7 +257,7 @@ class Product_Form_New extends Cl_Form
             'length' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "length",
+                            'label' => "Dài",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -269,7 +269,7 @@ class Product_Form_New extends Cl_Form
             'width' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "width",
+                            'label' => "Rộng",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -281,7 +281,7 @@ class Product_Form_New extends Cl_Form
             'height' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "height",
+                            'label' => "Cao",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -293,7 +293,7 @@ class Product_Form_New extends Cl_Form
             'viewed' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "Number of viewer",
+                            'label' => "Số người xem",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -341,7 +341,7 @@ class Product_Form_New extends Cl_Form
             'description' => array(
                     'type' => 'Textarea',
                     'options' => array(
-                            'label' => "description",
+                            'label' => "Mô tả",
                     		'class' => 'isEditor',
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
@@ -393,7 +393,7 @@ class Product_Form_New extends Cl_Form
             'name' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "name",
+                            'label' => "Tên",
                             'filters' => array('StringTrim', 'StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -403,7 +403,7 @@ class Product_Form_New extends Cl_Form
                     ),
             ),
             'price' => array(
-                    'type' => 'Text',
+                    'type' => 'Giá',
                     'options' => array(
                             'label' => "price",
                             'filters' => array('StringTrim', 'StripTags','Digits'),
@@ -417,7 +417,7 @@ class Product_Form_New extends Cl_Form
             'deal_price' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "deal price",
+                            'label' => "Giá khuyến mãi",
                             'filters' => array('StringTrim', 'StripTags','Digits'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -429,7 +429,7 @@ class Product_Form_New extends Cl_Form
             'origin_price' => array(
                     'type' => 'Text',
                     'options' => array(
-                            'label' => "origin price",
+                            'label' => "Giá gốc",
                     		'required' => true,
                             'filters' => array('StringTrim', 'StripTags','Digits'),
                             'prefixPath' => array(
@@ -442,7 +442,7 @@ class Product_Form_New extends Cl_Form
             'content' => array(
                     'type' => 'Textarea',
                     'options' => array(
-                            'label' => "Product Content",
+                            'label' => "Nội dung",
                             'class' => 'isEditor',
                             'filters' => array('StringTrim', 'NodePost'),
                             'prefixPath' => array(
@@ -455,7 +455,7 @@ class Product_Form_New extends Cl_Form
             'parent_category_iid' => array(
                     'type' => 'Select',
                     'options' => array(
-                            'label' => "Parent Category",
+                            'label' => "Chuyên mục cha",
                             'filters' => array('StringTrim','StripTags'),
                             'prefixPath' => array(
                                     "filter" => array (
@@ -469,13 +469,13 @@ class Product_Form_New extends Cl_Form
             'status' => array(
             		'type' => 'Select',
             		'options' => array(
-            				'label' => 'Status',
+            				'label' => 'Trạng thái',
             				'required' => true,
             		),
             		'multiOptionsCallback' => array('getStatus')
             ),
         	'avatar' => array(
-        			'type' => 'Hidden',
+        			'type' => 'Ảnh',
         			'options' => array(
         					'class' => 'cl_upload',
         					'filters' => array('StringTrim', 'StripTags')

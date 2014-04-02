@@ -63,11 +63,11 @@
 	<thead>
 		<tr>
 			<th><input type="checkbox" class="checkall"/></th>
-			<th>ID</th>
-			<th>Name</th>
+			<th>Mongo ID</th>
+			<th>Tên</th>
 			<th>Email</th>
-			<th>Role</th>
-			<th>status</th>
+			<th>Vai trò</th>
+			<th>Trạng thái</th>
 			<th>Action</th>
 		</tr>
 	</thead>
@@ -87,26 +87,29 @@
 			    <a href="/user/update-role?id=<?echo $role['id'];?>"><?php echo $role['name'];?></a>
 			    <?php endforeach;?>
 			    <br/>
-			    <input name="submit" type="submit" value="update" class="btn btn-xs">
+			    <input name="submit" type="submit" value="update" class="btn btn-xs btn-default">
 			</form>
 			</td>			
 			<td>
 					<span <?php if ($row['status'] == 'banned') echo "style='display:none'"?> >
-					Active<br/>
+					Kích hoạt<br/>
 					<a href='/user/update?id=<?php echo $row['id'];?>&_cl_step=block_user&status=banned' 
-					    _cl_get_metadata="hide_my_parent_show_next_uncle" class='btn btn-xs cl_ajax' _cl_ajax_confirm="yes">Block</a>
+					    _cl_get_metadata="hide_my_parent_show_next_uncle" class='btn btn-xs btn-primary cl_ajax'
+					    _cl_ajax_confirm="yes">Đã khóa</a>
 					</span>
 					<span <?php if ($row['status'] != 'banned') echo "style='display:none'"?> >
-					Banned<br/>
+					Đã band<br/>
 					<a href='/user/update?id=<?php echo $row['id'];?>&_cl_step=unblock_user&status=activated' 
-					    _cl_get_metadata="hide_my_parent_show_prev_uncle" class='btn btn-xs cl_ajax' _cl_ajax_confirm="yes">Unblock</a>
+					    _cl_get_metadata="hide_my_parent_show_prev_uncle" class='btn btn-xs cl_ajax btn-primary' 
+					    _cl_ajax_confirm="yes">Mở khóa</a>
 					</span>
 			</td>			
 			<td>
-					<a href="/<?php echo $this->module;?>/update?id=<?php echo $row['id']?>" class="btn btn-xs"><i class="icon-edit"></i>Edit</a>
+					<a href="/<?php echo $this->module;?>/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default">
+						<i class="icon-edit"></i>Sửa</a>
 					<a href="/<?php echo $this->module;?>/delete?id=<?php echo $row['id']?>" 
-						class="btn btn-xs cl_ajax" _cl_ajax_confirm="yes" _cl_get_metadata="remove_my_parent:2">
-						<i class="icon-remove"></i>Delete
+						class="btn btn-xs btn-danger cl_ajax" _cl_ajax_confirm="yes" _cl_get_metadata="remove_my_parent:2">
+						<i class="icon-remove"></i>Xóa
 					</a>
 			</td>
 		</tr>
@@ -114,6 +117,6 @@
 	</tbody>
 </table>
 <?php else:?>
-	Error: <?php echo $this->err;?>
+	Lỗi : <?php echo $this->err;?>
 <?php endif;?>
 </div>

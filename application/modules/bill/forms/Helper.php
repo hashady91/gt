@@ -3,7 +3,7 @@ class Bill_Form_Helper extends Cl_Form_NodeHelper
 {
     public function getStatus()
     {
-    	$ret = array('buy' => 'Buy', 'queued' => 'Queue', 'cancel' => 'Cancel');
+    	$ret = array('buy' => 'Đã mua', 'queued' => 'Đang chờ', 'cancel' => 'Đã hủy');
     	return array('success' =>true, 'result' => $ret);
     }
     

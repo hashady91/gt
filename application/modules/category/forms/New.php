@@ -19,7 +19,7 @@ class Category_Form_New extends Cl_Form
         	'name' => array(
         		'type' => 'Text',
         		'options' => array(
-        			'label' => "Category name",
+        			'label' => "Tên chuyên mục",
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags'),
                     'validators' => array('NotEmpty'),
@@ -29,7 +29,7 @@ class Category_Form_New extends Cl_Form
         	'slug' => array(
         			'type' => 'Text',
        				'options' => array(
-       						'label' => "Category slug",
+       						'label' => "Slug eg: dien-lanh",
        						'required' => true,
        						'filters' => array('StringTrim', 'StripTags'),
        						'validators' => array('NotEmpty'),
@@ -39,7 +39,7 @@ class Category_Form_New extends Cl_Form
         	'content' => array(
         		'type' => 'Textarea',
         		'options' => array(
-        	        'label' => "Category Content",
+        	        'label' => "Nội dung",
         	        'class' => 'isEditor',
     	    		'filters' => array('StringTrim', 'NodePost'),
         			'prefixPath' => array(
@@ -52,7 +52,7 @@ class Category_Form_New extends Cl_Form
             'status' => array(
             		'type' => 'Select',
             		'options' => array(
-            				'label' => 'Status',
+            				'label' => 'Trạng thái',
             				'required' => true,
             		),
             		'multiOptionsCallback' => array('getStatus')

@@ -3,7 +3,7 @@ class Category_Form_Helper extends Cl_Form_NodeHelper
 {
     public function getStatus()
     {
-    	$ret = array('approved' => 'approved', 'queued' => 'queued');
+    	$ret = array('approved' => 'Đã duyệt', 'queued' => 'Đang chờ');
     	return array('success' =>true, 'result' => $ret);
     }
     

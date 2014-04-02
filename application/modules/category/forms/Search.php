@@ -35,7 +35,7 @@ class Category_Form_Search extends Cl_Form_Search
     	'name' => array(
     		'type' => 'Text',
     		'options' => array(
-    			'label' => "Category name",
+    			'label' => "Tên chuyên mục",
 	    		'filters' => array('StringTrim', 'StripTags')
     		),
     		'op' => '$like',
@@ -43,7 +43,7 @@ class Category_Form_Search extends Cl_Form_Search
 		'items_per_page' => array(
         		'type' => 'Select', 
         		'options' => array(
-    				'label' => "Display",
+    				'label' => "Hiển thị",
         			'disableLoadDefaultDecorators' => false,
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags')
