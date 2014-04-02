@@ -78,6 +78,25 @@ div.navbar ul.breadcrumb > li
 .border-footer-gsm{
 	border-bottom: 1px solid #5D5D5D;
 }
+.prom-night .header-v2 .primary-nav ul li a
+{
+	line-height: 10px !important;
+}
+.prom-night .header-v2 .primary-nav ul
+{
+	height: 40px !important;
+}
+body.prom-night
+{
+	font-family: Calibri !important;
+}
+.prom-night .footer-i18n a{
+	text-decoration: none !important;
+}
+.prom-night .limited-time .no-counter
+{
+	color:#489CDF !important; 
+}
 </style>
 <?php 
 $format = "DD/MM/YYYY";
@@ -113,35 +132,38 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 	                  <a title="Trợ giúp khách hàng" href="/term/tro-giup-khach-hang">Trợ giúp khách hàng</a>
 	                <a title="Câu hỏi thường gặp" href="/term/cau-hoi-thuong-gap">Câu hỏi thường gặp</a>
 	                <a title="Hợp tác với chúng tôi" href="/term/hop-tac-voi-chung-toi">Hợp tác với chúng tôi</a>
+	                <a title="Quy trình đặt cọc" href="/term/quy-trinh-dat-coc">Quy trình đặt cọc</a>
 	            	</div>
 	            <div class="columns four footer-links">
 	                <h6 style='font-size: 15px;' class="footer-link-headline">Thông tin</h6>
-	                  <a title="Địa chỉ liên hệ" href="#">Địa chỉ</a>
+	                  <a title="Địa chỉ liên hệ" href="#">Số 25, Ngõ 7, Phố Mễ Trì, Từ Liêm, Hà Nội</a>
 	                <a title="Số điện thoại" href="#">(046).328.7272</a>
 	                <a title="Hotline" href="#">0943.959.698</a>
            		  </div>
   			</div>
   			
   			<div class="row footer-i18n-sitemap border-footer-gsm" style='margin-bottom: 5px;'>
+  				<?php /*
   				<div class="box_social">
 		            <ul>
 		                <li><a title="Tìm Giá Số Một trên Facebook" 
 		                	href="http://www.facebook.com/giasomot">
 		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/facebook500.png'?>"
-		                		width='46px' height='46px'>
+		                		width='37px'>
 	                		</a></li>
 		                <li><a title="Kênh Youtube - Giá Số Một" 
 		                	href="http://www.youtube.com/giasomot">
 		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/youtube.png'?>"
-		                		width='46px' height='46px'>
+		                		width='37px'>
                 			</a></li>
 		                <li><a title="Khách hàng góp ý" 
 		                	href="/feedback/new">
 		                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/user-comments-icon.png'?>"
-		                		width='50px' height='50px'>
+		                		width='42px'>
 	                		</a></li>
 		            </ul>
 		        </div>
+  				*/?>
   			</div>
 			  			
             <div class="row">
@@ -197,9 +219,22 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
     <script src="<?php echo SAND_ASSETS_CDN;?>/js/sand/cl_ajax.js" type="text/javascript"></script>
     <script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/jquery.ui.datepicker.js" type="text/javascript"></script>
     <script src="<?php echo SAND_ASSETS_CDN;?>/js/plugins/autoresize.jquery.js" type="text/javascript"></script>
+    
+    <?php /*************SLIDER BRAND Thuong hieu****************/?>
+    <link rel="stylesheet" type="text/css" href="<?php echo ASSETS_CDN;?>/Elastislide/css/demo.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo ASSETS_CDN;?>/Elastislide/css/elastislide.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo ASSETS_CDN;?>/Elastislide/css/custom.css" />
+	<script src="<?php echo ASSETS_CDN;?>/Elastislide/js/modernizr.custom.17475.js"></script>
+	
+	<script type="text/javascript" src="<?php echo ASSETS_CDN;?>/Elastislide/js/jquerypp.custom.js"></script>
+	<script type="text/javascript" src="<?php echo ASSETS_CDN;?>/Elastislide/js/jquery.elastislide.js"></script>
+	<script type="text/javascript">
+		$('#carousel').elastislide({
+			minItems : 10
+		});
+	</script>
 <?php echo $this->headScript();?>
 <?php print $this->inlineScript();?>
-</div>
 </body>
 </html>
 

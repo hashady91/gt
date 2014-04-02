@@ -36,7 +36,7 @@
                           </nav>
 				      <?php else:?>
 				          <nav class="user-menu signed-in">
-		                      <a class="user-name icon-arrow-down-large" href="/mygroupons">
+		                      <a class="user-name icon-arrow-down-large" href="/">
 		                      	<?php echo $lu['name'];?></a>
 			                      <ul class="my-stuff">
 			                        <?php if(has_perm('sudo')):?>
@@ -78,7 +78,38 @@
         
         <nav role="navigation" class="primary-nav">
           <div class="row">
-            <div class="twelve columns">
+	          <div class='ten columns'>
+	          	<ul>
+	          		<li>
+            			<h3 style='margin-top: 10px; color: #FFF; font-weight: bold;'>
+            				Hotline: 04.632.872.72 - 0943.959.698</h3>
+            		</li>
+	          	</ul>
+	          </div>
+            <div class="two columns">
+            <ul>
+             	<li><a title="Giá Số Một hỗ trợ khách hàng qua Skype" 
+                	href="skype:giasomot?call">
+                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Skype-icon.png'?>"
+	                		width='33x'>
+                		</a></li>
+                <li><a title="Tìm Giá Số Một trên Facebook" 
+                	href="http://www.facebook.com/giasomot">
+                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Facebook-icon.png'?>"
+	                		width='33x'>
+                		</a></li>
+                <li><a title="Kênh Youtube - Giá Số Một" 
+                	href="http://www.youtube.com/giasomot">
+                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Youtube-icon.png'?>"
+		                		width='33px'>
+                			</a></li>
+                <li><a title="Khách hàng góp ý" 
+                	href="/feedback/new">
+                		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/user-comments-icon.png'?>"
+                		width='37px'>
+                		</a></li>
+            </ul>
+            <?php /*
               <ul>
 				<?php $categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();?>
 	        	   <?php if(isset($categories) && count($categories) > 0):?>
@@ -91,10 +122,12 @@
 	        	   	   <?php endforeach;?>
 	        	   <?php endif;?>              
         	   </ul>
+            */?>
             </div>
           </div>
         </nav>
         
+        <?php /*
         <nav class="subnav">
         	<?php $i = 0;?>
 	        <?php if(isset($categories) && count($categories) > 0):?>
@@ -118,7 +151,7 @@
 						              	<?php endif;?>
 							              	<a id="all-deals" href="<?php echo category_link($child_cate);?>">
 							                  <span class="title"><?php echo $child_cate['name'];?></span>
-							                  <?php /*<span class="count"></span>*/?>
+							                  <span class="count"></span>
 							                </a>
 						              	<?php $countChild ++;?>
 						              <?php endforeach;?>
@@ -147,6 +180,7 @@
 	        	   	   <?php endforeach;?>
 	        <?php endif;?>
         </nav>
+        */?>
       </div>
 <?php $this->inlineScript()->captureStart();?>
 	$(function(){
