@@ -395,7 +395,6 @@ class Dao_Node_Product extends Cl_Dao_Node
 		
 				$where = array('iid' => $cateIid);
 				$r = Dao_Node_Category::getInstance()->findOne($where);
-				f($r);
 		        if($r['success'] && $r['count'] >0)
 				    $detailCate = $r['result'];
 		        else 
