@@ -35,7 +35,7 @@
 	                              <a href="/user/register">Đăng ký</a>
                           </nav>
 				      <?php else:?>
-				          <nav class="user-menu signed-in">
+				          <div class="user-menu signed-in">
 		                      <a class="user-name icon-arrow-down-large" href="/">
 		                      	<?php echo $lu['name'];?></a>
 			                      <ul class="my-stuff">
@@ -52,7 +52,7 @@
 		              			    <li><a id="sign-out" class="sign-out" 
 		              			    	href="/user/logout">Đăng suất</a></li>
 			                      </ul>
-		                   </nav>	
+		                   </div>	
                        <?php endif;?>
 
                       <?php if(!is_guest()):?>
@@ -76,8 +76,8 @@
           </div>
         </header>
         
-        <nav>
-        	<ul>
+        <nav class="nav">
+        	<ul class="header-v3">
         		<li class="sub-menu"><a href="#">Menu</a>
         			<ul>
         				<li><a href="#">Menu1</a></li>

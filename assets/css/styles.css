@@ -125,7 +125,6 @@ nav ul li:hover>ul {
 }
 
 nav ul {
-	background: #efefef;
 	padding: 0 20px;
 	list-style: none;
 	position: relative;
@@ -190,7 +189,7 @@ nav ul ul ul {
 	left: 100%;
 	top: 0;
 }
-.header-v2 li {
+.header-v3 li {
     background: none repeat scroll 0 0 rgb(117,172,72);
 }
 .support-menu
@@ -207,4 +206,12 @@ nav ul ul ul {
 {
 	margin-top:10px;
 	z-index:999;
+}
+.sticky {
+	position: fixed;
+	width: 100%;
+	left: 0;
+	top: 15px;
+	z-index: 100;
+	border-top: 0;
 }

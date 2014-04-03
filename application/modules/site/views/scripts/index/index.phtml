@@ -12,26 +12,7 @@
 	
    <?php /**DANH SÁCH CHUYÊN MỤC VÀ 1 SẢN PHẨM ĐƯỢC GỢI Ý**/?>
    <div class="row">
-    <div class="three columns">
-      <div data-bhw-path="LeftNavCategories" id="left-nav-categories" data-bhw="LeftNavCategories">
-        <div class="side-title">
-          <img src="<?php echo ASSETS_CDN?>/homepage-assets/left_nav-viewing_glass-3956c58010.png" class="explore-icon">
-          <h2>Chuyên mục</h2>
-        </div>
-        <ul>
-          <?php if(isset($categories)):?>
-          	<?php foreach ($categories as $ca):?>
-		      <li>
-		      	<a href="<?php echo category_link($ca)?>">
-		      		<?php echo $ca['name']?>
-		      <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
-		      		<span class="counter">(<?php echo $count_child;?>)</span></a></li>
-          	<?php endforeach;?>
-          <?php endif;?>
-	  </ul>
-      </div>   
-    </div>
-    <div class="nine columns">
+    <div>
       <div id="featured">
         <figure class="hero-deal">
 		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
