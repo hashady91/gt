@@ -50,7 +50,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 			                <th>Tiết kiệm</th>
 			              </tr>
 			              <tr id="discount-data">
-			                <td id="discount-value"><?php echo $row['origin_price'];?>₫</td>
+			                <td id="discount-value"><?php echo show_money($row['origin_price']);?>₫</td>
 			                <?php if($row['origin_price'] > 0):?>
 			                <td id="discount-percent">$<?php echo number_format($row['deal_price'] / $row['origin_price'] * 100,1);?>%</td>
 			                <?php else:?>
@@ -61,7 +61,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 			                	  else 
 			                	  	$save = 0;
 			                ?>
-			                <td id="discount-you-save"><?php echo $save;?>₫</td>
+			                <td id="discount-you-save"><?php echo show_money($save);?>₫</td>
 			              </tr>
 			            </tbody>
 			          </table>

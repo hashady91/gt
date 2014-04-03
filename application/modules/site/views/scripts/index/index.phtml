@@ -79,8 +79,8 @@
 		    </div>
 		
 		    <p class="deal-price">
-		        <s class="original-price" title='Giá ban đầu'><?php echo $hp_product['origin_price'];?>₫</s>
-		      <?php echo $hp_product['deal_price'];?>₫
+		        <s class="original-price" title='Giá ban đầu'><?php echo show_money($hp_product['origin_price']);?>₫</s>
+		      <?php echo show_money($hp_product['deal_price']);?>₫
 		    </p>
 		    <div class="view-deal">
 		      <a href="<?php echo node_link('product', $hp_product);?>" class="btn-buy">Xem chi tiết</a>
