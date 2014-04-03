@@ -76,55 +76,44 @@
           </div>
         </header>
         
-        <nav role="navigation" class="primary-nav">
-          <div class="row">
-	          <div class='ten columns'>
-	          	<ul>
-	          		<li>
-            			<h3 style='margin-top: 10px; color: #FFF; font-weight: bold;'>
-            				Hotline: 04.632.872.72 - 0943.959.698</h3>
-            		</li>
-	          	</ul>
-	          </div>
-            <div class="two columns">
-            <ul>
-             	<li><a title="Giá Số Một hỗ trợ khách hàng qua Skype" 
+        <nav>
+        	<ul>
+        		<li class="sub-menu"><a href="#">Menu</a>
+        			<ul>
+        				<li><a href="#">Menu1</a></li>
+        				<li><a href="#">Menu2</a></li>
+        				<li><a href="#">Menu3</a>
+        					<ul>
+        						<li><a href="#">submenu1</a></li>
+        						<li><a href="#">submenu2</a></li>
+        						<li><a href="#">submenu3</a></li>
+        						<li><a href="#">submenu4</a></li>
+        					</ul>
+        				</li>
+        			</ul>
+        		</li>
+                <li class="support-menu"><a title="Giá Số Một hỗ trợ khách hàng qua Skype" 
                 	href="skype:giasomot?call">
                 		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Skype-icon.png'?>"
-	                		width='33x'>
+	                		>
                 		</a></li>
-                <li><a title="Tìm Giá Số Một trên Facebook" 
+                <li class="support-menu"><a title="Tìm Giá Số Một trên Facebook" 
                 	href="http://www.facebook.com/giasomot">
                 		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Facebook-icon.png'?>"
-	                		width='33x'>
+	                		>
                 		</a></li>
-                <li><a title="Kênh Youtube - Giá Số Một" 
+                <li class="support-menu"><a title="Kênh Youtube - Giá Số Một" 
                 	href="http://www.youtube.com/giasomot">
                 		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/Youtube-icon.png'?>"
-		                		width='33px'>
+		                		>
                 			</a></li>
-                <li><a title="Khách hàng góp ý" 
+                <li class="support-menu"><a title="Khách hàng góp ý" 
                 	href="/feedback/new">
                 		<img alt="" src="<?php echo ASSETS_CDN. '/somacro/noborder/user-comments-icon.png'?>"
-                		width='37px'>
-                		</a></li>
-            </ul>
-            <?php /*
-              <ul>
-				<?php $categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();?>
-	        	   <?php if(isset($categories) && count($categories) > 0):?>
-	        	   	   <?php foreach ($categories as $ca):?>
-			                <li class="primary-nav-tab menu-category-hover" 
-			                	cate-id="<?php echo $ca['id'];?>" style="width: 92px;" >
-			                 	 <a href="<?php echo category_link($ca);?>">
-			                  	<?php echo $ca['name'];?></a>
-			                </li>
-	        	   	   <?php endforeach;?>
-	        	   <?php endif;?>              
-        	   </ul>
-            */?>
-            </div>
-          </div>
+                		>
+                		</a>
+        		</li>
+        	</ul>
         </nav>
         
         <?php /*
