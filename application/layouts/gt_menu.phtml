@@ -1,5 +1,5 @@
 <?php $lu = Zend_Registry::get('user');?>
-<?php $categories = $this->categories;?>
+<?php $categories = $categories = Dao_Node_Category::getInstance()->getCategoryLevelOne();?>
 <div class="header-v2">
         <header role="banner" data-bhw="Header" class="header" data-bhw-path="Header">
           <div class="row">
