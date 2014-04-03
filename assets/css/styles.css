@@ -215,3 +215,8 @@ nav ul ul ul {
 	z-index: 100;
 	border-top: 0;
 }
+.child-menu
+{
+	width: 200px;
+	margin-left: 2px;
+}

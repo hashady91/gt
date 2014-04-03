@@ -1,4 +1,6 @@
 <?php $lu = Zend_Registry::get('user');?>
+<?php $categories = $this->categories;?>
+<?php f($categories);?>
 <div class="header-v2">
         <header role="banner" data-bhw="Header" class="header" data-bhw-path="Header">
           <div class="row">
@@ -79,17 +81,26 @@
         <nav class="nav">
         	<ul class="header-v3">
         		<li class="sub-menu"><a href="#">Menu</a>
+        		
         			<ul>
-        				<li><a href="#">Menu1</a></li>
-        				<li><a href="#">Menu2</a></li>
-        				<li><a href="#">Menu3</a>
-        					<ul>
-        						<li><a href="#">submenu1</a></li>
-        						<li><a href="#">submenu2</a></li>
-        						<li><a href="#">submenu3</a></li>
-        						<li><a href="#">submenu4</a></li>
-        					</ul>
-        				</li>
+        			<?php if(isset($categories)):?>
+          	        <?php foreach ($categories as $ca):?>
+ 		             <li>
+ 		      	         <a href="<?php echo category_link($ca)?>">
+     		      		     <?php echo $ca['name']?>
+     		                 <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
+     		      		     <span class="counter">(<?php echo $count_child;?>)</span>
+ 		      		     </a>
+ 		      		     <?php if($count_child >0): ?>
+ 		      		     <ul class="child-menu">
+ 		      		           <?php foreach ($ca['child_category'] as $key => $val):?>
+         						<li><a href="#"><?php echo $val['name']?></a></li>
+         					   <?php endforeach; ?>
+         			     </ul>
+ 					     <?php endif;?>
+	      		     </li>
+                  	 <?php endforeach;?>
+                    <?php endif;?>
         			</ul>
         		</li>
                 <li class="support-menu"><a title="Giá Số Một hỗ trợ khách hàng qua Skype" 
