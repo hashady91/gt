@@ -96,20 +96,6 @@ div.voteWrapper a {
 	margin-top: 9px;
 }
 
-body,div,h1,h2,h3,h4,h5,h6,p,ul,ol,li,dl,dt,dd,img,form,fieldset,input,textarea,blockquote
-	{
-	margin: 0;
-	padding: 0;
-	border: 0;
-}
-
-body {
-	background: #909eab url(bg.png);
-	font-family: Helvetica, sans-serif;
-	font-size: 18px;
-	line-height: 24px;
-}
-
 nav {
 	margin: -19px auto;
 	text-align: center;
@@ -125,6 +111,7 @@ nav ul li:hover>ul {
 }
 
 nav ul {
+	z-index:99999;
 	padding: 0 20px;
 	list-style: none;
 	position: relative;
