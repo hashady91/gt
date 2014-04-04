@@ -12,7 +12,44 @@
 	
    <?php /**DANH SÁCH CHUYÊN MỤC VÀ 1 SẢN PHẨM ĐƯỢC GỢI Ý**/?>
    <div class="row">
+     <?php /**DANH SÁCH SẢN PHẨM ĐƯỢC ADMIN GỢI Ý**/?>
+   		<?php if(count($recommend_products) > 0):?>
+	   <div id="slidorion" class="slidorion">
+			<div class="slider">
+			 	<?php foreach ($recommend_products as $product):?>
+	  	  	 	 <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+					<div class="slide">
+						<a href="<?php echo node_link('product', $product);?>">
+							<img src="<?php echo STATIC_GT.$product['images'];?>" />
+						</a></div>
+				<?php endforeach;?>
+			</div>
+	
+			<div class="accordion">
+				<?php foreach ($recommend_products as $product):?>
+					<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+					<div class="header"><?php echo $product['name'];?></div>
+					<div class="content">
+						<a href="<?php echo node_link('product', $product);?>">
+							<p>Chuyên mục: <?php echo $product['category']['name'];?></p>
+						</a>
+						<?php if($product['counter']['buy'] != 0):?>
+							<p>Có <?php echo $product['counter']['buy'];?> người đã mua</p>
+						<?php else:?>
+							<p> Bạn sẽ là người mua đầu tiên sản phẩm </p>
+						<?php endif;?>
+						<?php if(isset($product['serialNumber']) && $product['serialNumber'] != ''):?>
+							<p> Mã hàng: <?php echo $product['serialNumber'];?></p>
+						<?php endif;?>
+						<p>Giá gốc: <?php echo show_money($product['origin_price']);?>₫</p>
+						<p style='color: #82B548;'>Giá bán: <?php echo show_money($product['deal_price']);?>₫</p>
+					</div>
+				<?php endforeach;?>
+			</div>
+		</div>
+		<?php endif;?>
     <div>
+    <?php /*
       <div id="featured">
         <figure class="hero-deal">
 		  <a href="<?php echo node_link('product', $hp_product);?>" title='<?php echo $hp_product['name'];?>'>
@@ -23,8 +60,6 @@
 	              }
 	              	echo $url;
                    ?>"
-                   <?php  /*Giup hien thi phan giua cua anh*/
-                   /*(Filled image widget new|hot|vote)*/
                    if(url_exists($url)){
 		               list($width, $height) = getimagesize($url);
 		               $heightFilledImage = 422;//height class filedImage img
@@ -49,12 +84,6 @@
 		    </h2>
 		
 		    <div class="deal-metadata">
-		    <?php /*
-		        <p style="word-wrap: break-word;" 
-		        	class="merchant-name should-truncate">
-		        	<?php echo $hp_product['category']?></p>
-		        <p class="meta-divider">|</p>
-		    */?>
 		        <p style="word-wrap: break-word;" class="deal-location should-truncate">
 		        	<?php echo $hp_product['counter']['buy'];?> đã mua</p>
 		    </div>
@@ -70,6 +99,7 @@
 		</figure>
 
       </div>
+      */?>
     </div>
   </div>
   

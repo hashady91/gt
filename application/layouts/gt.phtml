@@ -52,10 +52,10 @@ div.navbar ul.breadcrumb > li
 }
 #tsCategory { position: absolute; }
 .prom-night .deal-list-tile .deal-price .original-price, .prom-night figure.deal-card .deal-price .original-price, .prom-night .deal-list-tile .price .original-price, .prom-night figure.deal-card .price .original-price{
-	font-size: 15px !important;
+	font-size: 13px !important;
 }
 .prom-night .deal-list-tile .deal-price, .prom-night figure.deal-card .deal-price, .prom-night .deal-list-tile .price, .prom-night figure.deal-card .price{
-	font-size: 17px !important;
+	font-size: 13px !important;
 }
 .box_social {
     float: left;
@@ -237,6 +237,26 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 			minItems : 10
 		});
 	</script>
+	
+	<?php /*********SLIDER HOME*****************/?>
+	<link rel="stylesheet" href="<link rel="stylesheet" type="text/css" href="<?php echo ASSETS_CDN;?>/Slidorion-master/css/style.css" />
+	<link rel="stylesheet" href="<?php echo ASSETS_CDN;?>/Slidorion-master/css/slidorion.css" />
+	<script src="<?php echo ASSETS_CDN;?>/Slidorion-master/js/jquery.easing.js"></script>
+    <script src="<?php echo ASSETS_CDN;?>/Slidorion-master/dist/jquery.slidorion.min.js"></script>
+
+    <script>
+	$(function(){
+		$('#slidorion').slidorion({
+			effect: 'slideRandom',
+			hoverPause: true,
+			interval: 20000,
+			speed: 800,
+			controlNav: false,
+			controlNavClass: 'nav'
+		});
+	});
+	</script>
+	
 <?php echo $this->headScript();?>
 <?php print $this->inlineScript();?>
 </body>
