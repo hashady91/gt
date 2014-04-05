@@ -1,5 +1,6 @@
 /* Custom CSS */
 /*************************** LOGIN *****************************/
+ul,li { margin: 0; padding: 0; }
 .login-container {
 	background: #eee;
 	/*margin:0 auto;
