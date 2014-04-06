@@ -143,7 +143,7 @@ nav ul li:hover a {
 
 nav ul li a {
 	display: block;
-	padding: 10px 15px;
+	padding: 6px 8px;
 	color: #757575;
 	text-decoration: none;
 }
@@ -289,4 +289,14 @@ body.prom-night
 .prom-night .deal-list-tile figcaption, .prom-night figure.deal-card figcaption
 {
 	background: none repeat scroll 0 0 #F2F2F2 !important;
+}
+#slidorion .slider .slide img
+{
+	height: 100% !important;
+	width: auto !important;
+	min-height: 394px;
+	max-height: 394px;	
+}
+.header-v3{
+	background: none repeat scroll 0 0 #75AC48
 }
