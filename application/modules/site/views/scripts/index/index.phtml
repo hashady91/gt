@@ -35,12 +35,20 @@
 						                
 						                //Get height (chieu dai thuc cua anh ty le
 						                // voi chieu dai cua khung chua anh)
-						                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+						               
+										$heightFilledImageNew = $widthFilledImage * $height/ $width;
 						                
 						                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 						                if($gap > 0){
 						                	echo "style = 'margin-top: -{$gap}px'";
 						                }
+						                /*
+						                $widthFilledImageNew = $heightFilledImage * $width/$height;
+						                
+						                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+						                if($gap > 0){
+						                	echo "style = 'margin-left: {$gap}px'";
+						                }*/
 									}
 				                ?>
 			                    width='100%'>
@@ -100,19 +108,26 @@
 		                   <?php  /*Giup hien thi phan giua cua anh*/
 		                   /*(Filled image widget new|hot|vote)*/
 			               list($width, $height) = getimagesize($url);
-			               $heightFilledImage = 134;//height class filedImage img
-							$widthFilledImage = 222;
+			               $heightFilledImage = 187;//height class filedImage img
+						   $widthFilledImage = 300;
 			                
 			                //Get height (chieu dai thuc cua anh ty le
 			                // voi chieu dai cua khung chua anh)
-			                $heightFilledImageNew = $widthFilledImage * $height/ $width;
-			                
-			                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
-			                if($gap > 0){
-			                	echo "style = 'margin-top: -{$gap}px'";
-			                }
-			                ?>
-		                    width='100%'>
+								/*
+								$heightFilledImageNew = $widthFilledImage * $height/ $width;
+				                
+				                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+				                if($gap > 0){
+				                	echo "style = 'margin-top: -{$gap}px'";
+				                }*/
+				                
+				                $widthFilledImageNew = $heightFilledImage * $width/$height;
+				                
+				                $gap = ($widthFilledImage - $widthFilledImageNew)/2;
+				                if($gap > 0){
+				                	echo "style = 'margin-left: {$gap}px'";
+				                }
+			                ?>>
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>
@@ -217,14 +232,22 @@
 	                
 	                //Get height (chieu dai thuc cua anh ty le
 	                // voi chieu dai cua khung chua anh)
-	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+					/*
+					$heightFilledImageNew = $widthFilledImage * $height/ $width;
 	                
 	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 	                if($gap > 0){
 	                	echo "style = 'margin-top: -{$gap}px'";
+	                }*/
+	                
+	                $widthFilledImageNew = $heightFilledImage * $width/$height;
+	                
+	                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+	                if($gap > 0){
+	                	echo "style = 'margin-left: {$gap}px'";
 	                }
 	                ?>
-                    width='100%'>
+                    width='auto !important' height='100% !important'>
 	  </a>
 	  
 	  <div class="six columns deals">
@@ -370,11 +393,19 @@
 	                
 	                //Get height (chieu dai thuc cua anh ty le
 	                // voi chieu dai cua khung chua anh)
-	                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+					/*
+					$heightFilledImageNew = $widthFilledImage * $height/ $width;
 	                
 	                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 	                if($gap > 0){
 	                	echo "style = 'margin-top: -{$gap}px'";
+	                }*/
+	                
+	                $widthFilledImageNew = $heightFilledImage * $width/$height;
+	                
+	                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+	                if($gap > 0){
+	                	echo "style = 'margin-left: {$gap}px'";
 	                }
 	                ?>
                     width='100%'>

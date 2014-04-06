@@ -84,7 +84,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 				  </div>
                    */?> 
    <?php /*?>
-				    <ul data-bhw="DealSharingButtons" class="share-links" data-bhw-path="FeaturedDeal|deal:lifetime-health-wellness-2|DealSharingButtons">
+				    <ul data-bhw="DealSharingButtons" class="share-links">
 				          <script type="text/javascript">
 						      window.fbAsyncInit = function() {
 						        // init the FB JS SDK
@@ -107,7 +107,14 @@ CL.NID = "<?php echo $row['id']; ?>";
 						    </script>
 				    
 				        <li class="facebook-like" title="Like it!">
-				          <div data-send="false" data-show-faces="false" data-layout="button_count" data-href="http://www.groupon.com/deals/lifetime-health-wellness-2" class="fb-like fb_iframe_widget" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=7829106395&amp;href=http%3A%2F%2Fwww.groupon.com%2Fdeals%2Flifetime-health-wellness-2&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 78px; height: 20px;"><iframe width="1000px" scrolling="no" height="1000px" frameborder="0" name="f12f21992b954e8" allowtransparency="true" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 78px; height: 20px;" src="http://www.facebook.com/plugins/like.php?app_id=7829106395&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FLEdxGgtB9cN.js%3Fversion%3D40%23cb%3Dffe52f01a063f%26domain%3Dwww.groupon.com%26origin%3Dhttp%253A%252F%252Fwww.groupon.com%252Ff2c0ec4e5755cd6%26relation%3Dparent.parent&amp;href=http%3A%2F%2Fwww.groupon.com%2Fdeals%2Flifetime-health-wellness-2&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false" class=""></iframe></span></div>
+				          <div data-send="false" 
+				          	data-show-faces="false" 
+				          	data-layout="button_count" 
+				          	data-href="#" 
+				          	class="fb-like fb_iframe_widget" 
+				          	fb-xfbml-state="rendered" 
+				          	fb-iframe-plugin-query="app_id=7829106395&amp;href=http%3A%2F%2Fwww.groupon.com%2Fdeals%2Flifetime-health-wellness-2&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false"><span style="vertical-align: bottom; width: 78px; height: 20px;"><iframe width="1000px" scrolling="no" height="1000px" frameborder="0" name="f12f21992b954e8" allowtransparency="true" title="fb:like Facebook Social Plugin" style="border: medium none; visibility: visible; width: 78px; height: 20px;" src="http://www.facebook.com/plugins/like.php?app_id=7829106395&amp;channel=http%3A%2F%2Fstatic.ak.facebook.com%2Fconnect%2Fxd_arbiter%2FLEdxGgtB9cN.js%3Fversion%3D40%23cb%3Dffe52f01a063f%26domain%3Dwww.groupon.com%26origin%3Dhttp%253A%252F%252Fwww.groupon.com%252Ff2c0ec4e5755cd6%26relation%3Dparent.parent&amp;href=http%3A%2F%2Fwww.groupon.com%2Fdeals%2Flifetime-health-wellness-2&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false" class="">
+				          	</iframe></span></div>
 				        </li>
 				  </ul>
 				  */ ?>
@@ -115,7 +122,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 
 
 	            <div class="nine columns" id="deal-info">
-	              <figure data-bhd="{&quot;height&quot;:&quot;1977&quot;,&quot;width&quot;:&quot;3295&quot;}" data-bhw="FeaturedImage" data-bhw-path="FeaturedDeal|deal:lifetime-health-wellness-2|FeaturedImage">
+	              <figure>
 	                <div class="gallery-single">
 				    <div class="gallery-featured" style="height: 420px;">
 				   	    <img src="<?php
@@ -135,11 +142,20 @@ CL.NID = "<?php echo $row['id']; ?>";
 				                
 				                //Get height (chieu dai thuc cua anh ty le
 				                // voi chieu dai cua khung chua anh)
-				                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+				                
+								/*
+								$heightFilledImageNew = $widthFilledImage * $height/ $width;
 				                
 				                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 				                if($gap > 0){
 				                	echo "style = 'margin-top: -{$gap}px'";
+				                }*/
+				                
+				                $widthFilledImageNew = $heightFilledImage * $width/$height;
+				                
+				                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+				                if($gap > 0){
+				                	echo "style = 'margin-left: {$gap}px'";
 				                }
 						   }
 			                ?>

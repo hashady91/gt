@@ -252,5 +252,55 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     	$this->handleAjaxOrMaster($r);
     }
     
+    public function newestAction()
+    {
+    	//$where = array('');
+    	$order = array('ts' => -1);
+    	$cond['order'] = $order;
+    	//$cond['limit'] = 3;
+    	
+    	$r = Dao_Node_Product::getInstance()->findAll($cond);
+    	if($r['success']){
+    		$newProducts = $r['result'];
+    	}else{
+    		$newProducts = array();
+    	}
+    	
+    	$this->setViewParam('list',$newProducts);
+    }
+    
+    public function dealestAction()
+    {
+    	//$where = array('');
+    	$order = array('counter.saled' => -1);
+    	$cond['order'] = $order;
+    	//$cond['limit'] = 3;
+    	 
+    	$r = Dao_Node_Product::getInstance()->findAll($cond);
+    	if($r['success']){
+    		$newProducts = $r['result'];
+    	}else{
+    		$newProducts = array();
+    	}
+    	 
+    	$this->setViewParam('list',$newProducts);
+    }
+    
+    public function salestAction()
+    {
+    	//$where = array('');
+    	$order = array('counter.saled' => -1);
+    	$cond['order'] = $order;
+    	//$cond['limit'] = 3;
+    	 
+    	$r = Dao_Node_Product::getInstance()->findAll($cond);
+    	if($r['success']){
+    		$newProducts = $r['result'];
+    	}else{
+    		$newProducts = array();
+    	}
+    	 
+    	$this->setViewParam('list',$newProducts);
+    }
 }
 

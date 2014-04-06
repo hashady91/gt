@@ -46,11 +46,19 @@
 									                
 									                //Get height (chieu dai thuc cua anh ty le
 									                // voi chieu dai cua khung chua anh)
-									                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+									                /*
+													$heightFilledImageNew = $widthFilledImage * $height/ $width;
 									                
 									                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 									                if($gap > 0){
 									                	echo "style = 'margin-top: -{$gap}px'";
+									                }*/
+									                
+									                $widthFilledImageNew = $heightFilledImage * $width/$height;
+									                
+									                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+									                if($gap > 0){
+									                	echo "style = 'margin-left: {$gap}px'";
 									                }
 											   }
 								                ?>
@@ -115,11 +123,19 @@
 											                
 											                //Get height (chieu dai thuc cua anh ty le
 											                // voi chieu dai cua khung chua anh)
-											                $heightFilledImageNew = $widthFilledImage * $height/ $width;
+											                /*
+															$heightFilledImageNew = $widthFilledImage * $height/ $width;
 											                
 											                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
 											                if($gap > 0){
 											                	echo "style = 'margin-top: -{$gap}px'";
+											                }*/
+											                
+											                $widthFilledImageNew = $heightFilledImage * $width/$height;
+											                
+											                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+											                if($gap > 0){
+											                	echo "style = 'margin-left: {$gap}px'";
 											                }
 													   }
 										                ?>
