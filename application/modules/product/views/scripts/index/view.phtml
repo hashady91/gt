@@ -253,7 +253,40 @@ CL.NID = "<?php echo $row['id']; ?>";
 	          <?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
 			      <figure class="deal-card">
 			        <a href="<?php echo node_link('product', $product);?>">
-			          <img src="<?php echo STATIC_GT . $product['images'];?>">
+			          <img src="<?php 
+			          $url = STATIC_GT . $product['images'];
+			          if(!url_exists($url)){
+			          	$url = default_avatar('product');
+			          }
+			           
+			          echo $url;
+			          ?>"
+          		                   <?php  /*Giup hien thi phan giua cua anh*/
+          		                   /*(Filled image widget new|hot|vote)*/
+          		                   if(url_exists($url)){
+          				               list($width, $height) = getimagesize($url);
+          				               $heightFilledImage = 196;//height class filedImage img
+          								$widthFilledImage = 305;
+          				                
+          				                //Get height (chieu dai thuc cua anh ty le
+          				                // voi chieu dai cua khung chua anh)
+          				                
+          								/*
+          								$heightFilledImageNew = $widthFilledImage * $height/ $width;
+          				                
+          				                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
+          				                if($gap > 0){
+          				                	echo "style = 'margin-top: -{$gap}px'";
+          				                }*/
+          				                
+          				                $widthFilledImageNew = $heightFilledImage * $width/$height;
+          				                
+          				                $gap = ( $widthFilledImage - $widthFilledImageNew)/2;
+          				                if($gap > 0){
+          				                	echo "style = 'margin-left: {$gap}px'";
+          				                }
+          						   }
+			          ?>">
 			          <figcaption>
 			            <p style="word-wrap: break-word;" class="deal-title should-truncate">
 			            	<?php echo $product['name'];?></p>
