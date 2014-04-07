@@ -178,6 +178,21 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 		$('#carousel').elastislide({
 			minItems : 10
 		});
+
+		$(window).scroll(function() {
+		    var height = $(window).scrollTop();
+
+		    if(height  > 66) {
+		        console.log('shit');
+		        $('.nav-scroll-top-gt').css({
+		        	margin: '-19px auto'
+	        	});
+		    }else{
+		    	$('.nav-scroll-top-gt').css({
+			        	margin: '0'
+	        	});
+	    	}
+		});
 	</script>
 	
 	<?php /*********SLIDER HOME*****************/?>

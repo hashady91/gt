@@ -98,7 +98,7 @@ div.voteWrapper a {
 }
 
 nav {
-	margin: -19px auto;
+/* 	margin: -19px auto; */
 	text-align: center;
 }
 
@@ -299,4 +299,10 @@ body.prom-night
 }
 .header-v3{
 	background: none repeat scroll 0 0 #75AC48
+}
+#featured .hero-deal img{
+	height: 100% !important;
+	width: auto !important;
+	min-height: 422px !important;
+	max-height: 422px !important;	
 }
