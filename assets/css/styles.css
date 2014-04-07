@@ -194,6 +194,7 @@ nav ul ul ul {
 {
 	margin-top:10px;
 	z-index:999;
+	height: 40px;
 }
 .sticky {
 	position: fixed;

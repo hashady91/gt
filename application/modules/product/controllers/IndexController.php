@@ -254,7 +254,11 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function newestAction()
     {
-    	//$where = array('');
+    	$cateId = $this->getStrippedParam('cate_id');
+    	if(isset($cateId) && $cateId !=''){
+	    	$where = array('category.id' => $cateId);
+	    	$cond['where'] = $where;
+    	}
     	$order = array('ts' => -1);
     	$cond['order'] = $order;
     	//$cond['limit'] = 3;
@@ -266,7 +270,8 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     		$newProducts = array();
     	}
     	
-    	$this->setViewParam('list',$newProducts);
+    	$this->setViewParam('products',$newProducts);
+    	Bootstrap::$pageTitle = 'Sản phẩm mới nhất';
     }
     
     public function dealestAction()
