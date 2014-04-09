@@ -307,3 +307,7 @@ body.prom-night
 	min-height: 422px !important;
 	max-height: 422px !important;	
 }
+.prom-night .header-v2 .my-stuff
+{
+	z-index: 1 !important;
+}

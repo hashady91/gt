@@ -90,7 +90,7 @@
 	        			<?php if(isset($categories)):?>
 	          	        <?php foreach ($categories as $ca):?>
 	 		             <li>
-	 		      	         <a href="<?php echo category_link($ca)?>">
+	 		      	         <a href="<?php echo category_link($ca);?>">
 	     		      		     <?php echo $ca['name']?>
 	     		                 <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
 	     		      		     <span class="counter">(<?php echo $count_child;?>)</span>
@@ -98,7 +98,7 @@
 	 		      		     <?php if($count_child >0): ?>
 	 		      		     <ul class="child-menu">
 	 		      		           <?php foreach ($ca['child_category'] as $key => $val):?>
-	         						<li><a href="#"><?php echo $val['name']?></a></li>
+	         						<li><a href="<?php echo category_link($val);?>"><?php echo $val['name']?></a></li>
 	         					   <?php endforeach; ?>
 	         			     </ul>
 	 					     <?php endif;?>
@@ -227,6 +227,18 @@
 		
 		$('.subnav-flyout').mouseout(function(){
 			$(this).hide();
+		});
+		
+		$('.user-wrapper').mouseover(function(){
+			$('nav ul').css({
+		        	'z-index': '0'
+	        	});
+		});
+		
+		$('.user-wrapper').mouseout(function(){
+			$('nav ul').css({
+		        	'z-index': '999'
+	        	});
 		});
 	});
 <?php $this->inlineScript()->captureEnd();?>
