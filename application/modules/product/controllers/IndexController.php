@@ -110,40 +110,24 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     		$products = array();
     		
     		/**
-    		 * Get dealest products
-    		 * **/
-    		
-    		//$where = array('');
-    		$order = array('deal_price' => 1);
-    		$cond['order'] = $order;
-    		$cond['limit'] = 4;
-    		
-    		$r = Dao_Node_Product::getInstance()->find($cond);
-    		if($r['success']){
-    			$dealestProducts = $r['result'];
-    		}else{
-    			$dealestProducts = array();
-    		}
-    		
-    		
-    		/**
-    		 * Get newest products
-    		 * **/
-    		
-    		//$where = array('');
-    		$order = array('ts' => -1);
-    		$cond['order'] = $order;
-    		$cond['limit'] = 3;
-    		
-    		$r = Dao_Node_Product::getInstance()->find($cond);
-    		if($r['success']){
-    			$newProducts = $r['result'];
-    		}else{
-    			$newProducts = array();
-    		}
-    		
-    		$this->setViewParam('newProducts',$newProducts);
-    		$this->setViewParam('dealestProducts',$dealestProducts);
+	         * Get dealest products
+	         * **/
+	    	$dealestProducts = Dao_Node_Product::getInstance()->getProductsByType('dealest', '', 4);
+	
+	        /**
+	         * Get newest products
+	         * **/
+	    	$newProducts = Dao_Node_Product::getInstance()->getProductsByType('newest', '', 3);
+	    	
+	    	/**
+	    	 * Get best selling products
+	    	 * **/
+	    	$bestSellingProducts = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', '', 4);
+	    	
+	    	        
+	        $this->setViewParam('newProducts',$newProducts);
+	        $this->setViewParam('dealestProducts',$dealestProducts);
+	        $this->setViewParam('bestSellingProducts',$bestSellingProducts);
     	}
     	
     	$this->setViewParam('products',$products);
