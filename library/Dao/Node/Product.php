@@ -407,4 +407,31 @@ class Dao_Node_Product extends Cl_Dao_Node
 		
 		return $categories;
 	}
+	
+	public function getProductsByType($type, $cateId, $limit){
+		if(isset($cateId) && $cateId !=''){
+			$where = array('category.id' => $cateId);
+			$cond['where'] = $where;
+		}
+		if($type == 'newest'){
+	    	$order = array('ts' => -1);
+		}elseif ($type == 'bestSelling'){
+			$order = array('counter.saled' => -1);
+		}else{//type dealest
+			//TODO: Chua biet lay theo cong thuc nao
+			$order = array('counter.saled' => -1);
+		}
+		$cond['order'] = $order;
+		$cond['limit'] = $limit;
+		//$cond['limit'] = 3;
+		
+		$r = Dao_Node_Product::getInstance()->find($cond);
+		if($r['success']){
+			$products = $r['result'];
+		}else{
+			$products = array();
+		}
+		
+		return $products;
+	}
 }

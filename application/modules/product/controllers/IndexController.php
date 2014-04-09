@@ -163,7 +163,6 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function viewAction()
     {
-        //TODO Your permission here
         $id = $this->getStrippedParam('id');
         if($id != '')
             $r = Dao_Node_Product::getInstance()->ProductView($id);
@@ -177,37 +176,22 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         /**
          * Get dealest products
          * **/
-        
-        //$where = array('');
-        $order = array('deal_price' => 1);
-        $cond['order'] = $order;
-        $cond['limit'] = 4;
-        
-        $r = Dao_Node_Product::getInstance()->find($cond);
-        if($r['success']){
-        	$dealestProducts = $r['result'];
-        }else{
-   			$dealestProducts = array();     	
-        }
+    	$dealestProducts = Dao_Node_Product::getInstance()->getProductsByType('dealest', '', 4);
 
         /**
          * Get newest products
          * **/
-        
-        //$where = array('');
-        $order = array('ts' => -1);
-        $cond['order'] = $order;
-        $cond['limit'] = 3;
-        
-        $r = Dao_Node_Product::getInstance()->find($cond);
-        if($r['success']){
-        	$newProducts = $r['result'];
-        }else{
-        	$newProducts = array();
-        }
-        
+    	$newProducts = Dao_Node_Product::getInstance()->getProductsByType('newest', '', 3);
+    	
+    	/**
+    	 * Get newest products
+    	 * **/
+    	$salestProducts = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', '', 4);
+    	
+    	        
         $this->setViewParam('newProducts',$newProducts);
         $this->setViewParam('dealestProducts',$dealestProducts);
+        $this->setViewParam('salestProducts',$salestProducts);
         
         Bootstrap::$pageTitle = 'Xem sản phẩm';
     }
@@ -255,57 +239,31 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     public function newestAction()
     {
     	$cateId = $this->getStrippedParam('cate_id');
-    	if(isset($cateId) && $cateId !=''){
-	    	$where = array('category.id' => $cateId);
-	    	$cond['where'] = $where;
-    	}
-    	$order = array('ts' => -1);
-    	$cond['order'] = $order;
-    	//$cond['limit'] = 3;
+    	$product = Dao_Node_Product::getInstance()->getProductsByType('newest', $cateId, -1);
     	
-    	$r = Dao_Node_Product::getInstance()->findAll($cond);
-    	if($r['success']){
-    		$newProducts = $r['result'];
-    	}else{
-    		$newProducts = array();
-    	}
-    	
-    	$this->setViewParam('products',$newProducts);
+    	$this->setViewParam('products',$product);
+    	//$this->_helper->viewRenderer->setNoRender(true);
     	Bootstrap::$pageTitle = 'Sản phẩm mới nhất';
     }
     
     public function dealestAction()
     {
-    	//$where = array('');
-    	$order = array('counter.saled' => -1);
-    	$cond['order'] = $order;
-    	//$cond['limit'] = 3;
-    	 
-    	$r = Dao_Node_Product::getInstance()->findAll($cond);
-    	if($r['success']){
-    		$newProducts = $r['result'];
-    	}else{
-    		$newProducts = array();
-    	}
-    	 
-    	$this->setViewParam('list',$newProducts);
+    	$cateId = $this->getStrippedParam('cate_id');
+    	$product = Dao_Node_Product::getInstance()->getProductsByType('dealest', $cateId, -1);
+    	
+    	$this->setViewParam('products',$product);
+    	//$this->_helper->viewRenderer->setNoRender(true);
+    	Bootstrap::$pageTitle = 'Sản phẩm giá tốt nhất';
     }
     
     public function salestAction()
     {
-    	//$where = array('');
-    	$order = array('counter.saled' => -1);
-    	$cond['order'] = $order;
-    	//$cond['limit'] = 3;
-    	 
-    	$r = Dao_Node_Product::getInstance()->findAll($cond);
-    	if($r['success']){
-    		$newProducts = $r['result'];
-    	}else{
-    		$newProducts = array();
-    	}
-    	 
-    	$this->setViewParam('list',$newProducts);
+    	$cateId = $this->getStrippedParam('cate_id');
+    	$product = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', $cateId, -1);
+    	
+    	$this->setViewParam('products',$product);
+    	//$this->_helper->viewRenderer->setNoRender(true);
+    	Bootstrap::$pageTitle = 'Sản phẩm bán chạy nhất';
     }
 }
 
