@@ -184,14 +184,14 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     	$newProducts = Dao_Node_Product::getInstance()->getProductsByType('newest', '', 3);
     	
     	/**
-    	 * Get newest products
+    	 * Get best selling products
     	 * **/
-    	$salestProducts = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', '', 4);
+    	$bestSellingProducts = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', '', 4);
     	
     	        
         $this->setViewParam('newProducts',$newProducts);
         $this->setViewParam('dealestProducts',$dealestProducts);
-        $this->setViewParam('salestProducts',$salestProducts);
+        $this->setViewParam('bestSellingProducts',$bestSellingProducts);
         
         Bootstrap::$pageTitle = 'Xem sản phẩm';
     }
@@ -256,7 +256,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     	Bootstrap::$pageTitle = 'Sản phẩm giá tốt nhất';
     }
     
-    public function salestAction()
+    public function bestSellingAction()
     {
     	$cateId = $this->getStrippedParam('cate_id');
     	$product = Dao_Node_Product::getInstance()->getProductsByType('bestSelling', $cateId, -1);
