@@ -56,7 +56,7 @@
 						width='85px'/></td>
 					<td >
 						<span style='font-weight: bold; text-align: center;'>
-						<?php echo $row['name']?></span><br>
+						<a href='<?php echo node_link('related', $row);?>'><?php echo $row['name']?></a></span><br>
 						<?php echo $row['description'];?>
 						</td>
 					<td ><span style='font-weight: bold; text-align: center;'>
@@ -86,7 +86,7 @@
         			</td>
         			
         			<td>
-        				<a href="/related/update?id=<?php echo $row['id']?>" class="btn btn-xs btn-default">
+        				<a href="/related/update?id=<?php echo $row['id']?>&product__id=<?php echo $row['product']['id'];?>" class="btn btn-xs btn-default">
         					<i class="icon-edit"></i> Sửa</a>
         				<a href="/related/delete?id=<?php echo $row['id']?>" 
         					class="btn btn-xs btn-danger cl_ajax" _cl_get_metadata="remove_my_parent:2"

@@ -1,6 +1,8 @@
 <?php
 	$page = Zend_Registry::get('page');
-	$product_id = $this->product_id;
+	$product_id = get_value('product__id');
+	if(!isset($product_id) || $product_id == '')
+		$product_id = $this->product_id;
 ?>
 <ul class='nav nav-pills'>
 	<li <?php if ($page == 'related/index/new') echo "class='active';"?>>
