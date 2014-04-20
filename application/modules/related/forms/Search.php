@@ -35,7 +35,7 @@ class Related_Form_Search extends Cl_Form_Search
     	'name' => array(
     		'type' => 'Text',
     		'options' => array(
-    			'label' => "Related name",
+    			'label' => "Tên sản phẩm so sánh",
 	    		'filters' => array('StringTrim', 'StripTags')
     		),
     		'op' => '$like',
@@ -50,7 +50,7 @@ class Related_Form_Search extends Cl_Form_Search
 		'items_per_page' => array(
         		'type' => 'Select', 
         		'options' => array(
-    				'label' => "Display",
+    				'label' => "Hiển thị",
         			'disableLoadDefaultDecorators' => false,
         			'required' => true,
     	    		'filters' => array('StringTrim', 'StripTags')

@@ -163,6 +163,7 @@ CL.NID = "<?php echo $row['id']; ?>";
 	      </section>
 	      
 	    <?php /*San pham tai cac hang khac*/?>
+	    <?php if(isset($related) && count($related) > 0):?>
 	    <section class='module deal'>
 	    	<div class='row'>
 	    		<div class='columns twelve'>
@@ -177,36 +178,35 @@ CL.NID = "<?php echo $row['id']; ?>";
 	    				</thead>
 	    				
 	    				<tbody>
-					     	<?php if(isset($related) && count($related) > 0):?>
-					     		<?php foreach ($related as $r):?>
-									<tr>
-										<td><img src='<?php echo STATIC_GT . $r['images']?>' 
-											width='85px'/></td>
-										<td>
-											<span style='font-weight: bold; text-align: center;'>
-											<?php echo $r['name']?></span><br>
-											<?php echo $r['description'];?>
-											</td>
-										<td><span style='font-weight: bold; text-align: center;'>
-											<?php echo $r['brand'];?></span><br>
-											<img src='<?php echo STATIC_GT . $r['avatar_brand'];?>'/>
-											</td>
-										<td><span style='font-weight: bold; text-align: center;'>
-											<?php echo show_money($r['origin_price']);?></span><br>
-											<a href="<?php echo $r['link'];?>" 
-												class="btn-buy-big" style='font-size: 10px;'>
-			          							Đến nơi bán
-			        							</a>
-											</td>
-									</tr>					     		
-					     		<?php endforeach;?>
-					     	<?php endif;?>
+				     		<?php foreach ($related as $r):?>
+								<tr>
+									<td class='bottom-td-related'><img src='<?php echo STATIC_GT . $r['images']?>' 
+										width='85px'/></td>
+									<td class='bottom-td-related'>
+										<span style='font-weight: bold; text-align: center;'>
+										<?php echo $r['name']?></span><br>
+										<?php echo $r['description'];?>
+										</td>
+									<td class='bottom-td-related'><span style='font-weight: bold; text-align: center;'>
+										<?php echo $r['brand'];?></span><br>
+										<img src='<?php echo STATIC_GT . $r['avatar_brand'];?>'/>
+										</td>
+									<td class='bottom-td-related'>
+										<span style='font-weight: bold; text-align: center;'>
+										<?php echo show_money($r['origin_price']);?></span><br>
+										<a href="<?php echo $r['link'];?>" target='_blank' 
+											class="btn-buy-big" style='font-size: 10px;'>
+		          							Đến nơi bán
+		        							</a>
+										</td>
+								</tr>				
+				     		<?php endforeach;?>
 	    				</tbody>
 	    			</table>
 	    		</div>
 	    	</div>
 	    </section>
-
+		<?php endif;?>
 
         <section class="write-up module" >
           <div class="module-body dotted-border">
@@ -386,3 +386,10 @@ CL.NID = "<?php echo $row['id']; ?>";
 </div>
     <?php endif;?>
 </div>
+
+<style>
+.bottom-td-related{
+	border-bottom: 1px solid #D5D5D5;
+	padding: 10px;
+}			          				          
+</style>
