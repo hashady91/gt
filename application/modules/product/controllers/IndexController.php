@@ -153,6 +153,9 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         
         if ($r['success'] && $r['count'] > 0) {
             $this->setViewParam ('row', $r ['result'] );
+            //Lay danh sach san pham o cac hang tuong tu
+            $list = Dao_Node_Product::getInstance()->getRelatedProductsOfBrands($r['result']['id']);
+            $this->setViewParam('related', $list);
         } else {
             $this->_redirect ( "/" );
         }

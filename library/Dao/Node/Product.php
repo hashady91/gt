@@ -2,7 +2,7 @@
 class Dao_Node_Product extends Cl_Dao_Node
 {
     public $nodeType = 'product';
-    public $cSchema = array('id' => 'string', 'iid' => 'string', 'name' => 'string', 'images' => 'string');
+    public $cSchema = array('id' => 'string', 'iid' => 'int', 'name' => 'string', 'images' => 'string');
         
     protected function relationConfigs($subject = 'user')
     {
@@ -19,6 +19,23 @@ class Dao_Node_Product extends Cl_Dao_Node
 	protected function _configs(){
 	    $user = Cl_Dao_Util::getUserDao()->cSchema;
 	    $category = Dao_Node_Category::getInstance()->cSchema;
+	    //$related = Dao_Node_Related::getInstance()->cSchema;
+	    $related = array(
+	    		'id' => 'string',
+	    		'iid' => 'int',
+	    		'note' => 'string',
+	    		'images' => 'string',
+	    		"name" => 'string',
+	    		"description" => 'string',
+	    		"meta_description" => 'string',
+	    		"price" => 'int',
+	    		'link' => 'string',
+	    		'origin_price' => 'float',
+	    		'brand' => 'string', //eg: pc, trananh, phucanh
+	    		'avatar_brand' => 'string',
+	    		'status' => 'string',
+	    );
+	    
     	return array(
     		'collectionName' => 'product',
         	'documentSchemaArray' => array(
@@ -62,6 +79,9 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        'origin_price' => 'float',
     	        'gallery' => 'array',
         	    'parent_category_iid' => 'string',
+        		'related' => array(
+        				$related
+        		),
     	        'u' => $user, //who posted this	
     	        'category' => $category
         	),
@@ -433,5 +453,17 @@ class Dao_Node_Product extends Cl_Dao_Node
 		}
 		
 		return $products;
+	}
+	
+	public function getRelatedProductsOfBrands($id){
+		$where = array('product.id' => $id);
+		$cond['where'] = $where;
+		
+		$r = Dao_Node_Related::getInstance()->findAll($cond);
+		if($r['success']){
+			return  $r['result'];
+		}else{
+			return array();
+		}
 	}
 }

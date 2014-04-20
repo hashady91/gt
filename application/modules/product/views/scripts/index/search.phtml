@@ -58,7 +58,9 @@
     				/> </td>
     				<td><?php echo $row['iid'];?></td>
     				<td><?php echo $row['supplierName'];?></td>
-    				<td><?php echo $row['name'];?></td>
+    				<td>
+    					<a href="<?php echo node_link('product', $row);?>">
+    						<?php echo $row['name'];?></a></td>
     				<td><?php echo $row['model'];?></td>
     				<td><?php echo $row['serialNumber'];?></td>
     				<td><?php echo $row['receivedDate'];?></td>
@@ -79,8 +81,10 @@
         			    </div> 
         			</td>
     				<td>
-    				    <a href="/product/update?id=<?php echo $row['id'];?>" class="btn btn-xs">
+    				    <a href="/product/update?id=<?php echo $row['id'];?>" class="btn btn-xs btn-default">
     				    	<i class="icon-edit"></i>Sửa</a>
+    				    <a href="/related/search?product__id=<?php echo $row['id'];?>" class="btn btn-xs btn-default">
+    				    	<i class="icon-edit"></i>So sánh</a>
     				    <?php if (has_perm('admin_product')):?>
     				    <a href="/product/delete?id=<?php echo $row['id'];?>" class="btn btn-xs btn-danger cl_ajax" 
     				        _cl_get_metadata="remove_my_parent:2"
