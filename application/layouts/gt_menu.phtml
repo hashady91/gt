@@ -78,28 +78,34 @@
           </div>
         </header>
         
-        <nav class="nav nav-scroll-top-gt">
+        <nav class="nav nav-scroll-top-gt" id='ls-primary-nav'>
         	<div class='row'>
         	<div class='twelve columns' style='padding: 0 !important;'>
-	        	<ul class="header-v3">
+	        	<ul class="header-v3" style='margin: 0;'>
 	        		<li class="sub-menu">
 	        		<h3 style="font-weight: bold;color: white;">
 	        			<a href="#" style='padding: 0; color: white !important; margin-top: -3px;'>
-	        				Danh mục sản phẩm</a></h3>
+	        				Danh mục sản phẩm
+	        				<b class="caret"></b></a></h3>
 	        		
-	        			<ul>
+	        			<ul class='category_menu'>
 	        			<?php if(isset($categories)):?>
 	          	        <?php foreach ($categories as $ca):?>
-	 		             <li>
+	 		             <li class='category_link'>
 	 		      	         <a href="<?php echo category_link($ca);?>">
 	     		      		     <?php echo $ca['name']?>
 	     		                 <?php $count_child = (isset($ca['child_category']) && count($ca['child_category']) > 0) ? count($ca['child_category']) : 0;?>
 	     		      		     <span class="counter">(<?php echo $count_child;?>)</span>
+	     		      		     <?php if($count_child > 0):?>
+	     		      		     	<b class="caret-right"></b>
+	     		      		     <?php endif;?>
 	 		      		     </a>
 	 		      		     <?php if($count_child >0): ?>
-	 		      		     <ul class="child-menu">
+	 		      		     <ul class="child-menu category_menu">
 	 		      		           <?php foreach ($ca['child_category'] as $key => $val):?>
-	         						<li><a href="<?php echo category_link($val);?>"><?php echo $val['name']?></a></li>
+	         						<li class='category_link'>
+	         							<a href="<?php echo category_link($val);?>">
+	         							<?php echo $val['name']?></a></li>
 	         					   <?php endforeach; ?>
 	         			     </ul>
 	 					     <?php endif;?>

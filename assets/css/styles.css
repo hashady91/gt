@@ -131,25 +131,26 @@ nav ul li {
 }
 
 nav ul li:hover {
-	background: #4b545f;
-	background: linear-gradient(top, #4f5964 0%, #5f6975 40%);
-	background: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
-	background: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+/* 	background: #4b545f; */
+
 }
 
 nav ul li:hover a {
-	color: #fff;
+	text-decoration: none;
+	font-weight: bold;
+	color: #FFF;
 }
 
 nav ul li a {
+	color: #f60;
 	display: block;
 	padding: 6px 8px;
-	color: #757575;
 	text-decoration: none;
+	font-weight: bold;
 }
 
 nav ul ul {
-	background: #5f6975;
+/* 	background: #5f6975; */
 	border-radius: 0px;
 	padding: 0;
 	position: absolute;
@@ -158,18 +159,22 @@ nav ul ul {
 
 nav ul ul li {
 	float: none;
-	border-top: 1px solid #6b727c;
-	border-bottom: 1px solid #575f6a;
+/* 	border-top: 1px solid #6b727c; */
+/* 	border-bottom: 1px solid #575f6a; */
+	border-top: 1px solid #FFF; 
+ 	border-bottom: 1px solid #FFF; 
 	position: relative;
 }
 
 nav ul ul li a {
 	padding: 10px 15px;
 	color: #fff;
+	text-decoration: none;
+	z-index: 1000;
 }
 
 nav ul ul li a:hover {
-	background: #4b545f;
+/* 	background: #4b545f; */
 }
 
 nav ul ul ul {
@@ -178,7 +183,9 @@ nav ul ul ul {
 	top: 0;
 }
 .header-v3 li {
-    background: none repeat scroll 0 0 rgb(117,172,72);
+/*     background: none repeat scroll 0 0 rgb(117,172,72); */
+	background: #0e71b4;
+	z-index: 1000;
 }
 .support-menu
 {
@@ -299,7 +306,7 @@ body.prom-night
 	max-height: 394px;	
 }
 .header-v3{
-	background: none repeat scroll 0 0 #75AC48
+/* 	background: none repeat scroll 0 0 #75AC48 */
 }
 #featured .hero-deal img{
 	height: 100% !important;
@@ -310,4 +317,53 @@ body.prom-night
 .prom-night .header-v2 .my-stuff
 {
 	z-index: 1 !important;
+}
+#ls-primary-nav {
+	background-color: #0e71b4;
+	float: none;
+	padding: 0;
+	margin: 0;
+	font-family: OpenSansLight,'Helvetica Neue',Arial,Helvetica,FreeSans,sans-serif;
+	position: relative;
+	z-index: 10;
+	margin-bottom: 5px !important;
+}
+ul.category_menu li.category_link a{
+	
+}
+ul.category_menu li.category_link a:hover{
+	color: #FFF;
+	background: #428BCA;
+/* 	#82b548 */
+}
+.prom-night .header-v2 .header{
+	background:none repeat scroll 0 0 #fff !important;
+}
+.prom-night .header-v2 .user-menu > a{
+	color: #333 !important;
+}
+.prom-night .header-v2 .user-menu > a:hover{
+	color: #333 !important;
+}
+.caret {
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid;
+    display: inline-block;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    width: 0;
+}
+.caret-right {
+    border-color: transparent transparent transparent #cccccc;
+    border-style: solid;
+    border-width: 5px 0 5px 5px;
+    content: " ";
+    display: block;
+    float: right;
+    height: 0;
+    margin-right: -5px;
+    margin-top: 5px;
+    width: 0;
 }

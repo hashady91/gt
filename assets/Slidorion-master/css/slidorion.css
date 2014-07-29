@@ -64,7 +64,8 @@
 
 .accordion .header.active {
 	border-bottom: none;
-	background: none repeat scroll 0 0 #61923B !important;
+/* 	background: none repeat scroll 0 0 #61923B !important; */
+	background: none repeat scroll 0 0 #0e71b4 !important;
 	color: #FFF;
 }
 
