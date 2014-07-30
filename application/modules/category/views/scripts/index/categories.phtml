@@ -114,64 +114,12 @@
 							  	<?php foreach ($categories as $cate):?>
 							  	<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
 								  	<?php if(count($products) > 0):?>
-									  <section class="deal-pack row pad-row">
-										  <div class="section-head">
-										      <a href="<?php echo category_link($cate['detail'])?>">
-										      	<h2><?php echo $cate['detail']['name'];?></h2></a>
-										  </div>
-										  <div class="block-grid three-up">
-								  			<?php foreach ($products as $product):?>
-										  		<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
-										      <figure class="deal-card">
-										        <a href="<?php echo node_link('product', $product);?>">
-										          <img src="
-										        <?php
-									 				  $url = STATIC_GT . $product['images'];
-										              if(!url_exists($url)){
-										              	$url = default_avatar('product');
-										              }
-										              echo $url;
-									                   ?>"
-									                   <?php  /*Giup hien thi phan giua cua anh*/
-									                   /*(Filled image widget new|hot|vote)*/
-										               list($width, $height) = getimagesize($url);
-										               $heightFilledImage = 187;//height class filedImage img
-													   $widthFilledImage = 300;
-										                
-										                //Get height (chieu dai thuc cua anh ty le
-										                // voi chieu dai cua khung chua anh)
-															/*
-															$heightFilledImageNew = $widthFilledImage * $height/ $width;
-											                
-											                $gap = ($heightFilledImageNew - $heightFilledImage)/2;
-											                if($gap > 0){
-											                	echo "style = 'margin-top: -{$gap}px'";
-											                }*/
-											                
-											                $widthFilledImageNew = $heightFilledImage * $width/$height;
-											                
-											                $gap = ($widthFilledImage - $widthFilledImageNew)/2;
-											                if($gap > 0){
-											                	echo "style = 'margin-left: {$gap}px'";
-											                }?>">
-										          <figcaption>
-										            <p style="word-wrap: break-word;" class="deal-title should-truncate">
-										            	<?php echo $product['name'];?></p>
-										            <p style="word-wrap: break-word;" class="merchant-name should-truncate">
-										       		     <?php echo $product['category']['name'];?></p>
-										            <p style="word-wrap: break-word;" class="deal-location should-truncate">
-										          		 <?php echo $product['counter']['buy'];?> đã mua</p>
-										            <p class="deal-price">
-										                <s class="original-price">
-										                <?php echo show_money($product['origin_price']);?>₫</s>
-										        	    <?php echo show_money($product['deal_price']);?>₫
-										            </p>
-										          </figcaption>
-										        </a>
-										      </figure>
-								   		    <?php endforeach;?>
-										  </div>
-										</section>
+								  		<?php 
+								  			$this->product_list = $products;
+								  			$this->product_list_name = $cate['detail']['name'];
+								  			$this->product_list_link = "#";
+								  			echo $this->render('widget/product_list.phtml');
+								  		?>
 								  	<?php endif;?>
 							     <?php endforeach;?>
 							   </div>

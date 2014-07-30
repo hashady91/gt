@@ -1,0 +1,69 @@
+<?php 
+	$product_list = isset($this->product_list) ? $this->product_list : array();
+	$this->product_list_name = isset($this->product_list_name) ? $this->product_list_name : '';
+	$this->product_list_link = isset($this->product_list_link) ? $this->product_list_link : '#';
+?>
+<?php if(count($product_list) > 0):?>
+	<div class="category-giasomot">
+		<section class="row">
+			<div class="home-top-Block">
+	            <div class="home-Title">
+	                <a href="<?php echo $this->product_list_link;?>"><h3>
+	                	<?php echo $this->product_list_name;?></h3></a>
+	            </div>
+	        </div>
+			<div class='productList'>
+				<ul class="clearfix list-product-hot" style="position: relative;">
+			  	  	<?php foreach ($product_list as $product):?>
+		  	  			<?php $product = Dao_Node_Product::getInstance()->getStandedProduct($product);?>
+		  	  			<?php $avatar = isset($product['images']) ? STATIC_GT . $product['images'] : default_avatar('product');?>
+						<li class="product">
+					        <section class="wrap">
+					        	<a title="<?php echo $product['name'];?>" 
+					        		href="<?php echo node_link('product', $product);?>">
+						            <figure class="image">
+						                <img alt="<?php echo $product['name'];?>" 
+						                	src="<?php echo $avatar;?>">
+						            </figure>
+					            </a>
+					            <div class="info">
+					            	<a title="<?php echo $product['name'];?>" 
+					            		href="<?php echo node_link('product', $product);?>">
+						                <div class="topinfo">
+						                    <div class="namewrap">
+						                        <h1 class="name"><?php echo $product['name'];?></h1>
+						                    </div>
+		                                    <div class="price_disc">
+		                                    	<?php echo show_money($product['origin_price']);?></div>
+						
+						                    <div class="price_pro">
+												<?php echo show_money($product['deal_price']);?>
+												<span class="symbol">đ</span>
+						                    </div>
+						                </div>
+			                             <div class="product_gtt">
+										        <div class="product_gtt_box">
+											        <span class="product_gtt_tg"></span> 
+							                            <span class="product_gtt_gia">
+							                            	-<?php echo number_format($product['deal_price'] / $product['origin_price'] * 100,1);?>%  </span>
+										        </div>
+									        </div>    
+						
+										<?php /*
+							                <div class="description">
+							                        <div class="promotion-des">
+							                            <p>Đặt ngay tặng kèm:</p>
+							                            ffsssda
+							                        </div>
+							                </div>
+										*/?>
+					                	</a>
+					            </div>
+					        </section>
+						</li>
+	  	  			<?php endforeach;?>
+				</ul>
+		</div>
+		</section>
+	 </div>
+ <?php endif;?>

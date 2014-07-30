@@ -1,0 +1,209 @@
+@CHARSET "UTF-8";
+.main .row{
+	width: 1200px !important;
+}
+
+.prom-night input.btn-cta[type="submit"], .prom-night input.btn-cta[type="button"], .prom-night input.btn-buy[type="submit"], .prom-night input.btn-buy[type="button"], .prom-night .btn-buy, .prom-night .btn-cta {
+    background-image: linear-gradient(to bottom, #0e71b4 0px, #0e71b4 100%) !important;
+}
+.prom-night input.btn-cta[type="submit"]:hover, .prom-night input.btn-cta[type="button"]:hover, 
+.prom-night input.btn-buy[type="submit"]:hover, .prom-night input.btn-buy[type="button"]:hover,
+.prom-night .btn-buy:hover, .prom-night .btn-cta:hover {
+	background-color: #0e71b4 !important;
+    background-image: linear-gradient(to bottom, #0e71b4 0px, #0e71b4 100%) !important;
+}
+.deal-price{
+	color: #0e71b4 !important;
+}
+.productbox {
+    overflow: hidden;
+}
+.product-list-heading{
+	font-size: 24px;
+	color: #333;
+}
+.home-top-Block {
+    border-bottom: 3px solid #0e71b4;
+    height: 36px;
+    width: 100%;
+    margin-top: 5px;
+}
+.home-Title {
+    background: none repeat scroll 0 0 #0e71b4;
+    border-top-right-radius: 15px;
+    float: left;
+    font-weight: 400;
+    padding-right: 15px;
+    padding-top: 2px;
+}
+.home-Title a {
+    color: #fff;
+    float: left;
+    font-size: 16px;
+    text-decoration: none;
+}
+.home-Title a h3, .home-Title h1, .home-Title h3 {
+    color: #fff;
+    font-size: 20px;
+    line-height: 1;
+    margin: 5px 0 6px;
+    padding: 0;
+}
+.left_block .left_block_title {
+	margin-right: 18px;
+	line-height: 30px;
+	height: 31px;
+}
+.left_block .left_block_title, .right_block .right_block_title {
+	border-bottom: 1px solid #ccc;
+	position: relative;
+}
+.left_block_title span {
+	color: #333;
+    font-size: 24px;
+	/* line-height: 32px; */
+}
+.left_block_title span, .right_block_title span, .right_block_title a {
+	display: inline-block;
+	margin-top: -1px;
+	border-bottom: 2px solid #333;
+}
+.productbox .productlist {
+    border-left: 1px solid #e2e2e2;
+    margin: 0 0 0 5px;
+}
+.clearfix.list-product-hot{
+	margin-left: -20px;
+}
+.product {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #e2e2e2;
+    float: left;
+    height: 290px;
+    position: relative;
+    width: 182px;
+    margin-right: 9px;
+    margin-bottom: 9px;
+}
+.product:hover{
+	background: none repeat scroll 0 0 #0e71b4;
+	color: #FFF;
+}
+.product .wrap {
+    height: 288px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+.product .image {
+    height: 155px;
+    margin-top: 30px;
+    text-align: center;
+}
+figure {
+    margin: 0;
+}
+.product .image img {
+    height: 155px;
+    position: relative;
+}
+.product .info {
+    border-top: 0 none;
+}
+.product .info {
+    top: 200px;
+}
+.product .info {
+    background: none repeat scroll 0 0 #fff;
+    height: 288px;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    transition: top 0.5s ease 0s;
+    width: 100%;
+    z-index: 2;
+}
+.product .info .topinfo {
+    display: table-cell;
+    height: 90px;
+    vertical-align: bottom;
+    width: 170px;
+}
+.product .namewrap {
+    margin: 5px 5px 0px 15px;
+    min-height: 34px;
+    position: relative;
+    text-overflow: ellipsis;
+    width: 86%;
+}
+.product .namewrap .name {
+    overflow: hidden;
+    padding-bottom: 3px;
+    text-overflow: ellipsis;
+}
+.product .name {
+    bottom: 0 !important;
+    margin: 0 !important;
+    position: absolute;
+}
+.product .name {
+    color: #000000;
+    font-size: 15px;
+    font-weight: normal;
+    line-height: 16px;
+    margin: 10px 5px 5px 15px;
+    max-height: 32px;
+}
+.price_disc {
+    color: #9ea09d;
+    font-size: 12px;
+    margin-left: 15px;
+    text-decoration: line-through;
+}
+.product .price_pro {
+    color: #d41212;
+    font-size: 20px;
+    font-weight: bold;
+    height: 20px;
+    margin: 0 15px 12px;
+}
+.product .price .symbol {
+    color: #7f7f7f;
+    font-size: 11px;
+    font-weight: normal;
+    text-decoration: underline;
+}
+.product_gtt {
+    background: url("../img/bg-gtt.png") no-repeat scroll left center rgba(0, 0, 0, 0);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    height: 30px;
+    line-height: 30px !important;
+    padding: 0 5px 0 10px;
+    position: absolute;
+    right: 0;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.35);
+    top: 48px;
+    width: auto;
+}
+.product_gtt_gia {
+    line-height: 30px;
+}
+.description {
+    line-height: 16px;
+    top: 130px;
+}
+.product .description {
+    font-size: 12px;
+    margin: 0 15px;
+}
+.promotion-des {
+    background: none repeat scroll 0 0 #d41212;
+    color: #fff !important;
+    margin: 2px -15px 0;
+    overflow: hidden;
+    padding: 5px;
+}

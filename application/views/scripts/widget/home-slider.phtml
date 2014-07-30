@@ -1,0 +1,62 @@
+<div class="main">
+	<div id="mi-slider" class="mi-slider">
+		<ul>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/1.jpg" alt="img01"><h4>Boots</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/2.jpg" alt="img02"><h4>Oxfords</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/3.jpg" alt="img03"><h4>Loafers</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/4.jpg" alt="img04"><h4>Sneakers</h4></a></li>
+		</ul>
+		<ul>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/5.jpg" alt="img05"><h4>Belts</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/6.jpg" alt="img06"><h4>Hats &amp; Caps</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/7.jpg" alt="img07"><h4>Sunglasses</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/8.jpg" alt="img08"><h4>Scarves</h4></a></li>
+		</ul>
+		<ul>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/9.jpg" alt="img09"><h4>Casual</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/10.jpg" alt="img10"><h4>Luxury</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/11.jpg" alt="img11"><h4>Sport</h4></a></li>
+		</ul>
+		<ul>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/12.jpg" alt="img12"><h4>Carry-Ons</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/13.jpg" alt="img13"><h4>Duffel Bags</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/14.jpg" alt="img14"><h4>Laptop Bags</h4></a></li>
+			<li><a href="#"><img src="<?php echo ASSETS_CDN;?>/images/15.jpg" alt="img15"><h4>Briefcases</h4></a></li>
+		</ul>
+		<nav>
+			<a href="#">Shoes</a>
+			<a href="#">Accessories</a>
+			<a href="#">Watches</a>
+			<a href="#">Bags</a>
+		</nav>
+	</div>
+</div>
+<?php /*
+<?php $categories_iids2 = $this->categories_iids2;?>
+<div class="main">
+	<div id="mi-slider" class="mi-slider">
+  	<?php foreach ($categories_iids2 as $cate):?>
+  		<?php $products = isset($cate['products']) ? $cate['products'] : array();?>
+	  	<?php if(count($products) > 0):?>
+		  	<ul>
+		  		<?php $limit = 0;?>
+		  		<?php foreach ($products as $p):?>
+		  		<?php $avatar = isset($p['images']) ? STATIC_GT . $p['images'] : default_avatar('product');?>
+		  			<?php if($limit <=4):?>
+						<li><a href="<?php echo node_link('product', $p);?>">
+							<img src="<?php echo $avatar?>" 
+							alt="img01"><h4><?php echo $p['name']?></h4></a></li>
+					<?php endif;?>
+					<?php $limit++;?>
+				<?php endforeach;?>
+			</ul>
+	  	<?php endif;?>
+	<?php endforeach;?>
+		<nav>
+		  	<?php foreach ($categories_iids2 as $cate):?>
+				<a href="#"><?php echo $cate['detail']['name'];?></a>
+		  	<?php endforeach;?>
+		</nav>
+	</div>
+</div>
+*/?>

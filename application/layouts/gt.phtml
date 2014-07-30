@@ -38,6 +38,8 @@
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-4f5ae5533f.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-6e7d0d401d.css" media="screen" rel="stylesheet" type="text/css" >
 	<link href="<?php echo ASSETS_CDN;?>/css/styles-48b2ea4920.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/home_slider.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="<?php echo ASSETS_CDN;?>/css/product.css" media="screen" rel="stylesheet" type="text/css" >
     <link href="<?php echo SAND_ASSETS_CDN;?>/js/plugins/toastmessage/src/main/resources/css/jquery.toastmessage.css" rel="stylesheet" type="text/css"/>	
     <link href="<?php echo SAND_ASSETS_CDN;?>/css/common.css" media="screen" rel="stylesheet" type="text/css" >
 <?php 
@@ -191,6 +193,15 @@ CL.DATE_FORMAT = "<?php echo substr(strtolower($format), 0, -2);?>";
 			        	margin: '0'
 	        	});
 	    	}
+		});
+	</script>
+	<?php //TODO: xem lai cac phien ban jquery?>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="<?php echo ASSETS_CDN;?>/js/jquery.catslider.js"></script>
+	<script type="text/javascript" src="<?php echo ASSETS_CDN;?>/js/modernizr.custom.63321.js"></script>
+	<script>
+		$(function() {
+			$( '#mi-slider' ).catslider();
 		});
 	</script>
 	
