@@ -1,0 +1,123 @@
+<?php 
+    $row = $this->row;
+    $row = Dao_Node_Product::getInstance()->getStandedProduct($row);
+    $lu = Zend_Registry::get('user');
+?>
+<div class='detail-product' style='margin-top: 30px;'>
+	<div class="grid_9">
+		<?php 
+			$url = STATIC_GT . $row['images'];
+			if(!url_exists($url)){
+				$url = default_avatar('product');
+			}
+		?>
+		<img width="340" style="border: 0px none; opacity: 1;" 
+			alt="<?php echo $row['name'];?>" 
+				src="<?php echo $url;?>" title="<?php echo $row['name'];?>">
+	  		<ul data-bhw="DealSharingButtons" class="share-links" style="border-top: medium none;">
+		         <div class="fb-like" 
+					data-href="<?echo SITE_URL;?><?php echo node_link('product',$row);?>"  
+	                        data-layout="button_count" 
+	                        data-action="like" 
+	                        data-show-faces="true" 
+	                        data-share="true">
+	                     </div>
+				    </ul>
+	</div>
+	<div class="grid_15 item_right">
+		<div style="padding-left: 10px;">
+			<div class="item_detail_title"><h1><?php echo $row['name'];?></h1><div class="clear"></div></div>
+			<div class="item_detail_info">
+				<div class="item_sku">
+					<strong>Mã hàng#: </strong> <?php echo $row['serialNumber']?> - <strong>Hãng sản xuất#:</strong> TOSHIBA
+				</div>
+				<div class="item_detail_summary">
+				    <dl class="item_detail_price">
+				        <dt class="price_old">Giá niêm yết:</dt>
+				        <dd class="price_old"><?php echo show_money($row['origin_price']);?>₫</dd>
+				        <dt class="price_save">Tiết kiệm:</dt>
+				        <dd class="price_save">- 
+				        <?php if(isset($row['deal_price']))
+				        	$save = $row['origin_price'] - $row['deal_price'];
+				        else
+				        	$save = 0;
+				        ?>
+				        <?php echo show_money($save);?>₫ &nbsp; 
+				        	(<?php echo number_format($row['deal_price'] / $row['origin_price'] * 100,1);?> %)</dd>
+				        <dt class="price_final">Giá online chỉ còn:</dt>
+				        <dd class="price_final"> 
+				        	<span class="supPrice">
+					        	<?php $row['deal_price'] = isset($row['deal_price']) ? $row['deal_price'] : $row['origin_price'];?>
+					    		<?php 
+		                                  echo show_money(	$row['deal_price']);
+		                         ?>
+	                         <sup>₫</sup></span></dd>
+				        <ul></ul>
+				        <?php /*
+				        <dt class="item_detail_gift"><img alt="Khuyến mại" src="/Images/icon_km.gif"></dt>
+				        <dd class="item_detail_gift">
+				            <div class="detail_offer">
+				                <ul>
+				                    <li>1 Giá treo cứng LED 22-32 inch GTV20 (Áp dụng: 01/08/2014 - 07/08/2014)</li>
+				                </ul>
+				            </div>
+				        </dd>
+				        */?>
+				        <dd>
+				            <div class="itemAction">
+				                <ul>
+				                    <li>
+				                        <div class="area_tutorial">
+				                        	<button class="btnT btnT-nephritis btnT-large" 
+			                        			Mua ngay, giao tận nơi<span>(xem hàng, không mua không sao)</span>
+	                        			    </button>
+	                        			    <a target="_blank" class="link_tutorial" href="">
+	                        			    	<i class="ico_tutorial"></i>Hướng dẫn<br>mua hàng</a></div>
+				                    </li>
+				                    <li>
+				                    	<button class="btnT btnT-peterriver btnT-large">
+				                    	Thêm sản phẩm vào giỏ
+				                    		<span>(dành cho mua cùng lúc nhiều sản phẩm)</span></button></li>
+				                </ul>
+				                <div class="clear"></div>
+				            </div>
+				            <div class="detail_other">
+				            </div>
+				        </dd>
+				    </dl>
+				    <div class="clear"></div>
+				    <dl class="item_detail_accessory">
+				        <dt class="item_acc_status">Tình trạng:</dt>
+				        <?php $stockStatus = isset($row['stockStatus']) ? 1 : 0;?>
+				        <dd class="item_acc_status"><span class="greenBack">
+				        	<?php 
+					        	if($stockStatus){
+									$strStockStatus = "Hàng có sẵn trong kho";
+								}else{
+									$strStockStatus = "Hết hàng";
+								}
+	
+		
+			        		?>
+				        		</span></dd>
+				        <dt class="item_sellplace">Đang bán tại:</dt>
+				        <dd class="item_sellplace">
+				        	<a title="Kiểm tra cửa hàng đang bán sản phẩm này">
+			        		Kiểm tra cửa hàng đang bán sản phẩm này</a>
+		        		</dd>
+				    </dl>
+				    <div class="clear"></div>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class='row' style='margin-top: 30px; background: none repeat scroll 0 0 #fff !important; padding-top: 10px;'>
+	         <div class='columns twelve'>
+			 	<div class="fb-comments" 
+		        	data-href="<?echo SITE_URL . node_link('product',$row);?>" 
+		        	data-width="650" data-num-posts="10"></div>
+	            </div>
+	       </div>
+	</div>
+</div>
