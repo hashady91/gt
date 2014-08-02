@@ -387,3 +387,6 @@ figure {
 .item_detail_accessory dt {
     font-weight: 700;
 }
+.prom-night #refinement-bar .flat-refinements, .prom-night #refinement-bar .categories-wrapper, .prom-night #refinement-bar .top-category-links{
+	width: 100% !important;
+}

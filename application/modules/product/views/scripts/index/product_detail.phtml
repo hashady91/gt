@@ -11,7 +11,7 @@
 				$url = default_avatar('product');
 			}
 		?>
-		<img width="340" style="border: 0px none; opacity: 1;" 
+		<img width="90%" style="border: 0px none; opacity: 1;" 
 			alt="<?php echo $row['name'];?>" 
 				src="<?php echo $url;?>" title="<?php echo $row['name'];?>">
 	  		<ul data-bhw="DealSharingButtons" class="share-links" style="border-top: medium none;">
@@ -64,20 +64,28 @@
 				        </dd>
 				        */?>
 				        <dd>
-				            <div class="itemAction">
+				            <div class="itemAction" style='clear: both;'>
 				                <ul>
 				                    <li>
 				                        <div class="area_tutorial">
-				                        	<button class="btnT btnT-nephritis btnT-large" 
-			                        			Mua ngay, giao tận nơi<span>(xem hàng, không mua không sao)</span>
-	                        			    </button>
-	                        			    <a target="_blank" class="link_tutorial" href="">
-	                        			    	<i class="ico_tutorial"></i>Hướng dẫn<br>mua hàng</a></div>
+				                        	<a href="/term/hinh-thuc-thanh-toan">
+					                        	<button class="btnT btnT-nephritis btnT-large" 
+					                        		title="Mua ngay, giao tận nơi">
+					                        		<span style='font-size: 14px;'>(xem hàng, không mua không sao)</span>
+		                        			    </button>
+	                        			    </a>
+	                        			    <a target="_blank" class="link_tutorial" href="/term/hinh-thuc-thanh-toan">
+	                        			    	<i class="ico_tutorial"></i>Hướng dẫn<br>mua hàng</a>
+                        			    	</div>
 				                    </li>
 				                    <li>
-				                    	<button class="btnT btnT-peterriver btnT-large">
-				                    	Thêm sản phẩm vào giỏ
-				                    		<span>(dành cho mua cùng lúc nhiều sản phẩm)</span></button></li>
+				                    	<a href="/bill/buy/<?php echo $row['iid'];?>">
+					                    	<button class="btnT btnT-peterriver btnT-large">
+					                    	Mua sản phẩm
+					                    		<span>(click để mua sản phẩm)</span>
+				                    		</button>
+			                    		</a>
+		                    		</li>
 				                </ul>
 				                <div class="clear"></div>
 				            </div>
@@ -97,7 +105,7 @@
 									$strStockStatus = "Hết hàng";
 								}
 	
-		
+								echo $strStockStatus;
 			        		?>
 				        		</span></dd>
 				        <dt class="item_sellplace">Đang bán tại:</dt>
