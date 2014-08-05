@@ -255,7 +255,7 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     
     public function parseFileAction(){
     	header( 'Content-Type: text/html; charset="UTF-8"' );
-    	$file = 'http://test.local/products.txt';
+    	$file = 'http://gt.local/products.txt';
     	$file_content = file_get_contents($file, true);	    //concept
     	
     	//Tach tung dong ra de lay tung dong
