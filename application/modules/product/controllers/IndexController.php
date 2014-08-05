@@ -252,5 +252,23 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
     	//$this->_helper->viewRenderer->setNoRender(true);
     	Bootstrap::$pageTitle = 'Sản phẩm bán chạy nhất';
     }
+    
+    public function parseFileAction(){
+    	header( 'Content-Type: text/html; charset="UTF-8"' );
+    	$file = 'http://test.local/products.txt';
+    	$file_content = file_get_contents($file, true);	    //concept
+    	
+    	//Tach tung dong ra de lay tung dong
+    	$productIids = explode("\n", $file_content);
+    	$this->setViewParam('productIids', $productIids);
+    	
+    	Bootstrap::$pageTitle = "Phân tích dữ liệu - sản phẩm";
+    }
+    
+    public function insertProductByUrlAction(){
+    	Dao_Node_Product::getInstance()->insertProductByUrl();
+    	
+    	die('oki');	
+    }
 }
 

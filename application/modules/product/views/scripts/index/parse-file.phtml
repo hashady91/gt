@@ -1,0 +1,171 @@
+<?php 
+	$productIids = $this->productIids;
+	$prefix = 'http://pico.vn/';
+?>
+<div>
+	Lấy dữ liệu từ danh sách iid của product: 
+	<?php foreach ($productIids as $iid):?>
+		<?php echo $iid . "<br>";?>
+	<?php endforeach;?>
+</div>
+<div id='product_parse'>
+
+</div>
+<?php $this->inlineScript()->captureStart();?>
+$(document).ready(function(){
+	jQuery.ajax = (function(_ajax){
+
+		    var protocol = location.protocol,
+		        hostname = location.hostname,
+		        exRegex = RegExp(protocol + '//' + hostname),
+		        YQL = 'http' + (/^https/.test(protocol)?'s':'') + '://query.yahooapis.com/v1/public/yql?callback=?',
+		        query = 'select * from html where url="{URL}" and xpath="*"';
+		
+		    function isExternal(url) {
+		        return !exRegex.test(url) && /:\/\//.test(url);
+		    }
+		
+		    return function(o) {
+		
+		        var url = o.url;
+		
+		        if ( /get/i.test(o.type) && !/json/i.test(o.dataType) && isExternal(url) ) {
+		
+		            // Manipulate options so that JSONP-x request is made to YQL
+		
+		            o.url = YQL;
+		            o.dataType = 'json';
+		
+		            o.data = {
+		                q: query.replace(
+		                    '{URL}',
+		                    url + (o.data ?
+		                        (/\?/.test(url) ? '&' : '?') + jQuery.param(o.data)
+		                    : '')
+		                ),
+		                format: 'xml'
+		            };
+		
+		            // Since it's a JSONP request
+		            // complete === success
+		            if (!o.success && o.complete) {
+		                o.success = o.complete;
+		                delete o.complete;
+		            }
+		
+		            o.success = (function(_success){
+		                return function(data) {
+		
+		                    if (_success) {
+		                        // Fake XHR callback.
+		                        _success.call(this, {
+		                            responseText: data.results[0]
+		                                // YQL screws with <script>s
+		                                // Get rid of them
+		                                .replace(/<script[^>]+?\/>|<script(.|\s)*?\/script>/gi, '')
+		                        }, 'success');
+		                    }
+		
+		                };
+		            })(o.success);
+		
+		        }
+		
+		        return _ajax.apply(this, arguments);
+		
+		    };
+		
+		})(jQuery.ajax);
+
+	
+	var productList = [];
+	<?php foreach ($productIids as $iid):?>
+		<?php if($iid != ''):?>
+			<?php $url = $prefix . $iid . '/abc.html'?>
+			var url = "<?php echo $url;?>";
+			$.ajax({
+			    url: url,
+			    type: 'GET',
+			    success: function(res) {
+			    	var product = [];//src_img, title, mahang, nhasanxuat, giaban, giaonline, tinhtranghang, thongsokythuat
+					var spec_descr = [];
+					var spec_desc_list = [];
+					
+			        var text = res.responseText;
+			        $("#product_parse").html(text);
+			        //get img' src 
+			        $product_parse = $("#product_parse");
+			        $img_content = $product_parse.find('#content'); 
+
+				    var $img = $img_content.find(".jqzoom_pico .jqzoom img");
+				    var src = $img.attr('src');
+				    product.src = src;
+
+				    //get detail product
+				    //Get title, ma hang, nha san xuat, gia ban, gia online => tiet kiem, tinh trang con hang
+				    //Lay thong so ky thuat
+				    $item_sku = $product_parse.find(".item_sku");
+				    $item_sku_arry = $item_sku.html().split("<strong>");
+				    product.mahang = $item_sku_arry[1];
+				    product.nsx = $item_sku_arry[2];
+				    
+				    //var $mahang = $item_sku.find("strong:eq(0)");
+				    //var $nsx = $item_sku.find("strong:eq(1)");  
+				    //product.mahang = $mahang.html();
+				    //product.nsx = $nsx.html();
+				    
+				    $item_detail_summary = $product_parse.find(".item_detail_summary");
+				    $price_old = $item_detail_summary.find(".price_old");
+				    $price_final= $item_detail_summary.find(".item_detail_price dd.price_final .supPrice");
+
+				    $item_detail_accessory = $product_parse.find(".item_detail_accessory");
+				    $item_acc_status = $item_detail_accessory.find(".item_acc_status");
+
+				    product.price_old = $price_old.html();
+				    product.price_final = $price_final.html();
+				    product.item_acc_status = $item_acc_status.html();
+				    
+				    $detail_content = $product_parse.find(".detail-content");  
+				    $thongSoKyThuat = $product_parse.find("table.spec_descr tbody");
+				    //TODO parse thong so ky thuat
+				    
+				    
+				    $("#product_parse table.spec_descr tbody tr").each(function(i,e){
+					    var _this = $(this);
+					    var spec_descr = [];
+					    var $name = _this.find("td.specHead");
+					    var  $value = _this.find("td.spedContent");
+
+					    spec_descr.name = $name.html();
+					    spec_descr.value = $value.html();
+						spec_desc_list.push(spec_descr);
+				    });
+				    
+				    product.spec_descrs = spec_desc_list;
+					console.log(product);
+			    }
+			});
+	     productList.push(product);
+		<?php endif;?>		
+	<?php endforeach;?>
+	console.log('productList----------------');
+	console.log(productList);
+	//TODO: update productList to database
+	
+	/*
+	$.ajax({
+		url : "/product/insert-product-by-url",
+		data : 
+		{
+			products  : productList,
+			url : url
+		},
+		success:function(){
+			alert("OKI---------------");
+		}
+	});
+	*/
+});
+
+
+<?php $this->inlineScript()->captureEnd();?>

@@ -466,4 +466,8 @@ class Dao_Node_Product extends Cl_Dao_Node
 			return array();
 		}
 	}
+	
+	public function insertProductByUrl(){
+		
+	}
 }
