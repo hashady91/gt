@@ -4,7 +4,7 @@ ini_set('error_reporting', 0);
 ini_set('display_errors', false);
 */
 //$a = time() + microtime();
-
+header('Access-Control-Allow-Origin: *');
 define('bootstrap3', 1);
 
 defined('PUBLIC_PATH')

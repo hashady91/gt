@@ -58,6 +58,53 @@ class Product_IndexController extends Cl_Controller_Action_NodeIndex
         Bootstrap::$pageTitle = 'Tạo sản phẩm mới';
     }
 
+    public function crawlerAction()
+    {
+        if (!assure_perm('sudo'))
+    	    $this->_redirect('/user/login');
+        $title = $this->getStrippedParam('title');
+        //$tags = $this->getStrippedParam('tags');
+        $itemID = $this->getStrippedParam("itemID");
+        $itemName = $this->getStrippedParam("itemName");
+        $price = $this->getStrippedParam("price");
+        $imageURL = $this->getStrippedParam('image');
+        $b64image = base64_decode(file_get_contents($imageURL));
+        $binary = base64_decode($b64image);
+        $id = new MongoId();
+        $today = getdate();
+        $file = $id . '.jpg';
+        $filePath = STATIC_PATH . $file;
+        $url = STATIC_CDN . $file;
+        Cl_Utility::getInstance()->saveFile($binary, $filePath);
+        if($itemID != '' || $itemID != null)
+        {
+            //TODO : get OLD imgae URL. and copy new file to old folder
+            assure_perm('root');
+            $r2 = Dao_Node_Story::getInstance()->findOne(array('id'=> $storyId));
+            $url2 = PUBLIC_FILES_UPLOAD_PATH . '/1000/'.$r2['id'];
+            Cl_Utility::copyFile($filePath, $url2);
+            $i = Dao_Node_Story::getInstance()->uploadAndResizeImage($url2);
+            die('OK');
+        }
+        $tmp = Cl_Dao_Util::getUserDao()->getCacheObject(Zend_Registry::get('user'));
+        if ($tmp['success'])
+            $u = $tmp['result'];
+        
+        $values['u'] = $u;
+        $values['_u'] = Zend_Registry::get('user');
+        $values['ts'] = time();
+        $values['name'] = $itemName;
+        $values['itemID'] = $itemID;
+        $values['price'] = $price;
+        $values['images'] = $url;
+        $r = Dao_Node_Product::getInstance()->insertNode($values);
+        if ($r['success'])
+        {
+            $r = array('success'=> true, 'result'=>'inserted successfully');
+        }
+        $this->handleAjaxOrMaster($r);        
+    }
+    
     public function updateAction()
     {
     	assure_perm('sudo');

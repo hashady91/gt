@@ -25,11 +25,4 @@
 		<nature>org.eclipse.php.core.PHPNature</nature>
 		<nature>org.eclipse.wst.common.project.facet.core.nature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>sand-core</name>
-			<type>2</type>
-			<location>/home/leeduc/code/sand-core</location>
-		</link>
-	</linkedResources>
 </projectDescription>
