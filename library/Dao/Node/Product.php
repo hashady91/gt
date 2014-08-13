@@ -67,6 +67,7 @@ class Dao_Node_Product extends Cl_Dao_Node
     	        "width" => 'float',
     	        'height' => 'float',
     	        'slug' => 'string',
+    	        'itemID' => 'string', // ID cua hang hoa lay tu pico. sau khi chay lai job thi se co' duoc du lieu moi
     	        'counter' => array(
     	                'saled' => 'int', // so luong hang ban duoc
     	                'viewed' => 'int', //so luot ghe tham san pham
